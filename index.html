@@ -41,6 +41,30 @@
 							source code here
 						</pre
 						>
+						<pre>
+							<code class="language-css">
+							var express = require('express');
+							var router = express.Router();
+						
+							/* GET home page. */
+							router.get('/', function(req, res, next) {
+							  res.render('index', { title: 'Express' });
+							});
+						
+							/* GET /about */
+							router.get('/about', function(req, res, next) {
+							  res.render('about', { title: 'バージョン情報', version: "0.1" });
+							});
+						
+							/* GET /value/:n */
+							router.get('/value/:n', function(req, res, next) {
+							  res.render('value', { title: "パラメータ付きのルート", n: req.params.n});
+							});
+						
+							module.exports = router;
+							
+						</pre
+						>
 						<pre class="prettyprint">
 							var express = require('express');
 							var router = express.Router();
@@ -61,6 +85,7 @@
 							});
 						
 							module.exports = router;
+						</code>
 						</pre
 						>
 						<pre><code class="language-css">p { color: red }</code></pre>
