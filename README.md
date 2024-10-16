@@ -4,15 +4,34 @@ github pagesで公開している私の自己紹介やメモを記録するHPの
 
 ## プロジェクト概要
 
-このウェブサイトは、[簡単な説明を入れてください、例：私の個人ポートフォリオ、技術ブログなど]として機能します。Astro の強力な機能を活用して、高速でパフォーマンスの良いウェブサイトを構築しています。
+github pagesでは、私の自己紹介と技術的なメモ、作成したパーツ、ポートフォリオを載せています。
 
-サイトURL: [あなたのGitHub Pagesの URL を入れてください]
+サイトURL: [プロフィールページ](https://hiroyuki9614.github.io/my_profile/)
 
-## 🛠 技術スタック
+## 技術スタック
 
 - [Astro](https://astro.build/)
 - HTML/CSS
-- JavaScript
-- [その他使用している主要な技術やライブラリがあれば列挙してください]
+- TypeScript
+- tailwindCSS
 
-## 🔧 ローカルでの開発
+## ディレクトリ構成
+
+```plaintext
+.
+├── astro.config.mjs
+├── package.json
+├── public
+│   └── favicon.svg
+├── src
+│   ├── components
+│   │   └── Card.astro
+│   ├── layouts
+│   │   ├── Layout.astro
+│   │   └── PostLayout.astro
+│   └── pages
+│       ├── index.astro
+│       └── posts
+│           └── sample.md
+└── tsconfig.json
+```
