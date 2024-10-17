@@ -1,6 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Head from '../components/Head.astro';
 import PostLayout from '../layouts/PostLayout.astro';
 
 const postData = {
@@ -10,6 +9,7 @@ const postData = {
 };
 ---
 
+<Head />
 <PostLayout frontmatter={postData}>
 	<!-- ここにポストの内容を記述 -->
 	<p>This is the content of your post.</p>
