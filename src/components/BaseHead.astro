@@ -1,6 +1,11 @@
 ---
+interface Props {
+	title: string;
+	description: string;
+}
 const { title, description } = Astro.props;
 ---
 
 <meta name='description' content={description} />
 <link rel='icon' href='../../public/favicon.svg' type='image/x-icon' />
+<link rel="stylesheet" href="../styles/global.css />
