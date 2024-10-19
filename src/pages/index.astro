@@ -8,10 +8,11 @@ const postData = {
 	author: 'Your Name',
 	date: new Date().toLocaleDateString(),
 };
+const imageUrl = { '../public/images/top01.webp' }
 ---
 
 <Head />
-<HeroSection>
+<HeroSection imageUrl={imageUrl}>
 	<p>aaaa</p>
 </HeroSection>
 <PostLayout frontmatter={postData}>
