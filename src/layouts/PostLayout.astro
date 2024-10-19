@@ -5,6 +5,7 @@ const { frontmatter } = Astro.props;
 <html>
 	<head>
 		<title>{frontmatter.title}</title>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	</head>
 	<body>
 		<h1>{frontmatter.title} by {frontmatter.author}</h1>

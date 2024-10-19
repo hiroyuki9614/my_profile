@@ -2,6 +2,7 @@
 import Head from '../components/Head.astro';
 import HeroSection from '../components/HeroSection.astro';
 import PostLayout from '../layouts/PostLayout.astro';
+import Layout from '../layouts/Layout.astro';
 
 const postData = {
 	title: 'Welcome to Astro.',
@@ -9,12 +10,6 @@ const postData = {
 	date: new Date().toLocaleDateString(),
 };
 ---
-
-<Head />
-<HeroSection>
-	<p>aaaa</p>
-</HeroSection>
-<PostLayout frontmatter={postData}>
-	<!-- ここにポストの内容を記述 -->
-	<p>This is the content of your post.</p>
-</PostLayout>
+<Layout>
+	<slot />
+</Layout>
