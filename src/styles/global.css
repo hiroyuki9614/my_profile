@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 body {
-    background: #000;
+    background: #7a7a7a;
 }
 
-h1 {
-    color: aqua;
+h1, h2, h3 {
+    font-family: sans-serif;
 }
