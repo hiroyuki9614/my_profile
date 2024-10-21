@@ -1,6 +1,7 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import HeaderNav from '../components/HeaderNav.astro';
+import Welcome from '../components/Welcome.astro';
 import Footer from '../components/Footer.astro';
 // const { title } = Astro.props;
 ---
@@ -12,16 +13,11 @@ import Footer from '../components/Footer.astro';
 	<body>
 		<header>
 			<HeaderNav />
+			<Welcome />
 		</header>
 		<article>
 			<slot />
-			<!-- ここにコンテンツが挿入されます -->
 		</article>
 		<Footer />
 	</body>
-	<style>
-		h1 {
-			font-size: 2rem;
-		}
-	</style>
 </html>
