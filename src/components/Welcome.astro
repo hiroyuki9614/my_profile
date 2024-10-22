@@ -21,23 +21,38 @@
 	}
 
 	h1 {
+		opacity: 0;
 		font-family: 'Bungee', sans-serif;
 		font-size: 8rem;
 		text-align: center;
 		margin-bottom: 1rem;
 		color: yellow;
-		animation: shadow-change 2s ease-in-out forwards;
+		animation:
+			shadow-change 2s ease-in-out forwards,
+			fade-in 5s ease-in-out forwards;
 	}
 
 	@keyframes shadow-change {
 		0% {
-			text-shadow: 0 #dc00fc;
+			text-shadow: 2px 3px 4px #dc00fc;
 		}
 		50% {
 			text-shadow: 4px 6px 8px #dc00fc;
 		}
 		100% {
 			text-shadow: 2px 3px 4px #dc00fc;
+		}
+	}
+
+	@keyframes fade-in {
+		0% {
+			opacity: 0;
+		}
+		30% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
 		}
 	}
 
@@ -50,21 +65,44 @@
 
 	.line-top {
 		position: absolute;
-		top: 0;
-		left: 0;
-		width: 20px;
-		height: 20px;
-		border-top: 1px solid white;
-		border-left: 1px solid white;
+		top: 25%;
+		left: 46%;
+		width: 5rem;
+		height: 5rem;
+		border-top: 2px solid white;
+		border-left: 2px solid white;
+		animation:
+			rotation1 0.5s linear forwards,
+			movr 0.5s linear forwards;
+	}
+
+	@keyframes movr {
+		0% {
+			top: 0%;
+			left: 0%;
+		}
+		100% {
+			left: 10%;
+		}
 	}
 
 	.line-bottom {
 		position: absolute;
-		bottom: 0;
-		right: 0;
-		width: 20px;
-		height: 20px;
-		border-bottom: 1px solid white;
-		border-right: 1px solid white;
+		top: 25%;
+		right: 46%;
+		width: 5rem;
+		height: 5rem;
+		border-bottom: 2px solid white;
+		border-right: 2px solid white;
+		animation: 0.5s linear forwards rotation1;
+	}
+
+	@keyframes rotation1 {
+		0% {
+			transform: rotate(0);
+		}
+		100% {
+			transform: rotate(90deg);
+		}
 	}
 </style>
