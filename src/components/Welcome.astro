@@ -23,24 +23,24 @@
 	h1 {
 		opacity: 0;
 		font-family: 'Bungee', sans-serif;
-		font-size: 8rem;
+		font-size: clamp(2.2rem, 0.091rem + 10.55vw, 8rem);
 		text-align: center;
 		margin-bottom: 1rem;
 		color: yellow;
 		animation:
-			shadow-change 2s ease-in-out forwards,
-			fade-in 5s ease-in-out forwards;
+			shadow-change 3s ease-in-out forwards,
+			fade-in 2.5s ease-in-out forwards;
 	}
 
 	@keyframes shadow-change {
 		0% {
-			text-shadow: 2px 3px 4px #dc00fc;
+			text-shadow: 0 0 0 #dc00fc;
 		}
-		50% {
-			text-shadow: 4px 6px 8px #dc00fc;
+		80% {
+			text-shadow: 0 0 0 #dc00fc;
 		}
 		100% {
-			text-shadow: 2px 3px 4px #dc00fc;
+			text-shadow: 3px 4px 5px #dc00fc;
 		}
 	}
 
@@ -48,7 +48,7 @@
 		0% {
 			opacity: 0;
 		}
-		30% {
+		60% {
 			opacity: 0;
 		}
 		100% {
@@ -58,43 +58,42 @@
 
 	.container {
 		position: relative;
-		width: 100%;
-		height: 300px; /* コンテナの高さを適宜調整 */
-		padding: 20px; /* コンテンツと線の間にスペースを作る */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	.line-top {
 		position: absolute;
-		top: 25%;
-		left: 46%;
+		top: 18%;
+		/* right: 50%; */
 		width: 5rem;
 		height: 5rem;
 		border-top: 2px solid white;
 		border-left: 2px solid white;
-		animation:
-			rotation1 0.5s linear forwards,
-			movr 0.5s linear forwards;
-	}
-
-	@keyframes movr {
-		0% {
-			top: 0%;
-			left: 0%;
-		}
-		100% {
-			left: 10%;
-		}
+		animation: rotation1 0.5s linear forwards;
 	}
 
 	.line-bottom {
 		position: absolute;
-		top: 25%;
-		right: 46%;
+		top: 18%;
+		right: 50%;
 		width: 5rem;
 		height: 5rem;
 		border-bottom: 2px solid white;
 		border-right: 2px solid white;
-		animation: 0.5s linear forwards rotation1;
+		animation:
+			0.5s linear forwards rotation1,
+			2s linear forwards move-right;
+	}
+
+	@keyframes move-right {
+		0% {
+			transform: rotate(0);
+		}
+		100% {
+			right: 50%;
+		}
 	}
 
 	@keyframes rotation1 {
