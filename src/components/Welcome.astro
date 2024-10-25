@@ -4,20 +4,65 @@
 
 <article>
 	<div class='container'>
-		<div class='line-top'></div>
+		<div class='box'></div>
 		<h1>HIROYUKI9614</h1>
-		<div class='line-bottom'></div>
-		<p>のページです。</p>
+	</div>
+	<div class='body'>
+		<p><br /></p>
+		<p>が作成したページです。</p>
 		<p>自己紹介やポートフォリオの紹介と兼ねて、</p>
 		<p>日々の学習のアウトプットの場として活用しています。</p>
+		<p>どう作ってもダサくなるのが悩みなのでデザインも少しずつ勉強中です・・・</p>
+		<p><br /></p>
 	</div>
 </article>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Slackside+One&family=Zen+Kurenaido&display=swap');
 	article {
-		display: flex;
-		justify-content: center;
+	}
+
+	.body {
+		width: 100%;
+		max-width: 1000px; /* コンテンツの最大幅を設定 */
+		margin: 4.5rem auto; /* 左右のマージンを自動で均等に */
+		text-align: left; /* 文字を左揃え */
+		transition: 2s;
+		animation: ease 2s fadein;
+		color: rgb(22, 22, 22);
+		font-weight: 800;
+		font-size: 1.3em;
+		text-shadow: 0.3px 0.3px 0.3px rgb(234, 255, 43);
+	}
+
+	.body > p {
+		font-family: 'Zen Kurenaido', sans-serif;
+		padding-left: 15%;
+		border-bottom: 1px dotted black;
+		background-color: rgb(196, 196, 196);
+		box-shadow: 3px 3px 3px rgb(110, 35, 107);
+	}
+
+	.body > p:first-child {
+		border-radius: 0.2rem 0.2rem 0 0;
+	}
+
+	.body > p:last-child {
+		border-radius: 0 0 0.2rem 0.2rem;
+	}
+
+	@keyframes fadein {
+		0% {
+			opacity: 0;
+		}
+
+		80% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
 	}
 
 	h1 {
@@ -63,36 +108,69 @@
 		align-items: center;
 	}
 
-	.line-top {
+	.box {
 		position: absolute;
-		top: 18%;
-		/* right: 50%; */
-		width: 5rem;
-		height: 5rem;
-		border-top: 2px solid white;
-		border-left: 2px solid white;
-		animation: rotation1 0.5s linear forwards;
+		left: 50%;
+		top: 15.5%;
+		background-color: #dc00fc;
+		height: 4.8rem;
+		width: 4.8rem;
+		animation: combined-animation 1s linear forwards;
 	}
 
-	.line-bottom {
+	.container::before {
+		content: '';
 		position: absolute;
-		top: 18%;
-		right: 50%;
 		width: 5rem;
 		height: 5rem;
-		border-bottom: 2px solid white;
-		border-right: 2px solid white;
+		top: 15%;
+		left: 50%;
+		border-top: 2px solid rgb(250, 250, 250);
+		border-left: 2px solid rgb(250, 250, 250);
 		animation:
 			0.5s linear forwards rotation1,
 			2s linear forwards move-right;
 	}
+	.container::after {
+		content: '';
+		position: absolute;
+		width: 5rem;
+		height: 5rem;
+		top: 15%;
+		left: 50%;
+		border-bottom: 2px solid rgb(250, 250, 250);
+		border-right: 2px solid rgb(250, 250, 250);
+		animation:
+			rotation1 0.5s linear forwards,
+			2s linear forwards move-left;
+	}
+
+	@keyframes move-left {
+		0% {
+		}
+		80% {
+			top: 15%;
+			left: 50%;
+		}
+		100% {
+			top: 35%;
+			left: 5%;
+		}
+	}
 
 	@keyframes move-right {
 		0% {
-			transform: rotate(0);
+		}
+		80% {
+			top: 15%;
+			left: 50%;
+		}
+		99% {
+			box-shadow: 0 0 0 black;
 		}
 		100% {
-			right: 50%;
+			top: 0;
+			left: 88%;
 		}
 	}
 
@@ -102,6 +180,28 @@
 		}
 		100% {
 			transform: rotate(90deg);
+		}
+	}
+
+	@keyframes combined-animation {
+		0% {
+			transform: rotate(0) scale(1);
+			opacity: 1;
+		}
+		50% {
+			/* 回転のみ */
+			transform: rotate(90deg) scale(1);
+			opacity: 1;
+		}
+		90% {
+			/* 回転を維持 */
+			transform: rotate(90deg) scale(1);
+			opacity: 1;
+		}
+		100% {
+			/* 回転を維持しながらスケール */
+			transform: rotate(90deg) scale(1, 10);
+			opacity: 0;
 		}
 	}
 </style>
