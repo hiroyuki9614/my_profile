@@ -1,0 +1,44 @@
+---
+interface Props {
+	text: string[];
+}
+const { text } = Astro.props;
+---
+
+<div class='cont'>
+	<div class='kari'></div>
+	<div class='body'>
+		{text.map((item) => (
+		<p>{item}</p>
+		<p><br /></p>
+		))}
+	</div>
+</div>
+
+<style>
+	.wrapper {
+		display: flex;
+		justify-content: center;
+	}
+
+	.cont {
+		display: flex;
+		align-items: center;
+	}
+
+	.kari {
+		width: 15rem;
+		height: 15rem;
+		background-color: blue;
+		margin-right: 2rem;
+	}
+
+	.body > p {
+		width: 30rem;
+		font-family: 'Zen Kurenaido', sans-serif;
+		padding-left: 15%;
+		border-bottom: 1px dotted black;
+		background-color: rgb(196, 196, 196);
+		box-shadow: 3px 3px 3px rgb(110, 35, 107);
+	}
+</style>
