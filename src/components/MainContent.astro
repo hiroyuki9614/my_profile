@@ -16,14 +16,23 @@ const { text } = Astro.props;
 </div>
 
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Slackside+One&family=Zen+Kurenaido&display=swap');
+
 	.wrapper {
 		display: flex;
 		justify-content: center;
 	}
 
 	.cont {
+		margin-top: 5.5rem;
 		display: flex;
+		justify-content: center;
 		align-items: center;
+	}
+
+	.cont:nth-child(even) {
+		flex-direction: row-reverse;
 	}
 
 	.kari {
@@ -33,6 +42,10 @@ const { text } = Astro.props;
 		margin-right: 2rem;
 	}
 
+	.cont:nth-of-type(even) .kari {
+    margin: 0 0 0 2rem;
+	}
+
 	.body > p {
 		width: 30rem;
 		font-family: 'Zen Kurenaido', sans-serif;
@@ -40,5 +53,7 @@ const { text } = Astro.props;
 		border-bottom: 1px dotted black;
 		background-color: rgb(196, 196, 196);
 		box-shadow: 3px 3px 3px rgb(110, 35, 107);
+		font-weight: 600;
+		font-size: 1.2rem;
 	}
 </style>
