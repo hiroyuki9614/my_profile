@@ -2,8 +2,29 @@
 layout: ../../layouts/PostLayout.astro
 title: "Astroでブログ作成"
 date: "2024-10-28"
+category: "ブログ"
 ---
 
-# Hello World
+# 初投稿
 
-This is a sample sentence.
+hiroyuki9614と申します。
+
+都内のWEB制作会社で働いています。
+
+# このブログについて
+
+## 技術的な目標
+
+このブログはgithub pagesにastroでビルドしてデプロイしています。
+
+github pagesにデプロイしているのはただただ無料だからです！
+
+これからNext.jsでAPIサーバーを作ってVercel経由で記事を投稿・表示できる機能を
+
+実装予定です。
+
+## 書いていきたい内容
+
+自分は読書をたまにするのでこのブログで読書の内容をアウトプットするのも面白いかなと思っています。
+
+また、qiitaに書くほどではないけど個人のナレッジとして蓄積しておきたい情報も書いていこうと思います。
