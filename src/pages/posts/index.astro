@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import BasicLayout from '../../layouts/BasicLayout.astro';
+const allPosts = await Astro.glob('./*.md');
+---
+
+<BasicLayout>
+	<ul>
+		{
+			allPosts.map((post) => (
+				<li>
+					<a href={post.url}>
+						<div>
+							<p>
+								{post
+									.compiledContent()
+									.replace(/<[^>]*>/g, '')
+									.split('\n')
+									.slice(1) // 最初の行をスキップ
+									.join(' ')
+									.slice(0, 100)}
+								...
+							</p>
+							{post.frontmatter.title}
+							{post.frontmatter.image && post.frontmatter.image.url ? (
+								<img
+									src={post.frontmatter.image.url}
+									alt={post.frontmatter.image.alt || ''}
+									class='post-image'
+									width={400}
+									height={300}
+									format='webp'
+									fit='cover'
+									class='post-image'
+								/>
+							) : null}
+						</div>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</BasicLayout>

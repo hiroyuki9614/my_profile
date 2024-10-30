@@ -8,10 +8,11 @@ const { text } = Astro.props;
 <div class='cont'>
 	<div class='kari'></div>
 	<div class='body'>
-		{text.map((item) => (
-		<p>{item}</p>
 		<p><br /></p>
-		))}
+		{text.map((item) => <p>{item}</p>)}
+		<p><br /></p>
+		<p><br /></p>
+		<p><br /></p>
 	</div>
 </div>
 
@@ -25,10 +26,14 @@ const { text } = Astro.props;
 	}
 
 	.cont {
-		margin-top: 5.5rem;
+		margin-top: 4rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.cont:last-of-type {
+		margin-bottom: 3rem;
 	}
 
 	.cont:nth-child(even) {
@@ -43,7 +48,7 @@ const { text } = Astro.props;
 	}
 
 	.cont:nth-of-type(even) .kari {
-    margin: 0 0 0 2rem;
+		margin: 0 0 0 2rem;
 	}
 
 	.body > p {

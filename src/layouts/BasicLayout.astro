@@ -4,24 +4,15 @@ import HeaderNav from '../components/HeaderNav.astro';
 import Welcome from '../components/Welcome.astro';
 import MainContent from '../components/MainContent.astro';
 import Footer from '../components/Footer.astro';
-import '../styles/global.css';
-
-const section1 = ['aaaaaa', 'aaaaaa', 'aaaaaa', 'aaaaaa'];
-const section2 = ['bbbbbb', 'bbbbbb', 'bbbbbb', 'bbbbbb'];
-const section3 = ['cccccc', 'cccccc', 'cccccc', 'cccccc'];
 ---
 
 <BaseLayout>
 	<header>
 		<HeaderNav />
-		<Welcome />
 	</header>
 	<main>
 		<article class='wrapper'>
-			<MainContent text={section1} />
-			<MainContent text={section2} />
-			<MainContent text={section3} />
-			<MainContent text={section3} />
+			<slot />
 		</article>
 	</main>
 	<footer></footer>

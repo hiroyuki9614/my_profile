@@ -4,13 +4,13 @@ import HeroSection from '../components/HeroSection.astro';
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 
-
 const postData = {
 	title: 'Welcome to Astro.',
 	author: 'Your Name',
 	date: new Date().toLocaleDateString(),
 };
 ---
+
 <Layout>
 	<slot />
 </Layout>
