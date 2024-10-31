@@ -5,10 +5,10 @@ const allPosts = await Astro.glob('./*.md');
 ---
 
 <BasicLayout>
-	<ul>
+	<ul class='links'>
 		{
 			allPosts.map((post) => (
-				<li>
+				<li class='link'>
 					<a href={post.url}>
 						<div>
 							{post.frontmatter.title}
@@ -23,7 +23,18 @@ const allPosts = await Astro.glob('./*.md');
 									fit='cover'
 									class='post-image'
 								/>
-							) : null}
+							) : (
+								<img
+									src='src/images/thumbnails/computer_laptop_angle1.png'
+									alt='サムネイル設定なし'
+									class='post-image'
+									width={400}
+									height={300}
+									format='webp'
+									fit='cover'
+									class='post-image'
+								/>
+							)}
 							<p>
 								{post
 									.compiledContent()
@@ -41,3 +52,16 @@ const allPosts = await Astro.glob('./*.md');
 		}
 	</ul>
 </BasicLayout>
+
+<style>
+	.links {
+		display: flex;
+		justify-content: center;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	.link {
+		width: 280px;
+	}
+</style>
