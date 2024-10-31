@@ -11,16 +11,6 @@ const allPosts = await Astro.glob('./*.md');
 				<li>
 					<a href={post.url}>
 						<div>
-							<p>
-								{post
-									.compiledContent()
-									.replace(/<[^>]*>/g, '')
-									.split('\n')
-									.slice(1) // 最初の行をスキップ
-									.join(' ')
-									.slice(0, 100)}
-								...
-							</p>
 							{post.frontmatter.title}
 							{post.frontmatter.image && post.frontmatter.image.url ? (
 								<img
@@ -34,6 +24,16 @@ const allPosts = await Astro.glob('./*.md');
 									class='post-image'
 								/>
 							) : null}
+							<p>
+								{post
+									.compiledContent()
+									.replace(/<[^>]*>/g, '')
+									.split('\n')
+									.slice(1) // 最初の行をスキップ
+									.join(' ')
+									.slice(0, 100)}
+								...
+							</p>
 						</div>
 					</a>
 				</li>
