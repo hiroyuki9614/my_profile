@@ -1,15 +1,19 @@
 ---
 layout: ../../layouts/PostLayout.astro
-title: "Astroでブログ作成"
+title: "ブログ作成しました。"
 date: "2024-10-28"
 category: "ブログ"
 ---
 
-# 初投稿
+# 自己紹介
 
+はじめまして！
 hiroyuki9614と申します。
+自分は都内のWEB制作会社で働いています。
 
-都内のWEB制作会社で働いています。
+仕事では主にWordPressを触るのでhtmlとJavaScript,phpを触ることが多いです。
+
+が、若干レガシーな環境で働いているので自己学習でNext.jsのアプリを作成しています。
 
 # このブログについて
 

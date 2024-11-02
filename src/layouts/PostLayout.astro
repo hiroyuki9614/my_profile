@@ -28,6 +28,7 @@ const { frontmatter } = Astro.props;
 			</div>
 		</div>
 	</article>
+	<Footer />
 </BaseLayout>
 
 <style>
@@ -65,6 +66,17 @@ const { frontmatter } = Astro.props;
 		padding: 0 20px;
 		display: flex;
 		justify-content: center;
+	}
+
+	.markdown-body p,
+	.markdown-body blockquote,
+	.markdown-body ul,
+	.markdown-body ol,
+	.markdown-body dl,
+	.markdown-body table,
+	.markdown-body pre,
+	.markdown-body details {
+		margin-bottom: 0.5rem !important;
 	}
 
 	.content {

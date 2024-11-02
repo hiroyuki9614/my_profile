@@ -5,55 +5,65 @@ const allPosts = await Astro.glob('./*.md');
 ---
 
 <BasicLayout>
-	<ul class='links'>
-		{
-			allPosts.map((post) => (
-				<li class='link'>
-					<a href={post.url}>
-						<div>
-							{post.frontmatter.title}
-							{post.frontmatter.image && post.frontmatter.image.url ? (
-								<img
-									src={post.frontmatter.image.url}
-									alt={post.frontmatter.image.alt || ''}
-									class='post-image'
-									width={400}
-									height={300}
-									format='webp'
-									fit='cover'
-									class='post-image'
-								/>
-							) : (
-								<img
-									src='src/images/thumbnails/computer_laptop_angle1.png'
-									alt='サムネイル設定なし'
-									class='post-image'
-									width={400}
-									height={300}
-									format='webp'
-									fit='cover'
-									class='post-image'
-								/>
-							)}
-							<p>
-								{post
-									.compiledContent()
-									.replace(/<[^>]*>/g, '')
-									.split('\n')
-									.slice(1) // 最初の行をスキップ
-									.join(' ')
-									.slice(0, 100)}
-								...
-							</p>
-						</div>
-					</a>
-				</li>
-			))
-		}
-	</ul>
+	<section>
+		<h1 class='text-center'>Blog</h1>
+		<ul class='links'>
+			{
+				allPosts.map((post) => (
+					<li class='link'>
+						<a href={post.url}>
+							<div class='card'>
+								{post.frontmatter.image && post.frontmatter.image.url ? (
+									<img
+										src={post.frontmatter.image.url}
+										alt={post.frontmatter.image.alt || ''}
+										class='post-image'
+										width={400}
+										height={300}
+										format='webp'
+										fit='cover'
+										class='post-image'
+									/>
+								) : (
+									<img
+										src='src/images/thumbnails/computer_laptop_angle1.png'
+										alt='サムネイル設定なし'
+										class='post-image'
+										width={400}
+										height={300}
+										format='webp'
+										fit='cover'
+										class='post-image'
+									/>
+								)}
+								<p class='blog__title'>{post.frontmatter.title}</p>
+								<p>
+									{post
+										.compiledContent()
+										.replace(/<[^>]*>/g, '')
+										.split('\n')
+										.slice(1) // 最初の行をスキップ
+										.join(' ')
+										.slice(0, 80)}
+									...
+								</p>
+							</div>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
 </BasicLayout>
 
 <style>
+	.text-center {
+		font-size: 2rem;
+		font-weight: 800;
+		margin-bottom: 1rem;
+		text-shadow: 1px 1px 1px rgb(131, 131, 131);
+	}
+
 	.links {
 		display: flex;
 		justify-content: center;
@@ -62,14 +72,34 @@ const allPosts = await Astro.glob('./*.md');
 	}
 
 	.link {
-		width: 280px;
+		width: 21rem;
+		margin-bottom: 1rem;
 	}
 
 	.link:nth-child(2) {
-		padding: 0 1rem;
+		margin: 0 1rem 0;
 	}
 
 	.link:nth-child(3n + 2) {
-		padding: 0 1rem;
+		margin: 0 1rem 0;
+	}
+
+	.blog__title {
+		font-size: 1.1rem;
+		margin-top: 0.5em;
+		font-weight: 800;
+	}
+
+	img {
+		/* border-radius: 1rem; */
+	}
+
+	.card {
+		/* border: 1px solid; */
+		padding: 1rem;
+		/* background: #fafafa31; */
+		border-radius: 1rem;
+		box-shadow: 1px 1px 1px 2px #00ff40d2;
+		min-height: 25rem;
 	}
 </style>
