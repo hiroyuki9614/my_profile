@@ -5,6 +5,7 @@ import Welcome from '../components/Welcome.astro';
 import MainContent from '../components/MainContent.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import Bubbly from '../components/Bubbly.astro';
 
 const section1 = ['aaaaaa', 'aaaaaa', 'aaaaaa', 'aaaaaa'];
 const section2 = ['bbbbbb', 'bbbbbb', 'bbbbbb', 'bbbbbb'];
@@ -17,6 +18,7 @@ const section3 = ['cccccc', 'cccccc', 'cccccc', 'cccccc'];
 		<Welcome />
 	</header>
 	<main>
+		<Bubbly />
 		<article class='wrapper'>
 			<MainContent text={section1} />
 			<MainContent text={section2} />
