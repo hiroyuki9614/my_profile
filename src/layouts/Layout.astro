@@ -15,15 +15,12 @@ const section3 = ['cccccc', 'cccccc', 'cccccc', 'cccccc'];
 <BaseLayout>
 	<header>
 		<HeaderNav />
-		<Welcome />
 	</header>
 	<main>
 		<Bubbly />
+		<Welcome />
 		<article class='wrapper'>
-			<MainContent text={section1} />
-			<MainContent text={section2} />
-			<MainContent text={section3} />
-			<MainContent text={section3} />
+			<slot />
 		</article>
 	</main>
 	<footer></footer>

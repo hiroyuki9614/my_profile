@@ -3,7 +3,10 @@
 ---
 
 <article>
-	<div class='container'></div>
+	<div class='container'>
+		<div class='box'></div>
+		<h1>HIROYUKI9614</h1>
+	</div>
 	<div class='body'></div>
 </article>
 
@@ -40,157 +43,13 @@
 		border-radius: 0 0 0.2rem 0.2rem;
 	}
 
-	@keyframes fadein {
-		0% {
-			opacity: 0;
-		}
-
-		80% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
+	.container {
+		display: flex;
+		justify-content: center;
 	}
 
 	h1 {
-		opacity: 0;
-		letter-spacing: -0.06em;
-		font-family: 'Bungee', sans-serif;
-		font-size: clamp(2.2rem, 0.091rem + 10.55vw, 8rem);
-		text-align: center;
-		margin-bottom: 1rem;
-		color: yellow;
-		animation:
-			shadow-change 3s ease-in-out forwards,
-			fade-in 2.5s ease-in-out forwards;
-	}
-
-	@keyframes shadow-change {
-		0% {
-			text-shadow: 0 0 0 #dc00fc;
-		}
-		80% {
-			text-shadow: 0 0 0 #dc00fc;
-		}
-		100% {
-			text-shadow: 3px 4px 5px #dc00fc;
-		}
-	}
-
-	@keyframes fade-in {
-		0% {
-			opacity: 0;
-		}
-		60% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
-	}
-
-	.container {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.box {
-		position: absolute;
-		left: 50%;
-		top: 15.5%;
-		background-color: #dc00fc;
-		height: 4.8rem;
-		width: 4.8rem;
-		animation: combined-animation 1s linear forwards;
-	}
-
-	.container::before {
-		content: '';
-		position: absolute;
-		width: 5rem;
-		height: 5rem;
-		top: 15%;
-		left: 50%;
-		border-top: 2px solid rgb(250, 250, 250);
-		border-left: 2px solid rgb(250, 250, 250);
-		animation:
-			0.5s linear forwards rotation1,
-			2s linear forwards move-right;
-	}
-	.container::after {
-		content: '';
-		position: absolute;
-		width: 5rem;
-		height: 5rem;
-		top: 15%;
-		left: 50%;
-		border-bottom: 2px solid rgb(250, 250, 250);
-		border-right: 2px solid rgb(250, 250, 250);
-		animation:
-			rotation1 0.5s linear forwards,
-			2s linear forwards move-left;
-	}
-
-	@keyframes move-left {
-		0% {
-		}
-		80% {
-			top: 15%;
-			left: 50%;
-		}
-		100% {
-			top: 35%;
-			left: 5%;
-		}
-	}
-
-	@keyframes move-right {
-		0% {
-		}
-		80% {
-			top: 15%;
-			left: 50%;
-		}
-		99% {
-			box-shadow: 0 0 0 black;
-		}
-		100% {
-			top: 0;
-			left: 88%;
-		}
-	}
-
-	@keyframes rotation1 {
-		0% {
-			transform: rotate(0);
-		}
-		100% {
-			transform: rotate(90deg);
-		}
-	}
-
-	@keyframes combined-animation {
-		0% {
-			transform: rotate(0) scale(1);
-			opacity: 1;
-		}
-		50% {
-			/* 回転のみ */
-			transform: rotate(90deg) scale(1);
-			opacity: 1;
-		}
-		90% {
-			/* 回転を維持 */
-			transform: rotate(90deg) scale(1);
-			opacity: 1;
-		}
-		100% {
-			/* 回転を維持しながらスケール */
-			transform: rotate(90deg) scale(1, 10);
-			opacity: 0;
-		}
+		font-size: 2em;
+		font-weight: bold;
 	}
 </style>

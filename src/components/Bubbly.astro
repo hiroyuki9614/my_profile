@@ -2,4 +2,21 @@
 
 ---
 
-<div id='background'></div>
+<script is:inline src='/my_profile/js/bubbly-bg.js'></script>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		bubbly({
+			bubbles: {
+				fill: () => `hsla(${Math.random() * 1200}, 100%, 5%, 1)`,
+				shadow: () => ({ blur: 10, color: '#000' }),
+				stroke: () => null, // ({width: 2, color: "#fff"})
+			},
+			background: (ctx) => {
+				const gradient = ctx.createLinearGradient(0, 0, ctx.canvas.width, ctx.canvas.height);
+				gradient.addColorStop(0, '#f5f5f5');
+				gradient.addColorStop(1, '#fffaff');
+				return gradient;
+			},
+		});
+	});
+</script>

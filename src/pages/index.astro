@@ -1,5 +1,5 @@
 ---
-// src/layouts/Layout.astro
+import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import '../styles/global.css';
 
@@ -10,25 +10,4 @@ const postData = {
 };
 ---
 
-<html>
-	<head>
-		<!-- public/js/bubbly-bg.js を読み込む -->
-		<script is:inline src='my_profile/js/bubbly-bg.js'></script>
-	</head>
-	<body>
-		<slot />
-
-		<!-- bubblyの初期化 -->
-		<script>
-			document.addEventListener('DOMContentLoaded', () => {
-				bubbly({
-					// 必要に応じてオプションを設定
-					compose: 'source-over',
-					blur: 100,
-					bubbles: 99,
-					// その他のオプション
-				});
-			});
-		</script>
-	</body>
-</html>
+<Layout />

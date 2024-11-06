@@ -17,10 +17,10 @@ window.bubbly = function (userConfig = {}) {
 		bubbles: Object.assign(
 			{
 				// default values
-				count: Math.floor((cv.width + cv.height) * 0.02),
-				radius: () => 4 + (Math.random() * window.innerWidth) / 25,
-				fill: () => `hsla(0, 0%, 100%, ${Math.random() * 0.1})`,
-				angle: () => Math.random() * Math.PI * 2,
+				count: Math.floor((cv.width + cv.height) * 0.03),
+				radius: () => 4 + (Math.random() * window.innerWidth) / 20,
+				fill: () => `hsla(10, 0%, 100%, ${Math.random() * 0.1})`,
+				angle: () => Math.random() * Math.PI * 10,
 				velocity: () => 0.1 + Math.random() * 0.5,
 				shadow: () => null, // ({blur: 4, color: "#fff"})
 				stroke: () => null, // ({width: 2, color: "#fff"})
