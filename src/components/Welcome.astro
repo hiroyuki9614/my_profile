@@ -5,6 +5,10 @@
 <article>
 	<div class='container'>
 		<div class='catch'>
+			<div class='shape1'></div>
+			<div class='shape2'></div>
+			<div class='shape3'></div>
+			<div class='shape4'></div>
 			<h1>HIROYUKI9614</h1>
 			<p>東京都在住 職業:WEB制作</p>
 			<p>ポートフォリオ一覧と</p>
@@ -52,8 +56,13 @@
 	}
 
 	.container {
+		position: relative;
 		display: flex;
 		justify-content: center;
+		/* background: #4cb5e4; */
+		/* width: 60%; */
+		/* height: 15rem; */
+		margin: 0 auto 0 auto;
 	}
 
 	h1 {
@@ -81,7 +90,11 @@
 	}
 
 	.image {
+		position: relative;
 		height: 12rem;
 		width: 10rem;
+		border-radius: 50%;
+		box-shadow: 2px 2px 2px;
+		z-index: 3;
 	}
 </style>

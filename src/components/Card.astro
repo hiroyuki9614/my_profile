@@ -1,0 +1,23 @@
+---
+
+---
+
+<div class='card'>
+	<slot />
+</div>
+
+<style>
+	.card {
+		height: 18rem;
+		width: 12rem;
+		box-shadow: 2px 2px 2px #7e7e7e;
+		background-color: aliceblue;
+	}
+
+	.card:first-child {
+		margin-right: 1rem;
+	}
+	.card:last-child {
+		margin-left: 1rem;
+	}
+</style>

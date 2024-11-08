@@ -4,6 +4,7 @@ import HeaderNav from '../components/HeaderNav.astro';
 import Welcome from '../components/Welcome.astro';
 import MainContent from '../components/MainContent.astro';
 import Footer from '../components/Footer.astro';
+import Card from '../components/Card.astro';
 import '../styles/global.css';
 import Bubbly from '../components/Bubbly.astro';
 
@@ -19,6 +20,11 @@ const section3 = ['cccccc', 'cccccc', 'cccccc', 'cccccc'];
 	<main>
 		<Bubbly />
 		<Welcome />
+		<div class='card-container'>
+			<Card />
+			<Card />
+			<Card />
+		</div>
 		<article class='wrapper'>
 			<slot />
 		</article>
@@ -29,4 +35,11 @@ const section3 = ['cccccc', 'cccccc', 'cccccc', 'cccccc'];
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Slackside+One&family=Zen+Kurenaido&display=swap');
+
+	.card-container {
+		display: flex;
+		justify-content: center;
+		width: 70%;
+		margin: 0 auto;
+	}
 </style>
