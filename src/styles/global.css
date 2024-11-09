@@ -1,17 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Bungee&family=Murecho:wght@100..900&family=Slackside+One&family=Zen+Kurenaido&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Bungee&family=Murecho:wght@100..900&family=Sawarabi+Gothic&family=Slackside+One&family=Zen+Kurenaido&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-    background: #fff;
+    background: #f6f6f6f6;
+}
+
+p {
+    font-family: "Murecho", sans-serif;
 }
 
 h1, h2, h3 {
-    font-family: sans-serif;
+    font-family: "Sawarabi Gothic", sans-serif;
 }
 
 .markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table, .markdown-body pre, .markdown-body details {
     display: block;
     margin-bottom: .5rem !important;
+}
+
+hr {
+    border: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
 }

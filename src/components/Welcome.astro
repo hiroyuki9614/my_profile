@@ -5,22 +5,20 @@
 <article>
 	<div class='container'>
 		<div class='catch'>
-			<div class='shape1'></div>
-			<div class='shape2'></div>
-			<div class='shape3'></div>
-			<div class='shape4'></div>
 			<h1>HIROYUKI9614</h1>
 			<p>東京都在住 職業:WEB制作</p>
 			<p>ポートフォリオ一覧と</p>
 			<p>メモのためのページです。</p>
 		</div>
-		<div>
+		<div class='hero'>
+			<div class='shape1'></div>
 			<img src='src/images/syoumeisyashin_man.png' class='image' />
 		</div>
 	</div>
 </article>
-<div class='body'></div>
-
+<div class='hr'>
+	<hr />
+</div>
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Bungee&family=Slackside+One&family=Zen+Kurenaido&display=swap');
 	article {
@@ -33,18 +31,13 @@
 		text-align: left; /* 文字を左揃え */
 		transition: 2s;
 		animation: ease 3s fadein;
-		color: rgb(22, 22, 22);
-		font-weight: 800;
+		/* color: rgb(22, 22, 22); */
+		/* font-weight: 800; */
 		font-size: 1.3em;
-		text-shadow: 0.3px 0.3px 0.3px rgb(234, 255, 43);
+		/* text-shadow: 0.3px 0.3px 0.3px rgb(234, 255, 43); */
 	}
 
 	.body > p {
-		font-family: 'Zen Kurenaido', sans-serif;
-		padding-left: 15%;
-		border-bottom: 1px dotted black;
-		background-color: rgb(196, 196, 196);
-		box-shadow: 3px 3px 3px rgb(110, 35, 107);
 	}
 
 	.body > p:first-child {
@@ -75,7 +68,8 @@
 		width: 8em;
 		overflow: hidden;
 		color: transparent;
-		-webkit-text-stroke: 2px rgb(46, 46, 46);
+		-webkit-text-stroke: 3px;
+		-webkit-text-stroke-color: #585858;
 	}
 
 	@keyframes type-1 {
@@ -89,12 +83,51 @@
 		}
 	}
 
+	.hero {
+	}
+
+	.catch > p {
+		color: #333333;
+	}
+
 	.image {
 		position: relative;
 		height: 12rem;
 		width: 10rem;
-		border-radius: 50%;
-		box-shadow: 2px 2px 2px;
-		z-index: 3;
+		/* border-radius: 50%; */
+		/* box-shadow: 2px 2px 2px; */
+		/* z-index: 3; */
+	}
+
+	.hr {
+		display: flex;
+		justify-content: center;
+		position: relative;
+		margin: 2rem 0;
+	}
+
+	hr::after {
+		content: '';
+		position: absolute;
+		width: 60%;
+		height: 2px;
+		left: 20%;
+		display: block;
+		clear: both;
+		background-color: #999999;
+		margin: 0 auto;
+		animation: hrSlide 1s ease-out forwards;
+	}
+	@keyframes hrSlide {
+		0% {
+			width: 0;
+			left: 20%; /* 開始位置 */
+			opacity: 0;
+		}
+		100% {
+			width: 60%;
+			left: 25%; /* 最終位置 */
+			opacity: 1;
+		}
 	}
 </style>

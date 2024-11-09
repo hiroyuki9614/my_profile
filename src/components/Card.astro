@@ -2,22 +2,31 @@
 
 ---
 
-<div class='card'>
+<div class='card-wrapper'>
+	<div class='card'></div>
 	<slot />
 </div>
-
 <style>
+	.card-wrapper {
+		display: flex;
+	}
+
 	.card {
-		height: 18rem;
-		width: 12rem;
-		box-shadow: 2px 2px 2px #7e7e7e;
-		background-color: aliceblue;
+		height: 12rem;
+		width: 30%;
+		box-shadow: 2px 2px 2px 1px #7e7e7e;
+		background-color: #f5f5f5f5;
+		border-radius: 1rem;
+	}
+
+	.card-wrapper:nth-child(even) {
+		flex-direction: row-reverse;
 	}
 
 	.card:first-child {
-		margin-right: 1rem;
+		margin-bottom: 1rem;
 	}
 	.card:last-child {
-		margin-left: 1rem;
+		margin: 1rem 0;
 	}
 </style>

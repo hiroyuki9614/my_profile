@@ -18,19 +18,20 @@ const section3 = ['cccccc', 'cccccc', 'cccccc', 'cccccc'];
 		<HeaderNav />
 	</header>
 	<main>
-		<Bubbly />
+		<!-- <Bubbly /> -->
 		<Welcome />
 		<div class='card-container'>
-			<Card />
-			<Card />
-			<Card />
+			<Card><p>aaa</p></Card>
+			<Card><p>aaa</p></Card>
+			<Card><p>aaa</p></Card>
 		</div>
-		<article class='wrapper'>
-			<slot />
-		</article>
 	</main>
-	<footer></footer>
 </BaseLayout>
+<article class='wrapper'>
+	<slot />
+</article>
+
+<footer></footer>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
@@ -38,6 +39,7 @@ const section3 = ['cccccc', 'cccccc', 'cccccc', 'cccccc'];
 
 	.card-container {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		width: 70%;
 		margin: 0 auto;
