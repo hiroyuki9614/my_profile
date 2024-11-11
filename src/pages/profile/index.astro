@@ -4,6 +4,74 @@ import BasicLayout from '../../layouts/BasicLayout.astro';
 
 <BasicLayout>
 	<div>
-		<h1></h1>
+		<div class='page-title'>
+			<h1>自己紹介</h1>
+		</div>
+		<div class='table-body'>
+			<div class='table-body__row'>
+				<div class='table-body__title'>名前</div><div class='table-body__content'>hiroyuki9614(ほとんど本名です)</div>
+			</div>
+			<div class='table-body__row'>
+				<div class='table-body__title'>誕生日</div><div class='table-body__content'>1990年8月7日</div>
+			</div>
+			<div class='table-body__row'>
+				<div class='table-body__title'>出身地</div><div class='table-body__content'>
+					生まれは岡山 育ちは99.9%大阪府茨木市です。
+				</div>
+			</div>
+			<div class='table-body__row'>
+				<div class='table-body__title'>得意なこと</div><div class='table-body__content'>
+					人の話をずっと聞けること。(2時間は同じ調子、体力で聞く自信があります)<br />
+					ただ、この特技を得る代償として話すのが物凄く苦手です。
+				</div>
+			</div>
+			<div class='table-body__row'>
+				<div class='table-body__title'>趣味</div><div class='table-body__content'>
+					楽器演奏(ギター・ベース)<br
+					/>バンドを組んだ経験もなく、謙遜抜きで下手なのに17か18歳くらいから続いている趣味です。
+				</div>
+			</div>
+			<div class='table-body__row'>
+				<div class='table-body__title'>最近始めたこと</div><div class='table-body__content'>
+					武道の経験がないのに合気道始めました。
+				</div>
+			</div>
+			<div class='table-body__row'>
+				<div class='table-body__title'>簡単な経歴</div><div class='table-body__content'>
+					営業職を5年くらい経験したのち、電気職に転身。<br />
+					電気職では配線、工事・作図、設計・PLCプログラムと手広く経験した。<br />
+					さすがに全部一人の力とは言えないが、いきなり経験のない装置の設計をほとんど自力で行ったので、<br />
+					小さい装置ながらも（電気では）開発経験があるとひそかに自称している。<br />
+					しかしながら異常な罵声に耐えかねて退職。 しばらく何もできなかったが電気職とともに<br />
+					選択肢に入っていたWEB系を勉強して転職し、今日に至る。<br />
+					電気職時代に最もドン引きした罵声は初めて触るCADソフトを触る横で「おせーんだよ」と怒鳴られたこと。<br />
+					一生、使えるなと思った名言は韓国出身の同僚の「軍隊よりきつい」
+				</div>
+			</div>
+		</div>
 	</div>
 </BasicLayout>
+
+<style>
+	.page-title {
+		margin-bottom: 2rem;
+	}
+	h1 {
+		font-size: 1.4rem;
+		text-align: center;
+		font-weight: 600;
+	}
+
+	.table-body__title {
+		font-weight: 600;
+		font-size: 1.2rem;
+	}
+
+	.table-body__content {
+		font-size: 1.1rem;
+	}
+
+	.table-body__row:nth-child(n + 2) {
+		margin-top: 0.6rem;
+	}
+</style>

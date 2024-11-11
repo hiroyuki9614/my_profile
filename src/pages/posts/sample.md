@@ -2,7 +2,7 @@
 layout: ../../layouts/PostLayout.astro
 title: "ブログ作成しました。"
 date: "2024-10-28"
-category: "ブログ"
+category: "日記"
 ---
 
 # 自己紹介

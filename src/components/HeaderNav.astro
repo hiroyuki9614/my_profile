@@ -1,13 +1,21 @@
 ---
-
+const currentPath = Astro.url.pathname;
 ---
 
-<nav class=''>
+<nav>
 	<ul>
-		<li><a href='/my_profile'>Top</a></li>
-		<li><a href='/my_profile/posts'>Blog</a></li>
-		<li><a href='/my_profile/portfolio'>Portfolio</a></li>
-		<li><a href='/my_profile/profile'>Profile</a></li>
+		<li class={currentPath === '/my_profile/' ? 'current no-link' : ''}>
+			{currentPath === '/my_profile/' ? <span>Top</span> : <a href='/my_profile/'>Top</a>}
+		</li>
+		<li class={currentPath === '/my_profile/posts' ? 'current no-link' : ''}>
+			{currentPath === '/my_profile/posts' ? <span>Blog</span> : <a href='/my_profile/posts'>Blog</a>}
+		</li>
+		<li class={currentPath === '/my_profile/portfolio' ? 'current no-link' : ''}>
+			{currentPath === '/my_profile/portfolio' ? <span>Portfolio</span> : <a href='/my_profile/portfolio'>Portfolio</a>}
+		</li>
+		<li class={currentPath === '/my_profile/profile' ? 'current no-link' : ''}>
+			{currentPath === '/my_profile/profile' ? <span>Profile</span> : <a href='/my_profile/profile'>Profile</a>}
+		</li>
 	</ul>
 </nav>
 
@@ -70,4 +78,53 @@
 	ul li a:hover::after {
 		transform: scale(1, 1.2); /*X方向にスケール拡大*/
 	}
+
+	li {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	/* 現在のページのスタイル */
+	li.current span {
+		font-weight: 500;
+		display: block;
+		padding: 10px 30px;
+		color: #5c5c5c;
+		cursor: default;
+	}
+
+	li.current::after {
+		content: '';
+		position: absolute;
+		top: 2.5rem;
+		height: 2px;
+		width: 7px;
+		border-radius: 50%;
+		border-top: 7px solid #666666;
+		animation: dotAnimation 0.2s linear;
+	}
+
+	@keyframes dotAnimation {
+		0% {
+			opacity: 0;
+			transform: scale(0);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	/* no-linkクラスのスタイル */
+	/* .no-link span::after {
+		content: '';
+		position: absolute;
+		bottom: 5px;
+		left: 10%;
+		width: 80%;
+		height: 1.5px;
+		background: #838383;
+		transform: scale(1, 1.2);
+	} */
 </style>

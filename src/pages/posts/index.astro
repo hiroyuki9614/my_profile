@@ -6,12 +6,14 @@ const allPosts = await Astro.glob('./*.md');
 
 <BasicLayout>
 	<section>
-		<h1 class='text-center'>Blog</h1>
+		<div class='page-title'>
+			<h1 class='text-center'>Blog</h1>
+		</div>
 		<ul class='links'>
 			{
 				allPosts.map((post) => (
 					<li class='link'>
-						<a href={post.url}>
+						<a href={post.url} class='card-link'>
 							<div class='card'>
 								{post.frontmatter.image && post.frontmatter.image.url ? (
 									<img
@@ -22,7 +24,6 @@ const allPosts = await Astro.glob('./*.md');
 										height={300}
 										format='webp'
 										fit='cover'
-										class='post-image'
 									/>
 								) : (
 									<img
@@ -33,7 +34,6 @@ const allPosts = await Astro.glob('./*.md');
 										height={300}
 										format='webp'
 										fit='cover'
-										class='post-image'
 									/>
 								)}
 								<p class='blog__title'>{post.frontmatter.title}</p>
@@ -58,13 +58,32 @@ const allPosts = await Astro.glob('./*.md');
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Bungee&family=M+PLUS+1+Code:wght@100..700&family=Murecho:wght@100..900&family=Sawarabi+Gothic&family=Slackside+One&family=Zen+Kurenaido&display=swap');
+
 	.text-center {
 		font-family: 'M PLUS 1 Code', monospace;
 		font-size: 2rem;
-		font-weight: 800;
 		margin-bottom: 1rem;
-		font-weight: 500;
+		font-weight: 400;
 		text-shadow: 1px 1px 1px rgb(131, 131, 131);
+	}
+
+	.page-title {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		position: relative;
+		flex-direction: column;
+	}
+
+	.text-center::after {
+		content: '';
+		position: absolute;
+		width: 5rem;
+		border-top: 3px solid #333333;
+		border-radius: 1rem;
+		top: 50px;
+		left: 50%; /* 中央揃えの場合 */
+		transform: translateX(-50%); /* 中央揃えの場合 */
 	}
 
 	.links {
@@ -76,12 +95,13 @@ const allPosts = await Astro.glob('./*.md');
 
 	.link {
 		width: 21rem;
-		margin-bottom: 1rem;
+		padding-top: 1rem;
+		/* margin-bottom: 1rem; */
 	}
 
-	.link:nth-child(2) {
+	/* .link:nth-child() {
 		margin: 0 1rem 0;
-	}
+	} */
 
 	.link:nth-child(3n + 2) {
 		margin: 0 1rem 0;
@@ -97,12 +117,22 @@ const allPosts = await Astro.glob('./*.md');
 		/* border-radius: 1rem; */
 	}
 
+	.post-image {
+		border-radius: 0.5rem;
+	}
+
 	.card {
 		/* border: 1px solid; */
 		padding: 1rem;
 		/* background: #fafafa31; */
 		border-radius: 1rem;
-		box-shadow: 1px 1px 1px 1px #999999;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 		min-height: 25rem;
+	}
+
+	.card:hover {
+		background-color: #ececec;
+		box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+		transition: 0.2s;
 	}
 </style>
