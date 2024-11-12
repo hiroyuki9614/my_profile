@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import BasicLayout from '../../layouts/BasicLayout.astro';
 const allPosts = await Astro.glob('./*.md');
 ---
@@ -22,8 +21,6 @@ const allPosts = await Astro.glob('./*.md');
 										class='post-image'
 										width={400}
 										height={300}
-										format='webp'
-										fit='cover'
 									/>
 								) : (
 									<img
@@ -32,8 +29,6 @@ const allPosts = await Astro.glob('./*.md');
 										class='post-image'
 										width={400}
 										height={300}
-										format='webp'
-										fit='cover'
 									/>
 								)}
 								<p class='blog__title'>{post.frontmatter.title}</p>

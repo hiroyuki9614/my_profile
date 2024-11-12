@@ -11,5 +11,6 @@ declare module 'bubbly-bg' {
 		compose?: string;
 	}
 
-	export default function bubbly(options?: Partial<BubblyOptions>): void;
+	function bubbly(options?: BubblyOptions): void;
+	export default bubbly;
 }
