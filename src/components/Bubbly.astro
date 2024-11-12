@@ -17,7 +17,8 @@
 				shadow: () => ({ blur: 10, color: '#f5f5f5' }),
 				stroke: () => null, // ({width: 2, color: "#fff"})
 			},
-			background: (ctx) => {
+			background: (ctx: CanvasRenderingContext2D) => {
+				// ここに型アノテーションを追加
 				const gradient = ctx.createLinearGradient(0, 0, ctx.canvas.width, ctx.canvas.height);
 				gradient.addColorStop(0, '#f5f5f5');
 				gradient.addColorStop(1, '#f3f3f3');
