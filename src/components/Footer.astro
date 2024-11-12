@@ -1,10 +1,12 @@
 ---
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Image } from 'astro:assets';
+import profileImage from '../images/syoumeisyashin_man.png';
 ---
 
 <footer>
 	<div class='footer-wrapper'>
-		<img src='src/images/syoumeisyashin_man.png' class='footer__image' />
+		<Image src={profileImage} alt='プロフィール画像' class='footer__image' width={144} height={192} quality={80} />
 		<div>
 			<h1 class='footer-title'>このブログの所有者</h1>
 			<p class='footer-text'>hiroyuki9614</p>

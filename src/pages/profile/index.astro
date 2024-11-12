@@ -1,12 +1,30 @@
 ---
 import BasicLayout from '../../layouts/BasicLayout.astro';
+import { Image } from 'astro:assets';
+import profileImage from '../../images/syoumeisyashin_man.png';
 ---
 
 <BasicLayout>
-	<div>
+	<div id='luxy'>... Entire content</div>
+	<section>
 		<div class='page-title'>
 			<h1>自己紹介</h1>
 		</div>
+		<div class='profile-area'>
+			<Image src={profileImage} alt='プロフィール画像' class='footer__image' width={144} height={192} quality={80} />
+			<p class='profile-area__text'>
+				hiroyuki9614と申します。<br />
+				2024年の4月にたこ焼きと紳士淑女の街である<br />
+				大阪から東京に引っ越しました。<br />
+				<span class='font-medium'>ほんの少しだけ自己紹介させてください！</span>
+				<span class='light-color'>(ブラウザバック可)</span>
+			</p>
+			<div class='scroll-hint'>
+				<span>Scroll</span>
+				<div class='scroll-arrow'></div>
+			</div>
+		</div>
+
 		<div class='table-body'>
 			<div class='table-body__row'>
 				<div class='table-body__title'>名前</div><div class='table-body__content'>hiroyuki9614(ほとんど本名です)</div>
@@ -49,8 +67,38 @@ import BasicLayout from '../../layouts/BasicLayout.astro';
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 </BasicLayout>
+
+<script>
+	// スクロールヒントの制御
+	const scrollHint = document.querySelector('.scroll-hint');
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (!entry.isIntersecting) {
+					scrollHint.style.opacity = '0';
+					scrollHint.style.visibility = 'hidden';
+					scrollHint.style.transition = '.2s';
+				}
+			});
+		},
+		{ threshold: 0.1 }
+	);
+
+	// Luxyの初期化
+	import luxy from 'luxy.js';
+
+	// DOMContentLoaded時に初期化処理を実行
+	document.addEventListener('DOMContentLoaded', () => {
+		// 監視する要素の設定
+		const targetElement = document.querySelector('header');
+		if (targetElement) observer.observe(targetElement);
+
+		// Luxyの初期化
+		luxy.init();
+	});
+</script>
 
 <style>
 	.page-title {
@@ -60,6 +108,53 @@ import BasicLayout from '../../layouts/BasicLayout.astro';
 		font-size: 1.4rem;
 		text-align: center;
 		font-weight: 600;
+	}
+
+	.scroll-hint {
+		position: fixed;
+		bottom: 20px;
+		left: 50%;
+		transform: translateX(-50%);
+		text-align: center;
+	}
+
+	/* アニメーション付きの矢印 */
+	.scroll-arrow {
+		width: 20px;
+		height: 20px;
+		border-right: 2px solid #333333;
+		border-bottom: 2px solid #333333;
+		transform: rotate(45deg);
+		animation: scrollHint 2s infinite;
+	}
+
+	@keyframes scrollHint {
+		0% {
+			transform: translateY(0) rotate(45deg);
+			opacity: 0;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			transform: translateY(20px) rotate(45deg);
+			opacity: 0;
+		}
+	}
+
+	.profile-area {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.light-color {
+		color: #aaaaaa;
+	}
+
+	.profile-area__text {
+		font-size: 1.2em;
+		color: #333333;
 	}
 
 	.table-body__title {
@@ -73,5 +168,9 @@ import BasicLayout from '../../layouts/BasicLayout.astro';
 
 	.table-body__row:nth-child(n + 2) {
 		margin-top: 0.6rem;
+	}
+
+	.profile-area {
+		display: flex;
 	}
 </style>
