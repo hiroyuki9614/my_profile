@@ -4,179 +4,216 @@ import { Image } from 'astro:assets';
 import profileImage from '../../images/syoumeisyashin_man.png';
 ---
 
-<BasicLayout>
-	<div id='luxy'>... Entire content</div>
-	<section>
-		<div class='page-title'>
-			<h1>自己紹介</h1>
-		</div>
-		<div class='profile-area'>
-			<Image src={profileImage} alt='プロフィール画像' class='footer__image' width={144} height={192} quality={80} />
-			<p class='profile-area__text'>
-				hiroyuki9614と申します。<br />
-				2024年の4月にたこ焼きと紳士淑女の街である<br />
-				大阪から東京に引っ越しました。<br />
-				<span class='font-medium'>ほんの少しだけ自己紹介させてください！</span>
-				<span class='light-color'>(ブラウザバック可)</span>
-			</p>
-			<div class='scroll-hint'>
-				<span>Scroll</span>
-				<div class='scroll-arrow'></div>
-			</div>
-		</div>
-
-		<div class='table-body'>
-			<div class='table-body__row'>
-				<div class='table-body__title'>名前</div><div class='table-body__content'>hiroyuki9614(ほとんど本名です)</div>
-			</div>
-			<div class='table-body__row'>
-				<div class='table-body__title'>誕生日</div><div class='table-body__content'>1990年8月7日</div>
-			</div>
-			<div class='table-body__row'>
-				<div class='table-body__title'>出身地</div><div class='table-body__content'>
-					生まれは岡山 育ちは99.9%大阪府茨木市です。
+<div id='luxy'>
+	<BasicLayout>
+		<section>
+			<div class='profile-first-view'>
+				<div class='page-title'>
+					<h1>自己紹介</h1>
+				</div>
+				<div class='profile-area luxy-el'>
+					<Image
+						src={profileImage}
+						alt='プロフィール画像'
+						class='footer__image'
+						width={144}
+						height={192}
+						quality={80}
+					/>
+					<p class='profile-area__text'>
+						hiroyuki9614と申します。<br />
+						2024年の4月にたこ焼きと紳士淑女の街である<br />
+						大阪から東京に引っ越しました。<br />
+						<span class='font-medium'>ほんの少しだけ自己紹介させてください！</span>
+						<span class='light-color'>(ブラウザバック可)</span>
+					</p>
+					<div class='scroll-hint'>
+						<span>Scroll</span>
+						<div class='scroll-arrow'></div>
+					</div>
 				</div>
 			</div>
-			<div class='table-body__row'>
-				<div class='table-body__title'>得意なこと</div><div class='table-body__content'>
-					人の話をずっと聞けること。(2時間は同じ調子、体力で聞く自信があります)<br />
-					ただ、この特技を得る代償として話すのが物凄く苦手です。
+
+			<div class='table-body luxy-el' data-horizontal='1' data-speed-x='-5'>
+				<div class='table-body__row'>
+					<div class='table-body__title'>名前</div><div class='table-body__content'>hiroyuki9614(ほとんど本名です)</div>
+				</div>
+				<div class='table-body__row'>
+					<div class='table-body__title'>誕生日</div><div class='table-body__content'>1990年8月7日</div>
+				</div>
+				<div class='table-body__row'>
+					<div class='table-body__title'>出身地</div><div class='table-body__content'>
+						生まれは岡山 育ちは99.9%大阪府茨木市です。
+					</div>
 				</div>
 			</div>
-			<div class='table-body__row'>
-				<div class='table-body__title'>趣味</div><div class='table-body__content'>
-					楽器演奏(ギター・ベース)<br
-					/>バンドを組んだ経験もなく、謙遜抜きで下手なのに17か18歳くらいから続いている趣味です。
+			<div class='table-body luxy-el' data-horizontal='2' data-speed-x='-5'>
+				<div class='table-body__row'>
+					<div class='table-body__title'>得意なこと</div><div class='table-body__content'>
+						人の話をずっと聞けること。(2時間は同じ調子、体力で聞く自信があります)<br />
+						ただ、この特技を得る代償として話すのが物凄く苦手です。
+					</div>
+				</div>
+				<div class='table-body__row'>
+					<div class='table-body__title'>趣味</div><div class='table-body__content'>
+						楽器演奏(ギター・ベース)<br
+						/>バンドを組んだ経験もなく、謙遜抜きで下手なのに17か18歳くらいから続いている趣味です。
+					</div>
+				</div>
+				<div class='table-body__row'>
+					<div class='table-body__title'>最近始めたこと</div><div class='table-body__content'>
+						武道の経験がないのに合気道始めました。
+					</div>
 				</div>
 			</div>
-			<div class='table-body__row'>
-				<div class='table-body__title'>最近始めたこと</div><div class='table-body__content'>
-					武道の経験がないのに合気道始めました。
+			<div class='table-body luxy-el' data-horizontal='3' data-speed-x='-5'>
+				<div class='table-body__row'>
+					<div class='table-body__title'>簡単な経歴</div><div class='table-body__content'>
+						営業職を5年くらい経験したのち、電気職に転身。<br />
+						電気職では配線、工事・作図、設計・PLCプログラムと手広く経験した。<br />
+						さすがに全部一人の力とは言えないが、いきなり経験のない装置の設計をほとんど自力で行ったので、<br />
+						小さい装置ながらも（電気では）開発経験があるとひそかに自称している。<br />
+						しかしながら異常な罵声に耐えかねて退職。 しばらく何もできなかったが電気職とともに<br />
+						選択肢に入っていたWEB系を勉強して転職し、今日に至る。<br />
+						電気職時代に最もドン引きした罵声は初めて触るCADソフトを触る横で「おせーんだよ」と怒鳴られたこと。<br />
+						一生、使えるなと思った名言は韓国出身の同僚の「軍隊よりきつい」
+					</div>
 				</div>
 			</div>
-			<div class='table-body__row'>
-				<div class='table-body__title'>簡単な経歴</div><div class='table-body__content'>
-					営業職を5年くらい経験したのち、電気職に転身。<br />
-					電気職では配線、工事・作図、設計・PLCプログラムと手広く経験した。<br />
-					さすがに全部一人の力とは言えないが、いきなり経験のない装置の設計をほとんど自力で行ったので、<br />
-					小さい装置ながらも（電気では）開発経験があるとひそかに自称している。<br />
-					しかしながら異常な罵声に耐えかねて退職。 しばらく何もできなかったが電気職とともに<br />
-					選択肢に入っていたWEB系を勉強して転職し、今日に至る。<br />
-					電気職時代に最もドン引きした罵声は初めて触るCADソフトを触る横で「おせーんだよ」と怒鳴られたこと。<br />
-					一生、使えるなと思った名言は韓国出身の同僚の「軍隊よりきつい」
-				</div>
-			</div>
-		</div>
-	</section>
-</BasicLayout>
+		</section>
+	</BasicLayout>
 
-<script>
-	// スクロールヒントの制御
-	const scrollHint = document.querySelector('.scroll-hint');
-	if (!scrollHint) {
-		console.warn('Scroll hint element not found');
-		// 要素が見つからない場合は処理を終了
-		throw new Error('Scroll hint element not found');
-	}
+	<script>
+		// スクロールヒントの制御
+		const scrollHint = document.querySelector('.scroll-hint');
+		if (!scrollHint) {
+			console.warn('Scroll hint element not found');
+			// 要素が見つからない場合は処理を終了
+			throw new Error('Scroll hint element not found');
+		}
 
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				if (!entry.isIntersecting && scrollHint instanceof HTMLElement) {
-					scrollHint.style.opacity = '0';
-					scrollHint.style.visibility = 'hidden';
-					scrollHint.style.transition = '.2s';
-				}
-			});
-		},
-		{ threshold: 0.1 }
-	);
-
-	// Luxyの初期化
-	import luxy from 'luxy.js';
-
-	// DOMContentLoaded時に初期化処理を実行
-	document.addEventListener('DOMContentLoaded', () => {
-		// 監視する要素の設定
-		const targetElement = document.querySelector('header');
-		if (targetElement) observer.observe(targetElement);
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (!entry.isIntersecting && scrollHint instanceof HTMLElement) {
+						scrollHint.style.opacity = '0';
+						scrollHint.style.visibility = 'hidden';
+						scrollHint.style.transition = '.2s';
+					}
+				});
+			},
+			{ threshold: 0.1 }
+		);
 
 		// Luxyの初期化
-		luxy.init();
-	});
-</script>
+		import luxy from 'luxy.js';
 
-<style>
-	.page-title {
-		margin-bottom: 2rem;
-	}
-	h1 {
-		font-size: 1.4rem;
-		text-align: center;
-		font-weight: 600;
-	}
+		// DOMContentLoaded時に初期化処理を実行
+		document.addEventListener('DOMContentLoaded', () => {
+			// 監視する要素の設定
+			const targetElement = document.querySelector('header');
+			if (targetElement) observer.observe(targetElement);
 
-	.scroll-hint {
-		position: fixed;
-		bottom: 20px;
-		left: 50%;
-		transform: translateX(-50%);
-		text-align: center;
-	}
+			// Luxyの初期化
+			luxy.init();
+		});
+	</script>
 
-	/* アニメーション付きの矢印 */
-	.scroll-arrow {
-		width: 20px;
-		height: 20px;
-		border-right: 2px solid #333333;
-		border-bottom: 2px solid #333333;
-		transform: rotate(45deg);
-		animation: scrollHint 2s infinite;
-	}
-
-	@keyframes scrollHint {
-		0% {
-			transform: translateY(0) rotate(45deg);
-			opacity: 0;
+	<style>
+		.profile-first-view {
+			height: 100vh;
 		}
-		50% {
-			opacity: 1;
+		.page-title {
+			margin-bottom: 2rem;
 		}
-		100% {
-			transform: translateY(20px) rotate(45deg);
-			opacity: 0;
+
+		h1 {
+			font-size: 1.4rem;
+			text-align: center;
+			font-weight: 600;
 		}
-	}
 
-	.profile-area {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+		.scroll-hint {
+			margin-top: 10rem;
+			position: absolute;
+			top: 90%;
+			left: 50%;
+			transform: translateX(-50%);
+			text-align: center;
+		}
 
-	.light-color {
-		color: #aaaaaa;
-	}
+		/* アニメーション付きの矢印 */
+		.scroll-arrow {
+			width: 20px;
+			height: 20px;
+			border-right: 2px solid #333333;
+			border-bottom: 2px solid #333333;
+			transform: rotate(45deg);
+			animation: scrollHint 2s infinite;
+		}
 
-	.profile-area__text {
-		font-size: 1.2em;
-		color: #333333;
-	}
+		@keyframes scrollHint {
+			0% {
+				transform: translateY(0) rotate(45deg);
+				opacity: 0;
+			}
+			50% {
+				opacity: 1;
+			}
+			100% {
+				transform: translateY(20px) rotate(45deg);
+				opacity: 0;
+			}
+		}
 
-	.table-body__title {
-		font-weight: 600;
-		font-size: 1.2rem;
-	}
+		.profile-area {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-top: 5rem;
+		}
 
-	.table-body__content {
-		font-size: 1.1rem;
-	}
+		.light-color {
+			color: #aaaaaa;
+		}
 
-	.table-body__row:nth-child(n + 2) {
-		margin-top: 0.6rem;
-	}
+		.profile-area__text {
+			font-size: 1.2em;
+			color: #333333;
+		}
 
-	.profile-area {
-		display: flex;
-	}
-</style>
+		.table-body {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			min-height: 100vh;
+		}
+
+		.table-body[data-horizontal='2'] {
+			margin-left: 3rem; /* 右側の余白を追加 */
+			padding-bottom: 5rem; /* 下部の余白を追加 */
+		}
+
+		.table-body[data-horizontal='3'] {
+			margin-left: 6rem; /* 右側の余白を追加 */
+			padding-bottom: 5rem; /* 下部の余白を追加 */
+		}
+
+		.table-body__title {
+			font-weight: 600;
+			font-size: 1.2rem;
+		}
+
+		.table-body__content {
+			font-size: 1.1rem;
+		}
+
+		.table-body__row:nth-child(n + 2) {
+			margin-top: 0.6rem;
+		}
+
+		.profile-area {
+			display: flex;
+		}
+	</style>
+</div>
