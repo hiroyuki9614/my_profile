@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import 'github-markdown-css';
 import HeaderNav from '../components/HeaderNav.astro';
@@ -7,7 +8,19 @@ import MainContent from '../components/MainContent.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
+const { pathname } = Astro.url;
+const slug = pathname.split('/').pop();
 const { frontmatter } = Astro.props;
+
+const allPosts = await getCollection('posts');
+const sortedPosts = allPosts.sort((a, b) => {
+	return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+
+const currentIndex = sortedPosts.findIndex((post) => post.slug === slug);
+const prevPost = currentIndex + 1 < sortedPosts.length ? sortedPosts[currentIndex + 1] : null;
+const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
+
 const CATEGORY_CLASSES = {
 	日記: 'bg-pink-200 text-gray-800',
 	メモ: 'bg-green-200 text-gray-800',
@@ -47,6 +60,27 @@ const CATEGORY_CLASSES = {
 				</div>
 			</div>
 		</div>
+		<nav class='post-navigation'>
+			<div class='post-navigation__links'>
+				{
+					prevPost && (
+						<a href={`/my_profile/posts/${prevPost.slug}`} class='post-navigation__prev'>
+							<span class='post-navigation__label'>← 前の記事</span>
+							<span class='post-navigation__title'>{prevPost.data.title}</span>
+						</a>
+					)
+				}
+
+				{
+					nextPost && (
+						<a href={`/my_profile/posts/${nextPost.slug}`} class='post-navigation__next'>
+							<span class='post-navigation__label'>次の記事 →</span>
+							<span class='post-navigation__title'>{nextPost.data.title}</span>
+						</a>
+					)
+				}
+			</div>
+		</nav>
 	</article>
 	<Footer />
 </BaseLayout>
@@ -114,6 +148,53 @@ const CATEGORY_CLASSES = {
 	@media (max-width: 768px) {
 		.content {
 			width: 90%;
+		}
+	}
+
+	/* 既存のスタイルに追加 */
+	.post-navigation {
+		margin: 4rem 0;
+		padding: 2rem 0;
+		border-top: 1px solid #eaeaea;
+	}
+
+	.post-navigation__links {
+		display: flex;
+		justify-content: space-between;
+		gap: 2rem;
+	}
+
+	.post-navigation__prev,
+	.post-navigation__next {
+		flex: 1;
+		text-decoration: none;
+		color: inherit;
+		padding: 1rem;
+		border: 1px solid #eaeaea;
+		border-radius: 0.5rem;
+		transition: background-color 0.2s;
+	}
+
+	.post-navigation__prev:hover,
+	.post-navigation__next:hover {
+		background-color: #f5f5f5;
+	}
+
+	.post-navigation__label {
+		display: block;
+		color: #666;
+		font-size: 0.875rem;
+	}
+
+	.post-navigation__title {
+		display: block;
+		font-weight: 600;
+		margin-top: 0.5rem;
+	}
+
+	@media (max-width: 768px) {
+		.post-navigation__links {
+			flex-direction: column;
 		}
 	}
 </style>

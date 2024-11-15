@@ -1,6 +1,12 @@
 ---
 import BasicLayout from '../../layouts/BasicLayout.astro';
-const allPosts = await Astro.glob('./*.md');
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import defaultThumbnail from '../../images/thumbnails/computer_laptop_angle1.png';
+
+// コンテンツコレクションを使用して記事を取得
+const posts = await getCollection('posts');
+const sortedPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <BasicLayout>
@@ -10,34 +16,27 @@ const allPosts = await Astro.glob('./*.md');
 		</div>
 		<ul class='links'>
 			{
-				allPosts.map((post) => (
+				sortedPosts.map((post) => (
 					<li class='link'>
-						<a href={post.url} class='card-link'>
+						<a href={`/my_profile/posts/${post.slug}`} class='card-link'>
 							<div class='card'>
-								{post.frontmatter.image && post.frontmatter.image.url ? (
+								{post.data.image ? (
 									<img
-										src={post.frontmatter.image.url}
-										alt={post.frontmatter.image.alt || ''}
+										src={post.data.image}
+										alt={post.data.imageAlt || ''}
 										class='post-image'
 										width={400}
 										height={300}
 									/>
 								) : (
-									<img
-										src='src/images/thumbnails/computer_laptop_angle1.png'
-										alt='サムネイル設定なし'
-										class='post-image'
-										width={400}
-										height={300}
-									/>
+									<Image src={defaultThumbnail} alt='サムネイル設定なし' class='post-image' width={400} height={300} />
 								)}
-								<p class='blog__title'>{post.frontmatter.title}</p>
+								<p class='blog__title'>{post.data.title}</p>
 								<p>
-									{post
-										.compiledContent()
+									{post.body
 										.replace(/<[^>]*>/g, '')
 										.split('\n')
-										.slice(1) // 最初の行をスキップ
+										.slice(2)
 										.join(' ')
 										.slice(0, 80)}
 									...
@@ -83,7 +82,7 @@ const allPosts = await Astro.glob('./*.md');
 
 	.links {
 		display: flex;
-		justify-content: center;
+		justify-content: flex-start;
 		flex-direction: row;
 		flex-wrap: wrap;
 	}
@@ -122,7 +121,7 @@ const allPosts = await Astro.glob('./*.md');
 		/* background: #fafafa31; */
 		border-radius: 1rem;
 		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-		min-height: 26.5rem;
+		min-height: 28rem;
 	}
 
 	.card:hover {
