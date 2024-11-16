@@ -3,7 +3,7 @@ layout: ../../layouts/PostLayout.astro
 title: "地方出身者にとって東京は怖い場所2"
 date: "2024-11-5"
 category: "日記"
-image: "src/images/thumbnails/top01.webp"
+image: "/my_profile/images/thumbnails/top01.webp"
 imageAlt: "aaaaa"
 ---
 
