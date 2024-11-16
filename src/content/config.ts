@@ -8,6 +8,7 @@ const postsCollection = defineCollection({
 		category: z.enum(['日記', 'メモ', '知識', '仕事']),
 		description: z.string().optional(),
 		image: z.string().optional(),
+		imageAlt: z.string().optional(),
 	}),
 });
 
