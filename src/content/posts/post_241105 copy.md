@@ -7,9 +7,9 @@ image: "/my_profile/images/thumbnails/top01.webp"
 imageAlt: "aaaaa"
 ---
 
-## 2回目 意識が高い読書会
+## 意識他界系、意識が高くなる
 
-### 意識他界系、意識が高くなる
+2回目のhiroyuki9614が東京って怖いなと思った話。
 
 東京に来てからのhiroyuki9614はまじめだった。
 

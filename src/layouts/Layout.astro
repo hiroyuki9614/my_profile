@@ -21,27 +21,82 @@ const section3 = ['cccccc', 'cccccc', 'cccccc', 'cccccc'];
 		<!-- <Bubbly /> -->
 		<Welcome />
 		<div class='card-container'>
-			<Card><p>aaa</p></Card>
-			<Card><p>aaa</p></Card>
-			<Card><p>aaa</p></Card>
+			<div class='card-wrapper fade-in'>
+				<Card><p>aaa</p></Card>
+			</div>
+			<div class='card-wrapper fade-in'>
+				<Card><p>aaa</p></Card>
+			</div>
+			<div class='card-wrapper fade-in'>
+				<Card><p>aaa</p></Card>
+			</div>
 		</div>
 	</main>
+	<article class='wrapper'>
+		<slot />
+	</article>
+
+	<footer></footer>
+
+	<script>
+		const observerOptions = {
+			root: null,
+			rootMargin: '0px',
+			threshold: 0.1,
+		};
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+					observer.unobserve(entry.target); // 一度表示されたら監視を解除
+				}
+			});
+		}, observerOptions);
+
+		// すべてのcard-wrapperを監視対象に追加
+		document.addEventListener('DOMContentLoaded', () => {
+			const cardWrappers = document.querySelectorAll('.card-wrapper');
+			cardWrappers.forEach((wrapper) => {
+				observer.observe(wrapper);
+			});
+		});
+	</script>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Slackside+One&family=Zen+Kurenaido&display=swap');
+
+		.card-container {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			width: 70%;
+			margin: 0 auto;
+		}
+
+		.card-wrapper {
+			opacity: 0;
+			transform: translateY(20px);
+			transition:
+				opacity 0.6s ease-out,
+				transform 0.6s ease-out;
+			margin-bottom: 1rem; /* カード間のスペース */
+		}
+
+		.card-wrapper.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		/* ディレイを付けて順番に表示 */
+		.card-wrapper:nth-child(1) {
+			transition-delay: 0.1s;
+		}
+		.card-wrapper:nth-child(2) {
+			transition-delay: 0.3s;
+		}
+		.card-wrapper:nth-child(3) {
+			transition-delay: 0.3s;
+		}
+	</style>
 </BaseLayout>
-<article class='wrapper'>
-	<slot />
-</article>
-
-<footer></footer>
-
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Slackside+One&family=Zen+Kurenaido&display=swap');
-
-	.card-container {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		width: 70%;
-		margin: 0 auto;
-	}
-</style>
