@@ -18,7 +18,10 @@ const sortedPosts = allPosts.sort((a, b) => {
 });
 
 const currentIndex = sortedPosts.findIndex((post) => post.slug === slug);
-const prevPost = currentIndex + 1 < sortedPosts.length ? sortedPosts[currentIndex + 1] : null;
+const prevPost =
+	currentIndex + 1 < sortedPosts.length
+		? sortedPosts[currentIndex + 1]
+		: null;
 const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 
 const CATEGORY_CLASSES = {
@@ -63,20 +66,46 @@ const CATEGORY_CLASSES = {
 		<nav class='post-navigation'>
 			<div class='post-navigation__links'>
 				{
-					prevPost && (
-						<a href={`/my_profile/posts/${prevPost.slug}`} class='post-navigation__prev'>
-							<span class='post-navigation__label'>← 前の記事</span>
-							<span class='post-navigation__title'>{prevPost.data.title}</span>
+					prevPost ? (
+						<a
+							href={`/my_profile/posts/${prevPost.slug}`}
+							class='post-navigation__prev'
+						>
+							<span class='post-navigation__label'>
+								← 前の記事
+							</span>
+							<span class='post-navigation__title'>
+								{prevPost.data.title}
+							</span>
 						</a>
+					) : (
+						<div class='post-navigation__next'>
+							<span class='post-navigation__label'>
+								← 前の記事
+							</span>
+						</div>
 					)
 				}
 
 				{
-					nextPost && (
-						<a href={`/my_profile/posts/${nextPost.slug}`} class='post-navigation__next'>
-							<span class='post-navigation__label'>次の記事 →</span>
-							<span class='post-navigation__title'>{nextPost.data.title}</span>
+					nextPost ? (
+						<a
+							href={`/my_profile/posts/${nextPost.slug}`}
+							class='post-navigation__next'
+						>
+							<span class='post-navigation__label'>
+								次の記事 →
+							</span>
+							<span class='post-navigation__title'>
+								{nextPost.data.title}
+							</span>
 						</a>
+					) : (
+						<div class='post-navigation__next'>
+							<span class='post-navigation__label'>
+								← 前の記事
+							</span>
+						</div>
 					)
 				}
 			</div>
