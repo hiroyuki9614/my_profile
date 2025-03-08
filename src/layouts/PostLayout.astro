@@ -9,8 +9,13 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 const { pathname } = Astro.url;
-const pathParts = pathname.split('/');
-const slug = pathParts[pathParts.length - 1];
+let slug = '';
+
+// /my_profile/posts/SLUG または /my_profile/posts/SLUG/ からSLUGを抽出
+const slugMatch = pathname.match(/\/my_profile\/posts\/([^\/]+)\/?$/);
+if (slugMatch && slugMatch[1]) {
+	slug = slugMatch[1];
+}
 const { frontmatter } = Astro.props;
 
 const allPosts = await getCollection('posts');
