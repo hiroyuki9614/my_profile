@@ -36,21 +36,9 @@ const CATEGORY_CLASSES = {
 	知識: 'bg-blue-200 text-gray-800',
 	仕事: 'bg-purple-200 text-gray-800',
 } as const;
-
-console.log('パス:', pathname);
-console.log('スラグ:', slug);
-console.log(
-	'すべての投稿スラグ:',
-	sortedPosts.map((p) => p.slug)
-);
-console.log('現在のインデックス:', currentIndex);
 ---
 
 <BaseLayout>
-	pathname: {pathname}<br />
-	slug: {slug}<br />
-	sortedPosts: {sortedPosts.map((p) => p.slug)}<br />
-	currentIndex: {currentIndex}<br />
 	<article>
 		<header>
 			<HeaderNav />
