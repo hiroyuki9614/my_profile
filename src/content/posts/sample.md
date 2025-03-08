@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: "ブログ作成しました。"
-date: "2024-10-28"
+date: 2024-10-28
 category: "日記"
 ---
 
