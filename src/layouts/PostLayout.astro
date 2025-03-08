@@ -11,6 +11,7 @@ import '../styles/global.css';
 const { pathname } = Astro.url;
 const pathParts = pathname.split('/');
 const slug = pathParts[pathParts.length - 1];
+const { frontmatter } = Astro.props;
 
 const allPosts = await getCollection('posts');
 const sortedPosts = allPosts.sort((a, b) => {
