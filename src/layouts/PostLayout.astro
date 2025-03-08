@@ -42,10 +42,10 @@ console.log('現在のインデックス:', currentIndex);
 ---
 
 <BaseLayout>
-	{pathname}
-	{slug}
-	{sortedPosts.map((p) => p.slug)}
-	{currentIndex}
+	pathname: {pathname}<br />
+	slug: {slug}<br />
+	sortedPosts: {sortedPosts.map((p) => p.slug)}<br />
+	currentIndex: {currentIndex}<br />
 	<article>
 		<header>
 			<HeaderNav />
