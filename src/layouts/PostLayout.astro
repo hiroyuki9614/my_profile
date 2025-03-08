@@ -9,8 +9,8 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 const { pathname } = Astro.url;
-const slug = pathname.split('/').pop();
-const { frontmatter } = Astro.props;
+const pathParts = pathname.split('/');
+const slug = pathParts[pathParts.length - 1];
 
 const allPosts = await getCollection('posts');
 const sortedPosts = allPosts.sort((a, b) => {
