@@ -1,5 +1,5 @@
 ---
-import { pageInfo } from '../../data/pageInfo';
+import { pageInfo } from '@/data/pageInfo';
 
 const currentPath = Astro.url.pathname;
 
@@ -25,7 +25,6 @@ const normalizedRootPath = normalizePath(pageInfo.root || '/my_profile');
 						<li class={isCurrent ? 'current header-nav__item' : 'header-nav__item'}>
 							<a href={nav.path} class={isCurrent ? 'current header-nav__link' : 'header-nav__link'} aria-current={isCurrent ? 'page' : undefined}>
 								<span set:html={`<span class="uppercase">${nav.label[0]}</span>${nav.label.slice(1)}`} />
-								{nav.path}
 							</a>
 						</li>
 					);
