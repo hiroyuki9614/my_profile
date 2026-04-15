@@ -1,0 +1,26 @@
+---
+import { blogInfo } from '../../data/blogInfo';
+
+const category = Astro.props.category as keyof typeof blogInfo.categoryColor;
+const isIndex = Astro.props.isIndex as boolean;
+---
+
+{
+	isIndex ? (
+		<span class={`${blogInfo.categoryColor[category]} category`}>{category}</span>
+	) : (
+		<a href={`/my_profile/posts/categories/${category}`} class={`${blogInfo.categoryColor[category]} category`}>
+			{category}
+		</a>
+	)
+}
+<style>
+	.category {
+		display: inline-flex; /* または display: flex; */
+		justify-content: center; /* 水平方向の中央寄せ */
+		align-items: center; /* 垂直方向の中央寄せ */
+		height: 1.2rem;
+		width: 4rem;
+		border-radius: 10px;
+	}
+</style>

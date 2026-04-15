@@ -1,0 +1,228 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import ShowCategory from '@/components/ShowCategory/index.astro';
+import { formatDate } from '@/utils/formatDate';
+import 'github-markdown-css/github-markdown.css';
+import '@/styles/global.css';
+
+const { pathname } = Astro.url;
+let slug = '';
+
+// /my_profile/posts/SLUG または /my_profile/posts/SLUG/ からSLUGを抽出
+const slugMatch = pathname.match(/\/my_profile\/posts\/([^\/]+)\/?$/);
+if (slugMatch && slugMatch[1]) {
+	slug = slugMatch[1];
+}
+const { frontmatter } = Astro.props;
+
+const allPosts = await getCollection('posts', ({ data }) => data.status === 'published');
+const sortedPosts = allPosts.sort((a, b) => {
+	return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+
+const currentIndex = sortedPosts.findIndex((post) => post.id === slug);
+const prevPost = currentIndex + 1 < sortedPosts.length ? sortedPosts[currentIndex + 1] : null;
+const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
+---
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+	<article>
+		<div class='container'>
+			<div class='content flex flex-col'>
+				<a href='/my_profile/posts' class='underline font-bold mt-2 mb-5'>← 一覧へ戻る</a>
+				<ShowCategory category={frontmatter.category} />
+				<h1 class='font-extrabold'>{frontmatter.title}</h1>
+				<div class='metadata mb-6 text-right'>
+					<time class=''>投稿日：{formatDate(frontmatter.date)}</time>
+				</div>
+				<div class='markdown-body'>
+					<slot />
+				</div>
+			</div>
+		</div>
+		<nav class='post-navigation flex justify-center'>
+			<div class='post-navigation__links w-[60%]'>
+				{
+					prevPost ? (
+						<a href={`/my_profile/posts/${prevPost.id}`} class='post-navigation__prev'>
+							<span class='post-navigation__label --prev'>← 前の記事</span>
+							<span class='post-navigation__title'>{prevPost.data.title}</span>
+						</a>
+					) : (
+						<div class='post-navigation__prev'>
+							<span class='post-navigation__label --prev'>← 前の記事</span>
+						</div>
+					)
+				}
+
+				{
+					nextPost ? (
+						<a href={`/my_profile/posts/${nextPost.id}`} class='post-navigation__next'>
+							<span class='post-navigation__label --next'>次の記事 →</span>
+							<span class='post-navigation__title'>{nextPost.data.title}</span>
+						</a>
+					) : (
+						<div class='post-navigation__next'>
+							<span class='post-navigation__label --next'>次の記事 →</span>
+						</div>
+					)
+				}
+			</div>
+		</nav>
+	</article>
+
+	<style>
+		.markdown-body {
+			background: #f5f5f5;
+			min-height: 100vh;
+			margin: 0;
+			padding: 0;
+			list-style: 2 !important;
+		}
+
+		:global(.markdown-body h3) {
+			border-bottom: 0 !important; /* サイズを調整 */
+			/* 他のスタイルプロパティ */
+		}
+
+		ul,
+		menu {
+			list-style: disc !important;
+		}
+
+		.category {
+			display: inline-flex; /* または display: flex; */
+			justify-content: center; /* 水平方向の中央寄せ */
+			align-items: center; /* 垂直方向の中央寄せ */
+			height: 20px;
+			width: 4rem;
+			/* background-color: aqua; */
+			border-radius: 10px;
+		}
+
+		h1 {
+			font-size: 2em;
+		}
+
+		article {
+			/* background: #8b8b8b; */
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 20px;
+			display: flex;
+			justify-content: center;
+		}
+
+		.markdown-body p,
+		.markdown-body blockquote,
+		.markdown-body ul,
+		.markdown-body ol,
+		.markdown-body dl,
+		.markdown-body table,
+		.markdown-body pre,
+		.markdown-body details {
+			margin-bottom: 0.5rem !important;
+			list-style: 2;
+		}
+
+		.content {
+			width: 80%;
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px 0;
+		}
+
+		@media (max-width: 768px) {
+			.content {
+				width: 90%;
+			}
+		}
+
+		/* 既存のスタイルに追加 */
+		.post-navigation {
+			margin: 4rem 0;
+			padding: 2rem 0;
+			border-top: 1px solid #eaeaea;
+		}
+
+		.post-navigation__links {
+			display: flex;
+			justify-content: space-between;
+			gap: 2rem;
+		}
+
+		.post-navigation__next {
+			text-align: right;
+		}
+		.post-navigation__prev {
+			text-align: left;
+			justify-content: flex-start;
+		}
+
+		.post-navigation__prev,
+		.post-navigation__next {
+			flex: 1;
+			text-decoration: none;
+			color: inherit;
+			padding: 1rem;
+			border: 1px solid #eaeaea;
+			border-radius: 0.5rem;
+			transition: background-color 0.2s;
+		}
+
+		.post-navigation__prev:hover,
+		.post-navigation__next:hover {
+			background-color: #f5f5f5;
+		}
+
+		.post-navigation__label {
+			display: block;
+			color: #666;
+			font-size: 0.875rem;
+		}
+
+		.post-navigation__title {
+			display: block;
+			font-weight: 600;
+			margin-top: 0.5rem;
+		}
+
+		@media (max-width: 768px) {
+			.post-navigation__links {
+				flex-direction: column;
+			}
+		}
+		p {
+			font-family: 'Murecho', sans-serif;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-family: 'Sawarabi Gothic', sans-serif;
+		}
+
+		.markdown-body p,
+		.markdown-body blockquote,
+		.markdown-body ul,
+		.markdown-body ol,
+		.markdown-body dl,
+		.markdown-body table,
+		.markdown-body pre,
+		.markdown-body details {
+			display: block;
+			margin-bottom: 0.5rem !important;
+		}
+
+		hr {
+			border: 0;
+			height: 0;
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</BaseLayout>

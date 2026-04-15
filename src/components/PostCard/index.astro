@@ -1,0 +1,74 @@
+---
+const post = Astro.props.post;
+import { Image } from 'astro:assets';
+import { blogInfo, type Category } from '../../data/blogInfo';
+import { formatDate } from '@/utils/formatDate';
+import ShowCategory from '../ShowCategory/index.astro';
+const category = post.data.category as Category;
+const defaultThumbnail = blogInfo.categoryDefaultImage[category][0] ?? '@/images/thumbnails/default.png';
+const defaultThumbnailAlt = blogInfo.categoryDefaultImage[category][1] ?? 'サムネイル設定なし';
+const postUrl = `/my_profile/posts/${post.id}`;
+---
+
+<li class='item min-h-[29rem]'>
+	<a href={postUrl} class='card-link'>
+		<div class='card'>
+			<div class=''>
+				{post.data.image ? <img src={post.data.image} alt={post.data.title && ''} class='post-image' /> : <Image src={defaultThumbnail} alt={defaultThumbnailAlt} class='post-image' />}
+				<p class='blog__title'>{post.data.title}</p>
+				<div class='flex items-baseline my-1.5'>
+					<ShowCategory category={category} isIndex={true} />
+					<p class='ml-3 pb-2'>投稿日: {formatDate(post.data.date)}</p>
+				</div>
+				<p class='blog__description h-[96px]'>
+					{
+						post.body &&
+							post.body
+								.replace(/<[^>]*>|#/g, '')
+								.split('\n')
+								.slice(2)
+								.join(' ')
+								.slice(0, 80) + '...'
+					}
+				</p>
+			</div>
+		</div>
+	</a>
+</li>
+<style>
+	.blog__title {
+		font-size: 1.1rem;
+		margin-top: 0.5em;
+		font-weight: 800;
+	}
+
+	.post-image {
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+		border-radius: 0.8rem;
+	}
+
+	.card {
+		padding: 1rem;
+		border-radius: 1rem;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+		/* width: 70%; */
+		min-height: 29rem;
+	}
+
+	.card-link:hover .card {
+		background-color: #ececec;
+		box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+		transition: 0.2s;
+	}
+	.post-image {
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+		border-radius: 0.8rem;
+	}
+	.card-link {
+		display: block;
+	}
+</style>

@@ -1,0 +1,118 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import commingSoonImage from '@/images/portfolio/comming_soon.webp';
+import githubIcon from '@/images/icons/github.svg';
+
+type Project = {
+	classList?: string;
+	url?: string;
+	thumbnail?: ImageMetadata;
+	thumbnailAlt?: string;
+	title?: string;
+	description?: string;
+	tech?: string;
+	tags?: string[];
+	githubLink?: string;
+};
+
+const { classList, url, thumbnail, thumbnailAlt, title, description, tech, tags, githubLink } = Astro.props as Project;
+const image = thumbnail ? thumbnail : commingSoonImage;
+const imageAlt = thumbnailAlt ? thumbnailAlt : 'Coming Soon';
+---
+
+<div class=`item max-xl:flex-col ${classList ?? ''}`>
+	{
+		url ? (
+			<a href={url} class='link' target='_blank' rel='noopener noreferrer'>
+				<Image class='link__image' height={300} width={400} src={image} alt={imageAlt} />
+			</a>
+		) : (
+			<p class='link'>
+				<Image class='link__image' height={300} width={400} src={image} alt={imageAlt} />
+			</p>
+		)
+	}
+	<div class='item__content w-[400px] mt-5 xl:w-[30%] xl:ml-0'>
+		<div class='item__wrapper'>
+			<p class='item__title flex justify-between'>タイトル<span class='leading-snug'>:</span></p>
+			<p class='item__title--text'>{title}</p>
+		</div>
+		<div class='item__wrapper'>
+			<p class='item__title flex justify-between'>URL<span class='leading-snug'>:</span></p>
+			{
+				url ? (
+					<a class='item__url' href={url} target='_blank' rel='noopener noreferrer'>
+						{url}
+					</a>
+				) : (
+					<p class='item__title--text'>現在公開していません</p>
+				)
+			}
+		</div>
+		{
+			tech ? (
+				<div class='item__wrapper'>
+					<p class='item__title flex justify-between'>
+						使用技術<span class='leading-snug'>:</span>
+					</p>
+					<p class='item__title--text'>{tech}</p>
+				</div>
+			) : null
+		}
+		{
+			description ? (
+				<div class='item__wrapper'>
+					<p class='item__title flex justify-between'>
+						説明<span class='leading-snug'>:</span>
+					</p>
+					<p class='item__title--text'>{description}</p>
+				</div>
+			) : null
+		}
+		<div class='item__wrapper mt-3'>
+			{
+				githubLink ? (
+					<a href={githubLink} class='hover:opacity-70 mr-2.5' target='_blank'>
+						<Image src={githubIcon} alt='GitHub' width={24} height={24} />
+					</a>
+				) : null
+			}
+			{
+				tags && tags.length > 0 ? (
+					<a href={`/my_profile/posts/tags/${tags[0]}/`} class='item__tag  hover:underline'>
+						#{tags[0]}
+					</a>
+				) : null
+			}
+		</div>
+	</div>
+</div>
+
+<style>
+	.item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.link {
+		margin-right: 2rem;
+	}
+
+	.link__image {
+		border: 1px solid #ccc;
+		padding: 1rem;
+		border-radius: 0.5rem;
+	}
+
+	.item__wrapper {
+		display: flex;
+		margin-bottom: 0.5rem;
+	}
+
+	.item__title {
+		min-width: 5.5em;
+		font-weight: bold;
+		margin-right: 1em;
+	}
+</style>

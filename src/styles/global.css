@@ -1,0 +1,12 @@
+@import "tailwindcss";
+/* @import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Bungee&family=Murecho:wght@100..900&family=Slackside+One&family=Zen+Kurenaido&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Bungee&family=Murecho:wght@100..900&family=Sawarabi+Gothic&family=Slackside+One&family=Zen+Kurenaido&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Bungee&family=M+PLUS+1+Code:wght@100..700&family=Murecho:wght@100..900&family=Sawarabi+Gothic&family=Slackside+One&family=Zen+Kurenaido&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Slackside+One&family=Zen+Kurenaido&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Bungee&family=Geist+Mono:wght@100..900&family=M+PLUS+1+Code:wght@100..700&family=Murecho:wght@100..900&family=Oswald:wght@200..700&family=Sawarabi+Gothic&family=Slackside+One&family=Zen+Kurenaido&display=swap"); */
+@tailwind utilities;
+
+body {
+    background: #f6f6f6f6;
+}

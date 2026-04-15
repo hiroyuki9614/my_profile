@@ -1,0 +1,17 @@
+---
+import PostCard from '@/components/PostCard/index.astro';
+import { type CollectionEntry } from 'astro:content';
+type Post = CollectionEntry<'posts'>;
+const { page } = Astro.props;
+---
+
+<ul class='layout__grid grid grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 auto-rows-auto gap-4'>
+	{page.data.map((post: Post) => (post.data.status === 'published' ? <PostCard post={post} /> : null))}
+</ul>
+
+<style>
+	.layout__grid {
+		flex: 1;
+		width: 100%;
+	}
+</style>

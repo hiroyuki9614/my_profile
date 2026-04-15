@@ -1,0 +1,82 @@
+---
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Image } from 'astro:assets';
+import profileImage from '@/images/profile/bass.webp';
+---
+
+<footer class='footer'>
+	<div class='footer__content'>
+		<Image src={profileImage} alt='プロフィール画像' class='footer__image rounded-2xl' width={144} height={192} quality={80} />
+		<div class='footer-wrapper'>
+			<ul class='footer__body'>
+				<li class='footer-title'>名前</li>
+				<li class='footer-text'>hiroyuki9614</li>
+			</ul>
+			<ul class='footer__body'>
+				<li>大阪出身。30年以上過ごした大阪を離れ2024年4月に上京。</li>
+				<li>約5年間電気分野にてCAD設計・制御（ラダー）を経験した後、</li>
+				<li>現在はプログラマーとして、JavaScript / php を中心に開発を行っています。</li>
+				<li>好きなことは人の話を聞くこと。</li>
+			</ul>
+		</div>
+	</div>
+	<div class='footer__links'>
+		<ul class='footer__body'>
+			<li>
+				<a href='https://github.com/hiroyuki9614' target='_blank' title='hiroyuki9614のGitHubページを開く'>
+					<i class='fa-brands fa-github' style='color: black;font-size:2em'></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		display: flex;
+		justify-content: center;
+		border-top: 1.5px solid #e0e0e0;
+		width: 80%;
+		margin: 2rem auto 1rem auto;
+		gap: 2rem;
+	}
+
+	.footer__content {
+		display: flex;
+		gap: 2rem;
+	}
+
+	.footer__content,
+	.footer__links {
+		margin-top: 1rem;
+	}
+
+	.footer-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+	}
+
+	.footer__body {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.footer-wrapper {
+		display: flex;
+	}
+
+	/* 480からスマホ */
+	@media (max-width: 480px) {
+		.footer {
+			flex-direction: column;
+			align-items: center;
+			gap: 0;
+		}
+
+		.footer__content {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+</style>

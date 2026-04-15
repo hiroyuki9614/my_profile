@@ -1,0 +1,61 @@
+---
+const { page } = Astro.props;
+---
+
+<nav class='pagination'>
+	<div class='pagination__inner'>
+		{
+			page.url.prev ? (
+				<a href={page.url.prev} class='pagination__link'>
+					← 前へ
+				</a>
+			) : (
+				<span class='pagination__link pagination__link--disabled'>← 前へ</span>
+			)
+		}
+
+		<span class='pagination__current'>
+			{page.currentPage} / {page.lastPage}
+		</span>
+
+		{
+			page.url.next ? (
+				<a href={page.url.next} class='pagination__link'>
+					次へ →
+				</a>
+			) : (
+				<span class='pagination__link pagination__link--disabled'>次へ →</span>
+			)
+		}
+	</div>
+</nav>
+
+<style>
+	.pagination {
+		margin-top: 2rem;
+	}
+
+	.pagination__inner {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.pagination__link {
+		padding: 0.5rem 1rem;
+		border: 1px solid #ddd;
+		border-radius: 0.5rem;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.pagination__link--disabled {
+		opacity: 0.4;
+		pointer-events: none;
+	}
+
+	.pagination__current {
+		font-weight: 700;
+	}
+</style>

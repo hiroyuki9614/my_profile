@@ -1,0 +1,65 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PageTitle from '@/components/PageTitle/index.astro';
+import { pageInfo } from '@/data/pageInfo';
+import { Image } from 'astro:assets';
+import profileImage from '@/images/profile/bass.webp';
+---
+
+<Layout title={pageInfo.profile.metaTitle} description={pageInfo.profile.metaDescription}>
+	<section>
+		<PageTitle title={pageInfo.profile.headingTitle} description={pageInfo.profile.headingDescription} />
+		<div class='container flex flex-col items-center gap-8'>
+			<Image src={profileImage} alt='プロフィール画像' width={300} height={400} class='rounded-xl' />
+			<div class='text-center'>
+				<p class='text-lg font-bold'>Hiroyuki9614</p>
+				<p class='text-sm text-gray-600'>プログラマー</p>
+			</div>
+			<div class='max-w-2xl text-left'>
+				<div class='text-base text-gray-700 mb-4'>
+					<h2 class='text-2xl font-bold mb-4'>プログラマーになる前の経歴</h2>
+					<div class='mb-4'>
+						<h3 class='text-xl font-bold'>営業/事務職</h3>
+						<p>キャリアのスタートはメーカーの営業職と事務職でした。</p>
+						<p>古い体制の業界で、当時としても既に古くなっていたFAXを未だに使うような環境でした。</p>
+						<p>この時に、効率化や自動化の重要性を強く感じたことが間違いなく今の原点になっています。</p>
+					</div>
+					<div class='mb-4'>
+						<h3 class='text-xl font-bold'>電気設計/制御</h3>
+						<p>およそ5年間、プラント設備を中心とした強電分野および電気制御分野において、</p>
+						<p>電気設計を担当していました。</p>
+						<p>制御盤設計、配線図作成、施工管理補助に加え、設計から製図、制御盤組立、工事、検収まで一貫して対応した経験があります。</p>
+						<p>また、プログラミング経験がない状態からでも、現場での調整や</p>
+						<p>試行錯誤を通じて検収まで対応した経験があります。</p>
+					</div>
+				</div>
+				<div class='text-base text-gray-700 mb-4'>
+					<h2 class='text-2xl font-bold mb-4'>今の業務での経験</h2>
+					<h3 class='text-xl font-bold'>プログラマー</h3>
+					<p>Web系の開発を中心に、プログラマーとして業務に従事しています。</p>
+					<p>PHP、JavaScriptを主軸に、VBAやPythonも含めた複数言語での開発を行い、 既存システムの改修・運用から新規機能の実装まで一貫して対応しています。</p>
+					<p>レガシー環境下においても改善を意識し、社内ツールにReactを導入するなど、 モダン技術の適用による開発効率と保守性の向上に取り組んでいます。</p>
+					<p>また、設計から実装まで一貫して関わる中で、単に動作するだけでなく、 保守性や拡張性を考慮した設計・実装を継続的に行っています。</p>
+				</div>
+				<div class='mb-4 text-gray-700'>
+					<h3 class='text-xl font-bold'>スキル</h3>
+					<ul>
+						<li>JavaScript / TypeScript</li>
+						<li>React / Next.js（学習中含む）</li>
+						<li>PHP</li>
+						<li>VBA / Python</li>
+					</ul>
+				</div>
+				<div class='mb-4 text-gray-700'>
+					<h3 class='text-xl font-bold'>実績</h3>
+					<ul>
+						<li>社内ツールのReact化(Electron)</li>
+						<li>VBAで入場管理・帳票作成ツールをTDDで開発</li>
+						<li>PHPでの自動化システムのスクラッチ開発</li>
+						<li>既存システムの改修およびドキュメント整備により、属人化の解消に貢献</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

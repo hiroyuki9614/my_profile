@@ -1,0 +1,22 @@
+---
+const { title, description } = Astro.props;
+---
+
+<div class='description'>
+	<h1 class='description__title'><span class='uppercase'>{title[0]}</span>{title.slice(1)}</h1>
+	{description && <p class='description__text'>{description}</p>}
+</div>
+<style>
+	.description {
+		padding: 2rem 0;
+		text-align: center;
+	}
+
+	.description__title {
+		font-family: 'M PLUS 1 Code', monospace;
+		font-size: 2rem;
+		margin-bottom: 0.5rem;
+		font-weight: 400;
+		text-shadow: 1px 1px 1px rgb(131, 131, 131);
+	}
+</style>

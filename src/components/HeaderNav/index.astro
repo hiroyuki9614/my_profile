@@ -1,0 +1,150 @@
+---
+import { pageInfo } from '../../data/pageInfo';
+
+const currentPath = Astro.url.pathname;
+
+const normalizePath = (path: string) => {
+	return path.replace(/\/+$/, '') || '/';
+};
+
+const normalizedCurrentPath = normalizePath(currentPath);
+const normalizedRootPath = normalizePath(pageInfo.root);
+console.log(`Current Path: ${normalizedCurrentPath}, Root Path: ${normalizedRootPath}`);
+---
+
+<header class='header'>
+	<nav class='header-nav'>
+		<ul class='header-nav__lists'>
+			{
+				pageInfo.navigation.map((nav) => {
+					const normalizedNavPath = normalizePath(nav.path);
+					// ルートパスの場合、現在のパスがルートパスと完全に一致するか、もしくはルートパスで始まるかをチェック
+					// ルート以外のパスの場合、現在のパスがナビゲーションのパスと完全に一致するか、もしくはナビゲーションのパスで始まるかをチェック
+					const isCurrent = normalizedNavPath === normalizedRootPath ? normalizedCurrentPath === normalizedRootPath : normalizedCurrentPath === normalizedNavPath || normalizedCurrentPath.startsWith(`${normalizedNavPath}/`);
+
+					return (
+						<li class={isCurrent ? 'current header-nav__item' : 'header-nav__item'}>
+							<a href={nav.path} class={isCurrent ? 'current header-nav__link' : 'header-nav__link'} aria-current={isCurrent ? 'page' : undefined}>
+								<span set:html={`<span class="uppercase">${nav.label[0]}</span>${nav.label.slice(1)}`} />
+							</a>
+						</li>
+					);
+				})
+			}
+		</ul>
+	</nav>
+</header>
+
+<style>
+	.header {
+		position: sticky;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 3rem;
+		z-index: 1000;
+		background: #f6f6f6f6;
+	}
+
+	.header-nav__lists {
+		font-family: 'Geist Mono', monospace;
+		font-weight: 100;
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		margin: 0 0 2rem 0;
+		list-style: none;
+	}
+
+	.header-nav__link {
+		font-weight: 500;
+		display: block;
+		padding: 10px 30px;
+		text-decoration: none;
+		color: #7c7c7c;
+	}
+
+	.header-nav__item {
+		position: relative;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		font-weight: 700;
+		font-size: 1.1em;
+		text-shadow: 0.2px 0.4px 0.6px #535353;
+		margin-bottom: 20px;
+	}
+
+	.header-nav__link {
+		/*線の基点とするためrelativeを指定*/
+		position: relative;
+	}
+
+	.header-nav__link,
+	.header-nav__link:hover {
+		font-weight: 600;
+		color: #5c5c5c;
+	}
+
+	.header-nav__link:not(.current)::after {
+		content: '';
+		/*絶対配置で線の位置を決める*/
+		position: absolute;
+		bottom: 5px;
+		left: 10%;
+		/*線の形状*/
+		width: 80%;
+		height: 1.5px;
+		background: #838383;
+		/*アニメーションの指定*/
+		transition: all 0.3s;
+		transform: scale(0, 1); /*X方向0、Y方向1*/
+		transform-origin: center top; /*上部中央基点*/
+	}
+
+	/*現在地とhoverの設定*/
+	.header-nav__link:hover::after {
+		transform: scale(1, 1.2); /*X方向にスケール拡大*/
+	}
+
+	.header-nav__item {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	/* 現在のページのスタイル */
+	.header-nav__item.current .header-nav__link {
+		font-weight: 500;
+		display: block;
+		padding: 10px 30px;
+		color: #5c5c5c;
+		cursor: default;
+	}
+
+	.header-nav__item.current::after {
+		content: '';
+		position: absolute;
+		top: 2.5rem;
+		height: 2px;
+		width: 7px;
+		border-radius: 50%;
+		border-top: 7px solid #666666;
+		animation: dotAnimation 0.2s linear;
+	}
+
+	.header-nav__link {
+		font-size: clamp(1rem, 2vw, 1.2rem);
+	}
+
+	@keyframes dotAnimation {
+		0% {
+			opacity: 0;
+			transform: scale(0);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+</style>

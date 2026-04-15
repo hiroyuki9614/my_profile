@@ -1,0 +1,41 @@
+---
+import HeaderNav from '../components/HeaderNav/index.astro';
+import Footer from '../components/Footer/index.astro';
+import '../styles/global.css';
+
+type Props = {
+	title?: string;
+	description?: string;
+};
+
+const { title = 'hiroyuki9614', description = '' } = Astro.props as Props;
+---
+
+<html lang='ja'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1' />
+
+		<link rel='icon' href='/favicon.ico' />
+		<link rel='icon' href='/my_profile/favicon.svg' type='image/svg+xml' />
+
+		<title>{title ? `${title} | hiroyuki9614` : 'hiroyuki9614'}</title>
+		<meta name='description' content={description} />
+
+		<script async src='https://www.googletagmanager.com/gtag/js?id=G-BKZPXWVEQW'></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				window.dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', 'G-BKZPXWVEQW');
+		</script>
+	</head>
+
+	<body>
+		<!-- <HeaderNav /> -->
+		<slot />
+		<Footer />
+	</body>
+</html>

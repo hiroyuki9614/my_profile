@@ -1,0 +1,19 @@
+---
+import BaseLayout from './BaseLayout.astro';
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title ? title : 'Default Title'} description={description ? description : 'Default Description'}>
+	<main>
+		<article class='wrapper'>
+			<slot />
+		</article>
+	</main>
+</BaseLayout>
+
+<style>
+	.wrapper {
+		max-width: 80%;
+		margin: 0 auto;
+	}
+</style>

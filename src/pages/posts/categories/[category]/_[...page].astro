@@ -1,0 +1,118 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { pageInfo } from '@/data/pageInfo';
+import PageTitle from '@/components/PageTitle/index.astro';
+import PageNation from '@/components/PageNation/index.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import PostGrid from '@/components/PostGrid/index.astro';
+import PostFilterPanel from '@/components/PostFilterPanel/index.astro';
+import { getPostByAttr, countByAttr } from '@/utils/getPostByAttr';
+
+type Post = CollectionEntry<'posts'>;
+
+type PaginatedPage = {
+	data: Post[];
+	currentPage: number;
+	lastPage: number;
+	url: {
+		current: string;
+		prev?: string;
+		next?: string;
+	};
+};
+
+export async function getStaticPaths({
+	paginate,
+}: {
+	paginate: (
+		items: Post[],
+		options: {
+			pageSize: number;
+			params: { category: string };
+			props?: Record<string, unknown>;
+		},
+	) => PaginatedPage[];
+}) {
+	const posts = await getCollection('posts', ({ data }) => data.status === 'published');
+	const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+	const categories = Array.from(new Set(sortedPosts.map((post) => post.data.category).filter(Boolean))) as string[];
+
+	return categories.flatMap((category) => {
+		const filteredPosts = sortedPosts.filter((post) => post.data.category === category);
+
+		return paginate(filteredPosts, {
+			pageSize: 6,
+			params: { category },
+			props: { category },
+		});
+	});
+}
+
+const { page, category } = Astro.props as {
+	page: PaginatedPage;
+	category: string;
+};
+
+const posts = await getCollection('posts', ({ data }) => data.status === 'published');
+const currentPath = Astro.url.pathname;
+---
+
+<Layout pageTitle={category} description={`${category}のカテゴリが付いた記事一覧`}>
+	<section class='contents-index'>
+		<PageTitle title={pageInfo.post.headingTitle} description={pageInfo.post.headingDescription} />
+		<div class='layout'>
+			<PostFilterPanel sortTarget={'カテゴリ'} slug={'/my_profile/posts/categories/'} filteredObj={getPostByAttr(posts, 'category')} objNum={countByAttr(posts, 'category')}>
+				<option value='/my_profile/posts/' selected={currentPath === '/my_profile/posts/'}>全ての投稿({posts.length})</option>
+			</PostFilterPanel>
+			<PostGrid page={page} />
+		</div>
+		<PageNation page={page} />
+	</section>
+</Layout>
+
+<style>
+	.links {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding-left: 1rem;
+	}
+
+	.layout {
+		display: flex;
+		gap: 1rem;
+		align-items: flex-start;
+		flex-direction: column;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.pagination {
+		margin-top: 2rem;
+	}
+
+	.pagination__inner {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.pagination__link {
+		padding: 0.5rem 1rem;
+		border: 1px solid #ddd;
+		border-radius: 0.5rem;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.pagination__link--disabled {
+		opacity: 0.4;
+		pointer-events: none;
+	}
+
+	.pagination__current {
+		font-weight: 700;
+	}
+</style>
