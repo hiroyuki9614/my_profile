@@ -1,4 +1,4 @@
-const rootPath = import.meta.env.PUBLIC_ROOT_PATH;
+const rootPath = '/my_profile';
 type PageMeta = {
 	root?: string;
 	metaTitle: string;
@@ -52,8 +52,8 @@ export const pageInfo: PageInfo = {
 		headingDescription: 'サーバーでエラーが発生しました。しばらくしてから再度アクセスしてください。',
 	},
 	navigation: [
-		{ label: 'blog', path: `${rootPath}/posts` },
-		{ label: 'portfolio', path: `${rootPath}/portfolio/` },
-		{ label: 'profile', path: `${rootPath}/` },
+		{ label: 'blog', path: `/posts` },
+		{ label: 'portfolio', path: `/portfolio/` },
+		{ label: 'profile', path: `/` },
 	],
 } as const;
