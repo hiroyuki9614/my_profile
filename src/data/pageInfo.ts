@@ -52,8 +52,8 @@ export const pageInfo: PageInfo = {
 		headingDescription: 'サーバーでエラーが発生しました。しばらくしてから再度アクセスしてください。',
 	},
 	navigation: [
-		{ label: 'blog', path: `/posts` },
-		{ label: 'portfolio', path: `/portfolio/` },
-		{ label: 'profile', path: `/` },
+		{ label: 'blog', path: `${rootPath}/posts` },
+		{ label: 'portfolio', path: `${rootPath}/portfolio/` },
+		{ label: 'profile', path: `${rootPath}/` },
 	],
 } as const;
