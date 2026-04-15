@@ -12,12 +12,12 @@ export type NavigationItem = {
 };
 
 export type PageInfo = {
-	root?: string;
-	post?: PageMeta;
-	portfolio?: PageMeta;
-	profile?: PageMeta;
-	notFound?: PageMeta;
-	internalServerError?: PageMeta;
+	root: string;
+	post: PageMeta;
+	portfolio: PageMeta;
+	profile: PageMeta;
+	notFound: PageMeta;
+	internalServerError: PageMeta;
 	navigation: NavigationItem[];
 };
 

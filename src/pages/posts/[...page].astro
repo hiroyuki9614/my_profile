@@ -36,7 +36,7 @@ const currentPath = Astro.url.pathname;
 ---
 
 <Layout title={pageInfo.post?.metaTitle ?? 'Default Title'} description={pageInfo.post?.metaDescription}>
-	<PageTitle title={pageInfo.post?.headingTitle ?? 'Default Title'} description={pageInfo.post?.headingDescription ?? 'Default Description'} />
+	<PageTitle title={pageInfo.post?.headingTitle ?? 'Default Title'} description={pageInfo.post?.headingDescription} />
 	<div class='layout'>
 		<PostFilterPanel sortTarget={'カテゴリ'} slug={'/my_profile/posts/categories/'} filteredObj={getPostByAttr(posts, 'category')} objNum={countByAttr(posts, 'category')}>
 			<option value='/my_profile/posts/' selected={currentPath === '/my_profile/posts/'}>全ての投稿({posts.length})</option>
