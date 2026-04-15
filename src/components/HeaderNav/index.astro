@@ -8,8 +8,7 @@ const normalizePath = (path: string) => {
 };
 
 const normalizedCurrentPath = normalizePath(currentPath);
-const normalizedRootPath = normalizePath(pageInfo.root);
-console.log(`Current Path: ${normalizedCurrentPath}, Root Path: ${normalizedRootPath}`);
+const normalizedRootPath = normalizePath(pageInfo.root || '/my_profile');
 ---
 
 <header class='header'>

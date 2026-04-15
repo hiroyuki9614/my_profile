@@ -1,17 +1,17 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-// import PageTitle from '@/components/PageTitle/index.astro';
-// import ProjectCard from '@/components/ProjectCard/index.astro';
-// import blogImage from '@/images/portfolio/blog.png';
-// import oddtrackImage from '@/images/portfolio/oddtrack.png';
-// import { pageInfo } from '@/data/pageInfo';
+import PageTitle from '@/components/PageTitle/index.astro';
+import ProjectCard from '@/components/ProjectCard/index.astro';
+import blogImage from '@/images/portfolio/blog.png';
+import oddtrackImage from '@/images/portfolio/oddtrack.png';
+import { pageInfo } from '@/data/pageInfo';
 ---
 
 <Layout title={'aaa'} description={'dfsfsd'}>
 	<section class='contents'>
-		<!-- <PageTitle title={pageInfo.portfolio.headingTitle} description={pageInfo.portfolio.headingDescription} /> -->
+		<PageTitle title={pageInfo.portfolio?.headingTitle ?? 'Default Title'} description={pageInfo.portfolio?.headingDescription ?? 'Default Description'} />
 		<div class='container'>
-			<!-- <ProjectCard
+			<ProjectCard
 				classList={''}
 				url={'https://hiroyuki9614.github.io/my_profile/'}
 				thumbnail={blogImage}
@@ -40,7 +40,7 @@ import Layout from '@/layouts/Layout.astro';
 				tech='React + Vite, Hono'
 				tags={['bookLibrary']}
 				githubLink='https://github.com/hiroyuki9614/book_library'
-			/> -->
+			/>
 		</div>
 	</section>
 </Layout>

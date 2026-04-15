@@ -1,14 +1,14 @@
 const rootPath = import.meta.env.PUBLIC_ROOT_PATH;
 type PageMeta = {
 	root?: string;
-	metaTitle?: string;
-	metaDescription?: string;
-	headingTitle?: string;
+	metaTitle: string;
+	metaDescription: string;
+	headingTitle: string;
 	headingDescription?: string;
 };
 export type NavigationItem = {
-	label?: string;
-	path?: string;
+	label: string;
+	path: string;
 };
 
 export type PageInfo = {
@@ -18,7 +18,7 @@ export type PageInfo = {
 	profile?: PageMeta;
 	notFound?: PageMeta;
 	internalServerError?: PageMeta;
-	navigation?: NavigationItem[];
+	navigation: NavigationItem[];
 };
 
 export const pageInfo: PageInfo = {
