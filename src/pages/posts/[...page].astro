@@ -35,7 +35,7 @@ const { page } = Astro.props as { page: PaginatedPage };
 const currentPath = Astro.url.pathname;
 ---
 
-<Layout title={pageInfo.post?.metaTitle ?? 'Default Title'} description={pageInfo.post?.metaDescription}>
+<Layout title={pageInfo.post?.metaTitle ?? 'Default Title'} description={pageInfo.post?.metaDescription} pageType={pageInfo.post.type}>
 	<PageTitle title={pageInfo.post?.headingTitle ?? 'Default Title'} description={pageInfo.post?.headingDescription} />
 	<div class='layout'>
 		<PostFilterPanel sortTarget={'カテゴリ'} slug={'/my_profile/posts/categories/'} filteredObj={getPostByAttr(posts, 'category')} objNum={countByAttr(posts, 'category')}>

@@ -4,7 +4,7 @@ import { pageInfo } from '@/data/pageInfo';
 import PageTitle from '@/components/PageTitle/index.astro';
 ---
 
-<Layout title={pageInfo.internalServerError.metaTitle} description={pageInfo.internalServerError.metaDescription}>
+<Layout title={pageInfo.internalServerError.metaTitle} description={pageInfo.internalServerError.metaDescription} type={pageInfo.internalServerError.type}>
 	<section class='contents h-[calc(100vh-80px)] flex items-center justify-center pb-24'>
 		<PageTitle title={pageInfo.internalServerError.headingTitle} description={pageInfo.internalServerError.headingDescription} />
 	</section>
