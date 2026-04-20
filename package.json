@@ -21,6 +21,10 @@
     "github-markdown-css": "^5.9.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
+    "react-modal": "^3.16.3",
     "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/react-modal": "^3.16.3"
   }
 }

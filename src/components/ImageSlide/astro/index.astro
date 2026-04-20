@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import ImageSlide from '@/components/ImageSlide/react';
+import commingSoonImage from '@/images/portfolio/comming_soon.webp';
+
+const { thumbnail, thumbnailAlt, title } = Astro.props as Project;
+const image = thumbnail ? thumbnail : commingSoonImage;
+const imageAlt = thumbnailAlt ? thumbnailAlt : 'Coming Soon';
+
+type Project = {
+	// classList?: string;
+	url?: string;
+	thumbnail?: ImageMetadata;
+	thumbnailAlt?: string;
+	title?: string;
+	// description?: string;
+	// tech?: string;
+	// tags?: string[];
+	// githubLink?: string;
+};
+---
+
+<ImageSlide client:load image={image.src} imageAlt={imageAlt} title={title}>
+	<Image class='link__image' height={300} width={400} src={image} alt={imageAlt} />
+</ImageSlide>
+
+<style is:global>
+	body.modal-open {
+		overflow: hidden;
+	}
+</style>
