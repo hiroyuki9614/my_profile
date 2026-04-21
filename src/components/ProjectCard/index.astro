@@ -23,7 +23,7 @@ const imageAlt = thumbnailAlt ? thumbnailAlt : 'Coming Soon';
 ---
 
 <div class=`item max-xl:flex-col ${classList ?? ''}`>
-	<ImageSlideAstro client:load image={image} imageAlt={imageAlt} title={title} />
+	<ImageSlideAstro image={image} imageAlt={imageAlt} title={title} />
 	<div class='item__content w-[400px] mt-5 xl:w-[30%] xl:ml-0'>
 		<div class='item__wrapper'>
 			<p class='item__title flex justify-between'>タイトル<span class='leading-snug'>:</span></p>
