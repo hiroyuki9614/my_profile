@@ -3,12 +3,16 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://hiroyuki9614.github.io/',
-	base: '/my_profile',
+  site: 'https://hiroyuki9614.github.io/',
+  base: '/my_profile',
 
-	vite: {
-		plugins: [tailwindcss()],
+  vite: {
+      plugins: [tailwindcss()],
 	},
+
+  integrations: [sitemap()],
 });
