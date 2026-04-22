@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { Splide, SplideSlide } from 'astro-splide';
+import '@splidejs/splide/css';
 import ImageSlide from '@/components/ImageSlide/react';
 import commingSoonImage from '@/images/portfolio/comming_soon.webp';
 
@@ -17,11 +19,27 @@ const displayImageAlt = imageAlt ?? 'Coming Soon';
 ---
 
 <ImageSlide client:load image={displayImage.src} imageAlt={displayImageAlt} title={title}>
-	<Image class='link__image' width={800} src={displayImage} alt={displayImageAlt} />
+	<Splide aria-label='お気に入りの写真' class='not-content'>
+		<SplideSlide>
+			<Image class='link__image' width={400} height={300} src={displayImage} alt={displayImageAlt} />
+		</SplideSlide>
+		<SplideSlide>
+			<Image class='link__image' width={400} src={displayImage} alt={displayImageAlt} />
+		</SplideSlide>
+	</Splide>
 </ImageSlide>
 
 <style is:global>
 	body.modal-open {
 		overflow: hidden;
+	}
+
+	.link__image {
+		border-radius: 1rem;
+	}
+
+	.splide__slide {
+		display: flex;
+		justify-content: center; /* 左右の中央揃え */
 	}
 </style>
