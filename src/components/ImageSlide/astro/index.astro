@@ -7,25 +7,33 @@ import ImageSlide from '@/components/ImageSlide/react';
 import commingSoonImage from '@/images/portfolio/comming_soon.webp';
 
 type Props = {
-	image?: ImageMetadata;
+	image: ImageMetadata;
+	slideImages?: ImageMetadata[];
 	imageAlt?: string;
 	title?: string;
 };
 
-const { image, imageAlt, title } = Astro.props as Props;
+const { image, slideImages, imageAlt, title } = Astro.props as Props;
 
-const displayImage = image ?? commingSoonImage;
+const displayImage = image ? image : commingSoonImage;
 const displayImageAlt = imageAlt ?? 'Coming Soon';
 ---
 
 <ImageSlide client:load image={displayImage.src} imageAlt={displayImageAlt} title={title}>
-	<Splide aria-label='お気に入りの写真' class='not-content'>
-		<SplideSlide>
-			<Image class='link__image' width={400} height={300} src={displayImage} alt={displayImageAlt} />
-		</SplideSlide>
-		<SplideSlide>
-			<Image class='link__image' width={400} src={displayImage} alt={displayImageAlt} />
-		</SplideSlide>
+	<Splide aria-label='ポートフォリオ画像一覧' class='not-content'>
+		{
+			slideImages && slideImages.length > 0 ? (
+				slideImages.map((slideImage, index) => (
+					<SplideSlide>
+						<Image class='link__image' width={400} height={300} src={slideImage} alt={`${title}のスライド - ${index + 1}`} />
+					</SplideSlide>
+				))
+			) : (
+				<SplideSlide>
+					<Image class='link__image' width={400} height={300} src={commingSoonImage} alt='Coming Soon' />
+				</SplideSlide>
+			)
+		}
 	</Splide>
 </ImageSlide>
 

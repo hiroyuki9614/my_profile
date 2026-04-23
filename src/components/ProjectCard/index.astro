@@ -15,15 +15,16 @@ type Project = {
 	tech?: string;
 	tags?: string[];
 	githubLink?: string;
+	slideImages?: ImageMetadata[];
 };
 
-const { classList, url, thumbnail, thumbnailAlt, title, description, tech, tags, githubLink } = Astro.props as Project;
+const { classList, url, thumbnail, thumbnailAlt, slideImages, title, description, tech, tags, githubLink } = Astro.props as Project;
 const image = thumbnail ? thumbnail : commingSoonImage;
 const imageAlt = thumbnailAlt ? thumbnailAlt : 'Coming Soon';
 ---
 
 <div class=`item max-xl:flex-col ${classList ?? ''}`>
-	<ImageSlideAstro image={image} imageAlt={imageAlt} title={title} />
+	<ImageSlideAstro image={image} imageAlt={imageAlt} title={title} slideImages={slideImages} />
 	<div class='item__content w-[400px] mt-5 xl:w-[30%] xl:ml-0'>
 		<div class='item__wrapper'>
 			<p class='item__title flex justify-between'>タイトル<span class='leading-snug'>:</span></p>

@@ -1,3 +1,4 @@
+import { z } from 'astro/zod';
 import { useEffect, useState, type ReactNode } from 'react';
 import Modal from 'react-modal';
 
@@ -34,14 +35,21 @@ const ImageSlide = ({ children, image, imageAlt, title }: ImageSlideProps) => {
 		},
 		overlay: {
 			backgroundColor: 'rgba(0, 0, 0, 0.5)',
+			zIndex: 1000,
 		},
 	};
 
 	return (
 		<>
-			<figure className='link__image bg-gray-200 w-[400px] h-[300px] mr-5 flex items-center justify-center' onClick={() => setIsOpen(true)}>
-				<img height={300} width={400} src={image} alt={imageAlt} />
-			</figure>
+			{!image.includes('comming_soon') ? (
+				<figure className='link__image bg-gray-200 w-[400px] h-[300px] mr-5 flex items-center justify-center cursor-pointer' onClick={() => setIsOpen(true)}>
+					<img height={300} width={400} src={image} alt={imageAlt} />
+				</figure>
+			) : (
+				<figure className='link__image bg-gray-200 w-[400px] h-[300px] mr-5 flex items-center justify-center'>
+					<img height={300} width={400} src={image} alt={imageAlt} />
+				</figure>
+			)}
 			<Modal isOpen={isOpen} onRequestClose={() => setIsOpen(false)} contentLabel={title ?? 'image modal'} bodyOpenClassName='modal-open' style={customStyles}>
 				<div className='flex flex-col'>
 					<h2 className='text-center mb-4 font-bold text-lg'>{title}の画像一覧</h2>
