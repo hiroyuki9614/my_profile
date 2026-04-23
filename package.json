@@ -12,11 +12,21 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^5.0.3",
     "@astrojs/sitemap": "^3.7.2",
     "@fortawesome/fontawesome-free": "^7.2.0",
     "@tailwindcss/vite": "^4.2.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "astro": "^6.1.6",
+    "astro-splide": "^2.0.2",
     "github-markdown-css": "^5.9.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-modal": "^3.16.3",
     "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/react-modal": "^3.16.3"
   }
 }
