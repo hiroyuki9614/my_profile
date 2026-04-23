@@ -58,7 +58,7 @@ const posts = await getCollection('posts', ({ data }) => data.status === 'publis
 const currentPath = Astro.url.pathname;
 ---
 
-<Layout pageTitle={category} description={`${category}のカテゴリが付いた記事一覧`}>
+<Layout pageTitle={category} description={`${category}のカテゴリが付いた記事一覧`} pageType={pageInfo.post.type}>
 	<section class='contents-index'>
 		<PageTitle title={pageInfo.post?.headingTitle ?? 'Default Title'} description={pageInfo.post?.headingDescription ?? 'Default Description'} />
 		<div class='layout'>
@@ -86,6 +86,10 @@ const currentPath = Astro.url.pathname;
 		flex-direction: column;
 		max-width: 1200px;
 		margin: 0 auto;
+	}
+	.layout__grid {
+		flex: 1;
+		width: 100%;
 	}
 
 	.pagination {

@@ -8,7 +8,7 @@ import oddtrackImage from '@/images/portfolio/oddtrack.png';
 import { pageInfo } from '@/data/pageInfo';
 ---
 
-<Layout title={pageInfo.portfolio.metaTitle} description={pageInfo.portfolio.metaDescription}>
+<Layout title={pageInfo.portfolio.metaTitle} description={pageInfo.portfolio.metaDescription} pageType={pageInfo.portfolio.type}>
 	<section class='contents'>
 		<PageTitle title={pageInfo.portfolio?.headingTitle ?? 'Default Title'} description={pageInfo.portfolio?.headingDescription} />
 		<div class='container'>

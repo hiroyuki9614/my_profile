@@ -61,7 +61,7 @@ const countByTag = posts.reduce(
 const currentPath = Astro.url.pathname;
 ---
 
-<Layout pageTitle={tag} description={`${tag}のタグが付いた記事一覧`}>
+<Layout pageTitle={tag} description={`${tag}のタグが付いた記事一覧`} pageType={pageInfo.post.type}>
 	<section class='contents-index'>
 		<PageTitle title={pageInfo.post.headingTitle} description={pageInfo.post.headingDescription} />
 		<div class='layout'>
