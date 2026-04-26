@@ -24,4 +24,4 @@ pnpm-debug.log*
 .idea/
 
 # 記事
-.src/content/draft/
+src/content/draft/
