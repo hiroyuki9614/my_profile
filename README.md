@@ -1,46 +1,42 @@
-# Astro Starter Kit: Basics
+# hiroyuki9614のブログ
 
-```sh
-npm create astro@latest -- --template basics
-```
+## 目的
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+当初はJavaScript系フレームワークでの個人ページの作成と、github pagesでの公開そのものを目的としていましたが、自らのアウトプットのスキルを磨く場として利用しています。
 
-## 🚀 Project Structure
+そして、ブログだけではなく自らのWEBサービス開発の技術者としてのプロフィールも日々の積み重ねで変化していくので、その変化を表現する場としても利用しています。
 
-Inside of your Astro project, you'll see the following folders and files:
+## このページで使用している技術
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+- SSG
+  - astro v11.4.2
+- CSS
+  - tailwindcss v4.2.2
+- 動的処理
+  - React v19.2.0
+- デプロイ
+  - github pages
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- TypeScript v5.8.2
 
-## 🧞 Commands
+## ブログでの発信の方針
 
-All commands are run from the root of the project, from a terminal:
+個人ブログとして、日々のアウトプットを行います。
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+以下のルールを厳守して発信を心がけています。
 
-## 👀 Want to learn more?
+### 厳守するルール
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- ネガティブな発信はしない
+- 他者を攻撃する内容は発信しない
+- 未知の内容については不明である旨を明記する
+
+### 可能な限り守られるべきルール
+
+- 推測での発信をする場合は推測である旨を明記する
+- 事実に基づいた考察を行うため、情報源を明示する
+
+### 運用方法
+
+- 誤りを発見した場合は、記事を修正・更新する
+- 公開情報である事を前提に、過去の記事の更新を行う
