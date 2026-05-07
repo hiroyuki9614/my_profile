@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://hiroyuki9614.github.io/',
+	site: 'https://hiroyuki9614.github.io',
 	base: '/my_profile',
 	integrations: [react(), sitemap()],
 
