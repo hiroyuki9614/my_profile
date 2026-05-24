@@ -12,10 +12,10 @@ body {
 }
 
 /* markdown上書き */
-ul, menu {
+.markdown-body ul, .markdown-body menu {
     list-style: disc !important;
 }
 
-ol {
+.markdown-body ol {
     list-style: decimal;
 }
