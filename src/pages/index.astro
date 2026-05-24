@@ -6,6 +6,8 @@ import { Image } from 'astro:assets';
 import profileImage from '@/images/profile/bass.webp';
 
 const dtClass = 'text-lg font-bold mb-2';
+const profileContainerClass = 'text-base text-gray-700';
+const articleTitleClass = 'text-2xl font-bold';
 ---
 
 <Layout title={pageInfo.profile.metaTitle} description={pageInfo.profile.metaDescription} type={pageInfo.profile.type}>
@@ -15,58 +17,68 @@ const dtClass = 'text-lg font-bold mb-2';
 			<Image src={profileImage} alt='プロフィール画像' width={300} height={400} class='rounded-xl' />
 			<div class='text-center'>
 				<p class='text-lg font-bold'>Hiroyuki9614</p>
-				<p class='text-sm text-gray-600'>プログラマー</p>
+				<p class='text-sm text-gray-600'>リファクタリングが好きです</p>
 			</div>
-			<div class='max-w-2xl text-left'>
-				<div class='text-base text-gray-700 mb-4'>
-					<h2 class='text-2xl font-bold mb-4'>プログラマーになる前の経歴</h2>
-					<dl class='mb-4'>
-						<dt class={dtClass}>営業/事務職</dt>
-						<dd>キャリアのスタートはメーカーの営業職と事務職でした。</dd>
-						<dd>古い体制の業界で、当時としても既に古くなっていたFAXを未だに使うような環境でした。</dd>
-						<dd>この時に、効率化や自動化の重要性を強く感じたことが間違いなく今の原点になっています。</dd>
-					</dl>
-					<dl class='mb-4'>
-						<dt class={dtClass}>電気設計/制御</dt>
-						<dd>およそ5年間、プラント設備を中心とした強電分野および電気制御分野において、</dd>
-						<dd>電気設計を担当していました。</dd>
-						<dd>制御盤設計、配線図作成、施工管理補助に加え、設計から製図、制御盤組立、工事、検収まで一貫して対応した経験があります。</dd>
-						<dd>また、プログラミング経験がない状態からでも、現場での調整や</dd>
-						<dd>試行錯誤を通じて検収まで対応した経験があります。</dd>
-					</dl>
+			<article class='max-w-2xl text-left'>
+				<div class={`${profileContainerClass} mb-4`}>
+					<h2 class={`${articleTitleClass} mb-4`}>業務改善を軸にしたWebプログラマーです</h2>
+					<div class='mb-4'>
+						<div class={dtClass}>よく使う言語</div>
+						<div>JavaScript / TypeScript, PHP</div>
+						<div class='mb-4'>業務ではWordPressやLaravelも使用しています。</div>
+						<div class={dtClass}>現在の業務</div>
+						<div class='mb-4'>WEB制作, システム開発, 社内向けのツール制作など</div>
+						<div class={dtClass}>こだわっていること</div>
+						<div>仕事の再現性を上げるため、身体も日々鍛錬しています！</div>
+					</div>
 				</div>
-				<div class='text-base text-gray-700 mb-4'>
-					<h2 class='text-2xl font-bold mb-4'>今の業務での経験</h2>
-					<dl>
-						<dt class={dtClass}>プログラマー</dt>
-						<dd>Web系の開発を中心に、プログラマーとして業務に従事しています。</dd>
-						<dd>PHP、JavaScriptを主軸に、VBAやPythonも含めた複数言語での開発を行い、 既存システムの改修・運用から新規機能の実装まで一貫して対応しています。</dd>
-						<dd>レガシー環境下においても改善を意識し、社内ツールにReactを導入するなど、 モダン技術の適用による開発効率と保守性の向上に取り組んでいます。</dd>
-						<dd>また、設計から実装まで一貫して関わる中で、単に動作するだけでなく、 保守性や拡張性を考慮した設計・実装を継続的に行っています。</dd>
-					</dl>
+				<div class={`${profileContainerClass} mb-4`}>
+					<h2 class={`${articleTitleClass} mb-4`}>今の業務での経験</h2>
+					<div>
+						<div class={dtClass}>プログラマー</div>
+						<div>Web系の開発を中心に、プログラマーとして業務に従事しています。</div>
+						<div>PHP、JavaScriptを主軸に、VBAやPythonも含めた複数言語での開発を行い、 既存システムの改修・運用から新規機能の実装まで一貫して対応しています。</div>
+						<div>レガシー環境下においても改善を意識し、社内ツールにReactを導入するなど、 モダン技術の適用による開発効率と保守性の向上に取り組んでいます。</div>
+						<div>また、設計から実装まで一貫して関わる中で、単に動作するだけでなく、 保守性や拡張性を考慮した設計・実装を継続的に行っています。</div>
+					</div>
 				</div>
-				<div class='text-base text-gray-700 mb-4'>
-					<h2 class='text-2xl font-bold mb-4'>スキル</h2>
-					<dl>
-						<dt class={dtClass}>経験言語/フレームワーク</dt>
-						<dl>
-							<dt class='font-bold'>JavaScript / TypeScript</dt>
-							<dd class='mb-1'>業務用の計算ツール（医療系）を1人で設計〜実装〜テストまで担当しました。</dd>
-							<dt class='font-bold'>React / hono（学習中含む）</dt>
-							<dd>React：社内フォームで利用開始（簡単なCRUD実装経験あり）</dd>
-							<dd class='mb-1'>Hono：個人開発でAPI構築中（学習中）</dd>
-							<dt class='font-bold'>PHP / WordPress / Laravel</dt>
-							<dd>既存の社内システムの改修・運用から新規機能の実装まで対応しています。</dd>
-							<dd class='mb-1'>現在ではLaravelを用いた開発も行っています。</dd>
-							<dd>WordPress：テーマ開発、既存プラグイン改修、管理画面カスタマイズ、テーブルを作成しての処理など。</dd>
-							<dd class='mb-1'>Laravelを用いて認証機能付きの応募フォームを実装。</dd>
-							<dt class='font-bold'>VBA / Python</dt>
-							<dd>企業向けにVBA + Accessで業務管理システムを開発（見積・発注管理 & 入場管理）</dd>
-							<dd class='mb-1'>Pythonで社内業務効率化ツール（定常業務の自動化）の作成・改修を行っています。</dd>
-						</dl>
-					</dl>
+				<div class={`${profileContainerClass} mb-4`}>
+					<h2 class={`${articleTitleClass} mb-4`}>スキル</h2>
+					<div>
+						<div class={dtClass}>経験言語/フレームワーク</div>
+						<div>
+							<div class='font-bold'>JavaScript / TypeScript</div>
+							<div class='mb-1'>業務用の計算ツール（医療系）を1人で設計〜実装〜テストまで担当しました。</div>
+							<div class='font-bold'>React / hono（学習中含む）</div>
+							<div>React：社内フォームで利用開始（簡単なCRUD実装経験あり）</div>
+							<div class='mb-1'>Hono：個人開発でAPI構築中（学習中）</div>
+							<div class='font-bold'>PHP / WordPress / Laravel</div>
+							<div>既存の社内システムの改修・運用から新規機能の実装まで対応しています。</div>
+							<div class='mb-1'>現在ではLaravelを用いた開発も行っています。</div>
+							<div>WordPress：テーマ開発、既存プラグイン改修、管理画面カスタマイズ、テーブルを作成しての処理など。</div>
+							<div class='mb-1'>Laravelを用いて認証機能付きの応募フォームを実装。</div>
+							<div class='font-bold'>VBA / Python</div>
+							<div>企業向けにVBA + Accessで業務管理システムを開発（見積・発注管理 & 入場管理）</div>
+							<div class='mb-4'>Pythonで社内業務効率化ツール（定常業務の自動化）の作成・改修を行っています。</div>
+						</div>
+						<h2 class={`${articleTitleClass} mb-4`}>プログラマーになる前の経歴</h2>
+						<div class='mb-4'>
+							<div class={dtClass}>営業/事務職</div>
+							<div>キャリアのスタートはメーカーの営業職と事務職でした。</div>
+							<div>古い体制の業界で、紙やFAXを中心とした業務が多く、効率化や自動化の重要性を強く感じました。</div>
+							<div>この時に、効率化や自動化の重要性を強く感じたことが間違いなく今の原点になっています。</div>
+						</div>
+						<div class='mb-4'>
+							<div class={dtClass}>電気設計/制御</div>
+							<div>およそ5年間、プラント設備を中心とした強電分野および電気制御分野において、</div>
+							<div>電気設計を担当していました。</div>
+							<div>制御盤設計、配線図作成、施工管理補助に加え、設計から製図、制御盤組立、工事、検収まで一貫して対応した経験があります。</div>
+							<div>また、プログラミング経験がない状態からでも、現場での調整や</div>
+							<div>試行錯誤を通じて検収まで対応した経験があります。</div>
+						</div>
+					</div>
 				</div>
-			</div>
+			</article>
 		</div>
 	</section>
 </Layout>

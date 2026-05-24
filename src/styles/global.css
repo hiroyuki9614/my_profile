@@ -10,3 +10,12 @@
 body {
     background: #f6f6f6f6;
 }
+
+/* markdown上書き */
+ul, menu {
+    list-style: disc !important;
+}
+
+ol {
+    list-style: decimal;
+}

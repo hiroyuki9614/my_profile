@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
+import remarkGithubBlockquoteAlert from 'remark-github-blockquote-alert';
 import react from '@astrojs/react';
 import rehypeMermaid from 'rehype-mermaid';
+import remarkGfm from 'remark-gfm';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
@@ -18,6 +20,7 @@ export default defineConfig({
 	],
 
 	markdown: {
+		remarkPlugins: [remarkGithubBlockquoteAlert, remarkGfm],
 		syntaxHighlight: {
 			type: 'shiki',
 			excludeLangs: ['mermaid', 'js'],
