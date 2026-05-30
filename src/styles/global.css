@@ -35,3 +35,11 @@ body {
     border-top: 1px solid #d1d5db !important;
     height: .06em !important;
 }
+
+.markdown-body details > summary {
+    background-color: #fafafa !important;
+    border-radius: .5em !important;
+    box-shadow: 1px 1px 5px 0 #6f6f6f !important
+    height: 3em !important;
+    padding: .75em !important;
+}
