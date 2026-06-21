@@ -46,6 +46,9 @@ body {
 
 .markdown-body blockquote {
     background: white !important;
-    color: #3a3a3a !important;
+    border-left: none !important;
+    border-radius: 1rem !important;
+    color: #131313 !important;
+    margin: 1rem 0 !important;
     padding: 1em !important;
 }
