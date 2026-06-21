@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hiroyuki9614.github.io/my_profile/sitemap-index.xml
+Sitemap: https://hiroyuki9614.com/sitemap-index.xml

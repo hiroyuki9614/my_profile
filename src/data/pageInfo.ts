@@ -1,4 +1,4 @@
-const rootPath = 'hiroyuki9614.com';
+const rootPath = '';
 
 export type PageMeta = {
 	root?: string;

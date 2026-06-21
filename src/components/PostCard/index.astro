@@ -7,7 +7,7 @@ import ShowCategory from '../ShowCategory/index.astro';
 const category = post.data.category as Category;
 const defaultThumbnail = blogInfo.categoryDefaultImage[category][0] ?? '@/images/thumbnails/default.png';
 const defaultThumbnailAlt = blogInfo.categoryDefaultImage[category][1] ?? 'サムネイル設定なし';
-const postUrl = `/my_profile/posts/${post.id}`;
+const postUrl = `/posts/${post.id}`;
 ---
 
 <li class='item min-h-[29rem]'>

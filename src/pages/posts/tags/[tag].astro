@@ -68,8 +68,8 @@ const currentPath = Astro.url.pathname;
 			<aside class='layout__side-nav'>
 				<div class='flex flex-col items-baseline'>
 					<div>
-						<PostFilterPanel sortTarget={'カテゴリ'} slug={'/my_profile/posts/categories/'} filteredObj={getCategories(posts)} objNum={countByCategory}>
-							<option value='/my_profile/posts/' selected={currentPath === '/my_profile/posts/'}>全ての投稿({posts.length})</option>
+						<PostFilterPanel sortTarget={'カテゴリ'} slug={'/posts/categories/'} filteredObj={getCategories(posts)} objNum={countByCategory}>
+							<option value='/posts/' selected={currentPath === '/posts/'}>全ての投稿({posts.length})</option>
 						</PostFilterPanel>
 					</div>
 				</div>

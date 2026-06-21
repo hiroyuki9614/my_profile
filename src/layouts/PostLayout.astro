@@ -9,8 +9,8 @@ import '@/styles/global.css';
 const { pathname } = Astro.url;
 let slug = '';
 
-// /my_profile/posts/SLUG または /my_profile/posts/SLUG/ からSLUGを抽出
-const slugMatch = pathname.match(/\/my_profile\/posts\/([^\/]+)\/?$/);
+// /posts/SLUG または /posts/SLUG/ からSLUGを抽出
+const slugMatch = pathname.match(/\/posts\/([^\/]+)\/?$/);
 if (slugMatch && slugMatch[1]) {
 	slug = slugMatch[1];
 }
@@ -30,7 +30,7 @@ const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 	<article>
 		<div class='container'>
 			<div class='content flex flex-col'>
-				<a href='/my_profile/posts' class='underline font-bold mt-2 mb-5'>← 一覧へ戻る</a>
+				<a href='/posts' class='underline font-bold mt-2 mb-5'>← 一覧へ戻る</a>
 				<ShowCategory category={frontmatter.category} />
 				<h1 class='font-extrabold'>{frontmatter.title}</h1>
 				<div class='metadata mb-6 text-right'>
@@ -45,7 +45,7 @@ const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 			<div class='post-navigation__links w-[60%]'>
 				{
 					prevPost ? (
-						<a href={`/my_profile/posts/${prevPost.id}`} class='post-navigation__prev'>
+						<a href={`/posts/${prevPost.id}`} class='post-navigation__prev'>
 							<span class='post-navigation__label --prev'>← 前の記事</span>
 							<span class='post-navigation__title'>{prevPost.data.title}</span>
 						</a>
@@ -58,7 +58,7 @@ const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 
 				{
 					nextPost ? (
-						<a href={`/my_profile/posts/${nextPost.id}`} class='post-navigation__next'>
+						<a href={`/posts/${nextPost.id}`} class='post-navigation__next'>
 							<span class='post-navigation__label --next'>次の記事 →</span>
 							<span class='post-navigation__title'>{nextPost.data.title}</span>
 						</a>

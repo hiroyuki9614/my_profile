@@ -9,7 +9,7 @@ const isIndex = Astro.props.isIndex as boolean;
 	isIndex ? (
 		<span class={`${blogInfo.categoryColor[category]} category`}>{category}</span>
 	) : (
-		<a href={`/my_profile/posts/categories/${category}`} class={`${blogInfo.categoryColor[category]} category`}>
+		<a href={`/posts/categories/${category}`} class={`${blogInfo.categoryColor[category]} category`}>
 			{category}
 		</a>
 	)

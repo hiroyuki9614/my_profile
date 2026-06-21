@@ -22,7 +22,7 @@ type PortfolioImage = {
 
 const portfolioImages: Record<string, PortfolioImage> = {
 	my_profile: {
-		url: 'https://hiroyuki9614.github.io/my_profile/',
+		url: 'https://hiroyuki9614.com/',
 		displayImage: blogImage,
 		displayImageAlt: 'ブログサイトのスクリーンショット',
 		title: 'ブログサイト',
