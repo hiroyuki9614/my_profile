@@ -1,4 +1,4 @@
-const rootPath = '/my_profile';
+const rootPath = '/';
 
 export type PageMeta = {
 	root?: string;
