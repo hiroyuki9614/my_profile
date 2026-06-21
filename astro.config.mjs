@@ -8,8 +8,8 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-	site: 'https://hiroyuki9614.github.io',
-	base: '/my_profile',
+	site: 'https://hiroyuki9614.com',
+	base: '/',
 	integrations: [
 		react(),
 		sitemap(),
