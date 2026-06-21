@@ -43,3 +43,8 @@ body {
     height: 3em !important;
     padding: .75em !important;
 }
+
+.markdown-body blockquote {
+    background: white !important;
+    padding: 1em !important;
+}
