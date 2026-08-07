@@ -1,0 +1,98 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const title = 'Privacy Policy';
+const description = 'Personal Vault APIおよびCustom GPT Actionsの利用に関するプライバシーポリシーです。';
+
+const sectionClass = 'space-y-3';
+const headingClass = 'text-xl font-bold text-gray-900 sm:text-2xl';
+const listClass = 'list-disc space-y-2 pl-6';
+---
+
+<Layout title={title} description={description}>
+	<section class='mx-auto max-w-3xl px-1 py-10 text-gray-700 sm:px-4 sm:py-16'>
+		<header class='mb-10 border-b border-gray-300 pb-6 sm:mb-12'>
+			<h1 class='text-3xl font-bold leading-tight text-gray-900 sm:text-4xl'>Personal Vault API プライバシーポリシー</h1>
+			<p class='mt-4 leading-7'>本プライバシーポリシーは、Personal Vault APIにおける情報の取り扱いについて定めるものです。</p>
+		</header>
+
+		<div class='space-y-10 text-base leading-7'>
+			<section class={sectionClass}>
+				<h2 class={headingClass}>1. サービスについて</h2>
+				<p>Personal Vault APIは、サービス運営者本人が管理する個人データを保存・取得・更新するための個人利用向けAPIです。</p>
+				<p>Custom GPT Actionsなどの外部クライアントからAPIへアクセスする場合があります。</p>
+			</section>
+
+			<section class={sectionClass}>
+				<h2 class={headingClass}>2. 取り扱う情報</h2>
+				<p>APIの利用に伴い、次の情報を処理する場合があります。</p>
+				<ul class={listClass}>
+					<li>APIへ送信された入力データ</li>
+					<li>Personal Vaultに保存されたデータ</li>
+					<li>APIアクセスに必要な認証情報</li>
+					<li>APIの動作・監査に必要なアクセス情報や操作記録</li>
+				</ul>
+			</section>
+
+			<section class={sectionClass}>
+				<h2 class={headingClass}>3. 利用目的</h2>
+				<p>取得・処理した情報は、次の目的で使用します。</p>
+				<ul class={listClass}>
+					<li>Personal Vaultへのデータ保存、取得、更新</li>
+					<li>API利用者の認証・アクセス制御</li>
+					<li>APIの正常な運用</li>
+					<li>不具合調査</li>
+					<li>セキュリティおよび監査</li>
+				</ul>
+			</section>
+
+			<section class={sectionClass}>
+				<h2 class={headingClass}>4. データ保存</h2>
+				<p>Personal Vaultのデータは、サービス運営者が管理するサーバー上のデータベースに保存されます。現時点ではSQLiteを使用しています。</p>
+			</section>
+
+			<section class={sectionClass}>
+				<h2 class={headingClass}>5. 第三者提供</h2>
+				<p>保存データを広告目的で利用したり、販売したりすることはありません。法令上必要な場合を除き、サービス運営者の意思で第三者へ提供することもありません。</p>
+				<p>ただし、Custom GPT Actionsなどの外部サービスを利用してAPIへ情報を送信する場合、その外部サービスにおけるデータ処理には、各サービス提供者の利用規約およびプライバシーポリシーが適用されます。</p>
+			</section>
+
+			<section class={sectionClass}>
+				<h2 class={headingClass}>6. API認証</h2>
+				<p>APIは、Bearer tokenなどによる認証を使用する場合があります。認証情報はアクセス制御の目的でのみ使用し、公開しません。</p>
+			</section>
+
+			<section class={sectionClass}>
+				<h2 class={headingClass}>7. データの修正・削除</h2>
+				<p>Personal Vaultに保存されたデータは、サービス運営者が必要に応じて修正または削除できます。</p>
+			</section>
+
+			<section class={sectionClass}>
+				<h2 class={headingClass}>8. セキュリティ</h2>
+				<p>取り扱う情報を保護するため、HTTPS、アクセス制御などの合理的な安全対策を講じます。ただし、インターネット上の通信や情報管理における絶対的な安全性を保証するものではありません。</p>
+			</section>
+
+			<section class={sectionClass}>
+				<h2 class={headingClass}>9. ポリシーの変更</h2>
+				<p>必要に応じて、本プライバシーポリシーを変更する場合があります。変更後の内容は、このページに掲載します。</p>
+			</section>
+
+			<section class={sectionClass}>
+				<h2 class={headingClass}>10. お問い合わせ</h2>
+				<p>
+					本プライバシーポリシーに関するお問い合わせは、<a
+						href='https://github.com/hiroyuki9614'
+						target='_blank'
+						rel='noopener noreferrer'
+						class='font-medium text-gray-900 underline decoration-gray-400 underline-offset-4 hover:decoration-gray-900'
+					>GitHubプロフィール</a>または本Webサイトの公開済みの導線からご連絡ください。
+				</p>
+			</section>
+		</div>
+
+		<footer class='mt-12 border-t border-gray-300 pt-6 text-sm leading-6 text-gray-600'>
+			<p>制定日: 2026年8月7日</p>
+			<p>最終更新日: 2026年8月7日</p>
+		</footer>
+	</section>
+</Layout>
