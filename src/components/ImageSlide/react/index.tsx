@@ -42,9 +42,15 @@ const ImageSlide = ({ children, image, imageAlt, title }: ImageSlideProps) => {
 	return (
 		<>
 			{!image.includes('comming_soon') ? (
-				<figure className='link__image bg-gray-200 w-[400px] h-[300px] mr-5 flex items-center justify-center cursor-pointer' onClick={() => setIsOpen(true)}>
+				<button
+					type='button'
+					className='link__image bg-gray-200 w-[400px] h-[300px] mr-5 flex items-center justify-center cursor-pointer border-0 p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700'
+					onClick={() => setIsOpen(true)}
+					aria-label={`${title ?? imageAlt}の画像一覧を開く`}
+					aria-haspopup='dialog'
+				>
 					<img height={300} width={400} src={image} alt={imageAlt} />
-				</figure>
+				</button>
 			) : (
 				<figure className='link__image bg-gray-200 w-[400px] h-[300px] mr-5 flex items-center justify-center'>
 					<img height={300} width={400} src={image} alt={imageAlt} />
@@ -54,7 +60,7 @@ const ImageSlide = ({ children, image, imageAlt, title }: ImageSlideProps) => {
 				<div className='flex flex-col'>
 					<h2 className='text-center mb-4 font-bold text-lg'>{title}の画像一覧</h2>
 					{children}
-					<button className='text-center mt-4 border-gray-600 p-2 bg-gray-300 hover:bg-gray-400 hover:transition-colors' onClick={() => setIsOpen(false)}>
+					<button type='button' className='text-center mt-4 border-gray-600 p-2 bg-gray-300 hover:bg-gray-400 hover:transition-colors' onClick={() => setIsOpen(false)}>
 						閉じる
 					</button>
 				</div>
