@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import PostLayout from '../../layouts/PostLayout.astro';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('posts');
+	const posts = await getCollection('posts', ({ data }) => data.status === 'published');
 	return posts.map((post) => ({
 		params: { slug: post.id },
 		props: { post },
@@ -14,14 +14,6 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-{
-	post.data.status === 'published' ? (
-		<PostLayout frontmatter={post.data}>
-			<Content />
-		</PostLayout>
-	) : (
-		<div class='container'>
-			<h1 class='text-center'>記事が見つかりませんでした。</h1>
-		</div>
-	)
-}
+<PostLayout frontmatter={post.data}>
+	<Content />
+</PostLayout>

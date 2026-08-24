@@ -3,9 +3,23 @@ import HeaderNav from '../components/HeaderNav/index.astro';
 import Footer from '../components/Footer/index.astro';
 import '../styles/global.css';
 import favicon from '/favicon.ico';
-import { type PageMeta } from '../data/pageInfo';
+import defaultOgImage from '@/images/profile/ogp_image.png';
+import { getAbsoluteUrl } from '@/utils/getAbsoluteUrl';
 
-const { metaTitle, metaDescription, type } = Astro.props as PageMeta;
+type OpenGraphType = 'website' | 'article';
+
+interface Props {
+	title?: string;
+	description?: string;
+	type?: OpenGraphType;
+	image?: string;
+	canonical?: string;
+}
+
+const { title, description, type = 'website', image, canonical } = Astro.props as Props;
+const canonicalUrl = getAbsoluteUrl(canonical ?? Astro.url.pathname, Astro.site);
+const ogImageUrl = getAbsoluteUrl(image || defaultOgImage.src, Astro.site);
+const documentTitle = title ? `${title} | hiroyuki9614` : 'hiroyuki9614';
 ---
 
 <html lang='ja'>
@@ -13,16 +27,17 @@ const { metaTitle, metaDescription, type } = Astro.props as PageMeta;
 		<meta charset='utf-8' />
 		<meta name='viewport' content='width=device-width, initial-scale=1' />
 		<meta property='og:site_name' content='hiroyuki9614' />
-		<meta property='og:title' content={metaTitle} />
-		<meta property='og:type' content={type === 'website' ? 'website' : 'article'} />
-		<meta property='og:url' content={Astro.site?.href || ''} />
-		<meta property='og:description' content={metaDescription} />
-		<meta property='og:image' content='../images/profile/ogp_image.png' />
+		<meta property='og:title' content={title} />
+		<meta property='og:type' content={type} />
+		<meta property='og:url' content={canonicalUrl} />
+		<meta property='og:description' content={description} />
+		<meta property='og:image' content={ogImageUrl} />
+		<link rel='canonical' href={canonicalUrl} />
 
 		<link rel='icon' href={favicon} />
 
-		<title>{metaTitle ? `${metaTitle} | hiroyuki9614` : 'hiroyuki9614'}</title>
-		<meta name='description' content={metaDescription} />
+		<title>{documentTitle}</title>
+		<meta name='description' content={description} />
 
 		<script async src='https://www.googletagmanager.com/gtag/js?id=G-BKZPXWVEQW'></script>
 		<script is:inline>

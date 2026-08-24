@@ -12,6 +12,14 @@ const postsCollection = defineCollection({
 		image: z.string().optional(),
 		status: z.enum(['published', 'unpublished']).default('unpublished'),
 		tags: z.array(z.string()).optional(),
+	}).superRefine((data, ctx) => {
+		if (data.status === 'published' && !data.description?.trim()) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				path: ['description'],
+				message: 'Published posts must have a non-empty description.',
+			});
+		}
 	}),
 });
 

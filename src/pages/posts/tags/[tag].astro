@@ -7,7 +7,7 @@ import { pageInfo } from '../../../data/pageInfo';
 import PostFilterPanel from '../../../components/PostFilterPanel/index.astro';
 
 export async function getStaticPaths() {
-	const allPosts = await getCollection('posts');
+	const allPosts = await getCollection('posts', ({ data }) => data.status === 'published');
 	const tagsSet = new Set<string>();
 	allPosts.forEach((post) => {
 		post.data.tags?.forEach((tag: string) => tagsSet.add(tag));
@@ -61,7 +61,7 @@ const countByTag = posts.reduce(
 const currentPath = Astro.url.pathname;
 ---
 
-<Layout pageTitle={tag} description={`${tag}のタグが付いた記事一覧`} pageType={pageInfo.post.type}>
+<Layout title={tag} description={`${tag}のタグが付いた記事一覧`}>
 	<section class='contents-index'>
 		<PageTitle title={pageInfo.post.headingTitle} description={pageInfo.post.headingDescription} />
 		<div class='layout'>
@@ -75,7 +75,7 @@ const currentPath = Astro.url.pathname;
 				</div>
 			</aside>
 			<ul class='layout__grid grid grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 auto-rows-auto gap-4'>
-				{sortedPosts.map((post) => (post.data.status === 'published' ? <PostCard post={post} /> : null))}
+				{sortedPosts.map((post) => <PostCard post={post} />)}
 			</ul>
 		</div>
 	</section>

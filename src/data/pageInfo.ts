@@ -6,7 +6,7 @@ export type PageMeta = {
 	metaDescription: string;
 	headingTitle: string;
 	headingDescription?: string;
-	type: 'website' | 'article' | 'profile';
+	type: 'website' | 'article';
 };
 export type NavigationItem = {
 	label: string;
@@ -29,7 +29,7 @@ export const pageInfo: PageInfo = {
 		metaTitle: '投稿一覧',
 		metaDescription: 'hiroyuki9614のブログ記事一覧ページです。　日記や知識、仕事の内容などを投稿しています。',
 		headingTitle: 'blog',
-		type: 'article',
+		type: 'website',
 	},
 	portfolio: {
 		metaTitle: 'ポートフォリオ紹介',
@@ -42,7 +42,7 @@ export const pageInfo: PageInfo = {
 		metaTitle: 'プロフィール',
 		metaDescription: 'hiroyuki9614のプロフィールページです。 経歴やスキル、趣味などを紹介しています。',
 		headingTitle: 'profile',
-		type: 'profile',
+		type: 'website',
 	},
 	notFound: {
 		metaTitle: 'ページが見つかりません',
