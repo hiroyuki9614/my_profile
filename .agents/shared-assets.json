@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "upstream_repository": "hiroyuki9614/personal-vault",
+  "direction": "upstream_to_downstream",
+  "policy": "allowlisted_exact_blob_mirror",
+  "assets": [
+    {
+      "source": ".agents/skills/git-safe-operations/SKILL.md",
+      "target": ".agents/skills/git-safe-operations/SKILL.md",
+      "source_blob_sha": "86d29e3bd979f652d76ee3d1488830c3f6012744"
+    },
+    {
+      "source": ".agents/skills/seo-audit/SKILL.md",
+      "target": ".agents/skills/seo-audit/SKILL.md",
+      "source_blob_sha": "3e2c0da568a2e0532058fc3e659540f4bcd6e087"
+    }
+  ]
+}
