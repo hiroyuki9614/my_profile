@@ -6,6 +6,25 @@ import { formatDate } from '@/utils/formatDate';
 import 'github-markdown-css/github-markdown.css';
 import '@/styles/global.css';
 
+type Heading = {
+	depth: number;
+	slug: string;
+	text: string;
+};
+
+type Frontmatter = {
+	title: string;
+	description?: string;
+	date: Date;
+	category: '日記' | 'メモ' | '知識' | '仕事';
+	image?: string;
+};
+
+type Props = {
+	frontmatter: Frontmatter;
+	headings?: Heading[];
+};
+
 const { pathname } = Astro.url;
 let slug = '';
 
@@ -14,7 +33,8 @@ const slugMatch = pathname.match(/\/posts\/([^\/]+)\/?$/);
 if (slugMatch && slugMatch[1]) {
 	slug = slugMatch[1];
 }
-const { frontmatter } = Astro.props;
+const { frontmatter, headings = [] } = Astro.props as Props;
+const tableOfContents = headings.filter((heading) => heading.depth >= 2);
 
 const allPosts = await getCollection('posts', ({ data }) => data.status === 'published');
 const sortedPosts = allPosts.sort((a, b) => {
@@ -31,6 +51,18 @@ const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 		<div class='container'>
 			<div class='content flex flex-col'>
 				<a href='/posts' class='underline font-bold mt-2 mb-5'>← 一覧へ戻る</a>
+				{tableOfContents.length > 0 && (
+					<nav class='table-of-contents' aria-label='目次'>
+						<h2>目次</h2>
+						<ol>
+							{tableOfContents.map((heading) => (
+								<li class={`table-of-contents__item depth-${heading.depth}`}>
+									<a href={`#${heading.slug}`}>{heading.text}</a>
+								</li>
+							))}
+						</ol>
+					</nav>
+				)}
 				<ShowCategory category={frontmatter.category} />
 				<h1 class='font-extrabold'>{frontmatter.title}</h1>
 				<div class='metadata mb-6 text-right'>
@@ -107,12 +139,11 @@ const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 		}
 
 		.category {
-			display: inline-flex; /* または display: flex; */
-			justify-content: center; /* 水平方向の中央寄せ */
-			align-items: center; /* 垂直方向の中央寄せ */
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
 			height: 20px;
 			width: 4rem;
-			/* background-color: aqua; */
 			border-radius: 10px;
 		}
 
@@ -131,13 +162,48 @@ const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 			padding: 20px 0;
 		}
 
+		.table-of-contents {
+			margin: 0 0 1.5rem;
+			padding: 1rem 1.25rem;
+			border: 1px solid #eaeaea;
+			border-radius: 0.5rem;
+		}
+
+		.table-of-contents h2 {
+			margin: 0 0 0.5rem;
+			font-size: 1.125rem;
+		}
+
+		.table-of-contents ol {
+			margin: 0;
+			padding-left: 1.5rem;
+		}
+
+		.table-of-contents__item {
+			margin-top: 0.25rem;
+		}
+
+		.table-of-contents__item.depth-3 {
+			margin-left: 1rem;
+		}
+
+		.table-of-contents__item.depth-4,
+		.table-of-contents__item.depth-5,
+		.table-of-contents__item.depth-6 {
+			margin-left: 2rem;
+		}
+
+		.table-of-contents a:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 2px;
+		}
+
 		@media (max-width: 768px) {
 			.content {
 				width: 90%;
 			}
 		}
 
-		/* 既存のスタイルに追加 */
 		.post-navigation {
 			margin: 4rem 0;
 			padding: 2rem 0;
