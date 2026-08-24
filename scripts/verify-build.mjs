@@ -19,6 +19,11 @@ function getCanonical(html) {
 	return html.match(/<link rel="canonical" href="([^"]*)"/)?.[1];
 }
 
+function getJsonLd(html, type) {
+	const scripts = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+	return scripts.map((match) => JSON.parse(match[1])).find((item) => item['@type'] === type);
+}
+
 function assert(condition, message) {
 	if (!condition) throw new Error(message);
 }
@@ -42,6 +47,10 @@ for (const file of htmlFiles) {
 const home = read('index.html');
 assert(getCanonical(home) === `${site}/`, 'home canonical is incorrect');
 assert(getMeta(home, 'og:type') === 'website', 'home og:type is incorrect');
+const websiteStructuredData = getJsonLd(home, 'WebSite');
+assert(websiteStructuredData?.['@context'] === 'https://schema.org', 'home WebSite context is incorrect');
+assert(websiteStructuredData?.url === `${site}/`, 'home WebSite URL is incorrect');
+assert(websiteStructuredData?.name === 'hiroyuki9614', 'home WebSite name is incorrect');
 
 const postsIndex = read('posts/index.html');
 assert(getCanonical(postsIndex) === `${site}/posts/`, 'posts index canonical is incorrect');
@@ -52,11 +61,23 @@ assert(getMeta(postWithImage, 'og:type') === 'article', 'article og:type is inco
 assert(getMeta(postWithImage, 'og:title')?.includes('佐々木尽'), 'article title is not article-specific');
 assert(getMeta(postWithImage, 'og:description')?.includes('佐々木尽選手'), 'article description is not article-specific');
 assert(getMeta(postWithImage, 'og:image') === `${site}/blog/260529/01.png`, 'article image is incorrect');
+const blogPostingWithImage = getJsonLd(postWithImage, 'BlogPosting');
+assert(blogPostingWithImage?.headline?.includes('佐々木尽'), 'BlogPosting headline is not article-specific');
+assert(blogPostingWithImage?.description?.includes('佐々木尽選手'), 'BlogPosting description is not article-specific');
+assert(blogPostingWithImage?.datePublished === '2026-05-28T00:00:00.000Z', 'BlogPosting datePublished is incorrect');
+assert(blogPostingWithImage?.author?.['@type'] === 'Person', 'BlogPosting author type is incorrect');
+assert(blogPostingWithImage?.author?.name === 'hiroyuki9614', 'BlogPosting author name is incorrect');
+assert(blogPostingWithImage?.mainEntityOfPage?.['@id'] === `${site}/posts/post_260529/`, 'BlogPosting mainEntityOfPage is incorrect');
+assert(blogPostingWithImage?.url === `${site}/posts/post_260529/`, 'BlogPosting URL is incorrect');
+assert(blogPostingWithImage?.image === `${site}/blog/260529/01.png`, 'BlogPosting image is incorrect');
 
 const postWithoutImage = read('posts/post_260530/index.html');
 assert(getMeta(postWithoutImage, 'og:type') === 'article', 'second article og:type is incorrect');
 assert(getMeta(postWithoutImage, 'og:title')?.includes('Codex'), 'second article title is not article-specific');
 assert(getMeta(postWithoutImage, 'og:image')?.includes('/_astro/ogp_image.'), 'default article image is incorrect');
+const blogPostingWithoutImage = getJsonLd(postWithoutImage, 'BlogPosting');
+assert(blogPostingWithoutImage?.url === `${site}/posts/post_260530/`, 'second BlogPosting URL is incorrect');
+assert(!('image' in blogPostingWithoutImage), 'second BlogPosting must omit absent article image');
 
 assert(!statSync(new URL('../dist/posts/post_260517/index.html', import.meta.url), { throwIfNoEntry: false }), 'unpublished post was generated');
 assert(!statSync(new URL('../dist/posts/post_260602＿＿＿＿＿/index.html', import.meta.url), { throwIfNoEntry: false }), 'unpublished post was generated');

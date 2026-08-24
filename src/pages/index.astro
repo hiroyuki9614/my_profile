@@ -4,13 +4,20 @@ import PageTitle from '@/components/PageTitle/index.astro';
 import { pageInfo } from '@/data/pageInfo';
 import { Image } from 'astro:assets';
 import profileImage from '@/images/profile/bass.webp';
+import { getAbsoluteUrl } from '@/utils/getAbsoluteUrl';
 
 const dtClass = 'text-lg font-bold mb-2';
 const profileContainerClass = 'text-base text-gray-700';
 const articleTitleClass = 'text-2xl font-bold';
+const websiteStructuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	url: getAbsoluteUrl(Astro.url.pathname, Astro.site),
+	name: 'hiroyuki9614',
+};
 ---
 
-<Layout title={pageInfo.profile.metaTitle} description={pageInfo.profile.metaDescription} type={pageInfo.profile.type}>
+<Layout title={pageInfo.profile.metaTitle} description={pageInfo.profile.metaDescription} type={pageInfo.profile.type} structuredData={websiteStructuredData}>
 	<section>
 		<PageTitle title={pageInfo.profile.headingTitle} description={pageInfo.profile.headingDescription} />
 		<div class='container flex flex-col items-center gap-8'>

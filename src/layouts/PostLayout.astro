@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import ShowCategory from '@/components/ShowCategory/index.astro';
 import { formatDate } from '@/utils/formatDate';
+import { getAbsoluteUrl } from '@/utils/getAbsoluteUrl';
 import 'github-markdown-css/github-markdown.css';
 import '@/styles/global.css';
 
@@ -35,6 +36,24 @@ if (slugMatch && slugMatch[1]) {
 }
 const { frontmatter, headings = [] } = Astro.props as Props;
 const tableOfContents = headings.filter((heading) => heading.depth >= 2);
+const canonicalUrl = getAbsoluteUrl(pathname, Astro.site);
+const articleStructuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'BlogPosting',
+	headline: frontmatter.title,
+	description: frontmatter.description,
+	datePublished: frontmatter.date.toISOString(),
+	author: {
+		'@type': 'Person',
+		name: 'hiroyuki9614',
+	},
+	mainEntityOfPage: {
+		'@type': 'WebPage',
+		'@id': canonicalUrl,
+	},
+	url: canonicalUrl,
+	...(frontmatter.image ? { image: getAbsoluteUrl(frontmatter.image, Astro.site) } : {}),
+};
 
 const allPosts = await getCollection('posts', ({ data }) => data.status === 'published');
 const sortedPosts = allPosts.sort((a, b) => {
@@ -46,7 +65,7 @@ const prevPost = currentIndex + 1 < sortedPosts.length ? sortedPosts[currentInde
 const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 ---
 
-<BaseLayout title={frontmatter.title} description={frontmatter.description} type='article' image={frontmatter.image}>
+<BaseLayout title={frontmatter.title} description={frontmatter.description} type='article' image={frontmatter.image} canonical={canonicalUrl} structuredData={articleStructuredData}>
 	<article>
 		<div class='container'>
 			<div class='content flex flex-col'>
