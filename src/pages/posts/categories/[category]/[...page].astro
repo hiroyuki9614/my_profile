@@ -58,7 +58,7 @@ const posts = await getCollection('posts', ({ data }) => data.status === 'publis
 const currentPath = Astro.url.pathname;
 ---
 
-<Layout pageTitle={category} description={`${category}のカテゴリが付いた記事一覧`} pageType={pageInfo.post.type}>
+<Layout title={category} description={`${category}のカテゴリが付いた記事一覧`}>
 	<section class='contents-index'>
 		<PageTitle title={pageInfo.post?.headingTitle ?? ''} description={pageInfo.post?.headingDescription ?? ''} />
 		<div class='layout'>

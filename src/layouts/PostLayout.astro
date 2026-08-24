@@ -26,7 +26,7 @@ const prevPost = currentIndex + 1 < sortedPosts.length ? sortedPosts[currentInde
 const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 ---
 
-<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+<BaseLayout title={frontmatter.title} description={frontmatter.description} type='article' image={frontmatter.image}>
 	<article>
 		<div class='container'>
 			<div class='content flex flex-col'>
