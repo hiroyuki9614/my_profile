@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "verify:build": "npm run build && node scripts/verify-build.mjs",
+    "verify:agent-assets": "node scripts/verify-shared-agent-assets.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
