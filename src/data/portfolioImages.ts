@@ -33,13 +33,14 @@ const portfolioImages: Record<string, PortfolioImage> = {
 		slideImages: [blogSlideImage1, blogSlideImage2, blogSlideImage3],
 	},
 	oddtrack: {
-		url: '',
+		url: 'https://odt.hiroyuki9614.com/',
 		displayImage: oddtrackImage,
 		displayImageAlt: '走行距離管理アプリのスクリーンショット',
-		title: '走行距離管理アプリ',
+		title: 'ODO TRACK（運転日報・走行距離管理）',
 		slideImages: [oddTrackSlideImage1, oddTrackSlideImage2, oddTrackSlideImage3],
-		tech: 'Ruby on Rails, Vue.js',
-		description: '走行距離を管理するアプリです。 走行距離を入力すると、月ごとの走行距離や、車ごとの走行距離をグラフで表示します。',
+		tech: 'Ruby on Rails, Vue.js, PostgreSQL, Docker Compose, Nginx',
+		description:
+			'車両ごとの運転日報と走行距離を管理するWebアプリです。一般・管理者権限、日報CRUD、車両管理、お気に入り、PDF出力に対応し、VPS上でDocker Compose運用しています。',
 		tags: [],
 		githubLink: 'https://github.com/hiroyuki9614/odo_track',
 	},
