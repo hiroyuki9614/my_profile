@@ -19,6 +19,9 @@ pnpm-debug.log*
 !.env.example
 !.env.*.example
 
+# generated research artifacts
+artifacts/profile-research/
+
 # macOS-specific files
 .DS_Store
 
