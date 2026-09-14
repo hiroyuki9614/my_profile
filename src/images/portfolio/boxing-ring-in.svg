@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">BOXING RING.IN portfolio visual</title>
+  <desc id="desc">Dark boxing-themed project card with a simplified boxing ring and project name.</desc>
+  <rect width="1200" height="900" fill="#111318"/>
+  <rect x="88" y="88" width="1024" height="724" rx="36" fill="#181b22" stroke="#3a3f4b" stroke-width="4"/>
+  <text x="120" y="190" fill="#f5f5f4" font-family="system-ui, sans-serif" font-size="70" font-weight="800">BOXING RING.IN</text>
+  <text x="124" y="248" fill="#a7abb5" font-family="system-ui, sans-serif" font-size="28">Boxing intelligence / curation platform</text>
+  <g transform="translate(185 365)">
+    <rect x="0" y="0" width="830" height="320" rx="24" fill="#101217" stroke="#717785" stroke-width="5"/>
+    <line x1="30" y1="62" x2="800" y2="62" stroke="#d9dce3" stroke-width="10"/>
+    <line x1="30" y1="126" x2="800" y2="126" stroke="#d9dce3" stroke-width="10"/>
+    <line x1="30" y1="190" x2="800" y2="190" stroke="#d9dce3" stroke-width="10"/>
+    <line x1="30" y1="254" x2="800" y2="254" stroke="#d9dce3" stroke-width="10"/>
+    <rect x="28" y="26" width="18" height="268" rx="9" fill="#8b93a3"/>
+    <rect x="784" y="26" width="18" height="268" rx="9" fill="#8b93a3"/>
+    <rect x="392" y="26" width="46" height="268" rx="12" fill="#20242d" stroke="#8b93a3" stroke-width="4"/>
+  </g>
+  <g font-family="system-ui, sans-serif" font-size="24" fill="#d9dce3">
+    <text x="124" y="758">collect → normalize → deduplicate → publish → measure</text>
+  </g>
+</svg>
