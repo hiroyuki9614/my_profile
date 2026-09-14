@@ -1,0 +1,37 @@
+name: Profile Research
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 21 * * 0'
+
+permissions:
+  contents: read
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Test profile research
+        run: npm run test:profile-research
+
+      - name: Run profile research
+        run: npm run profile:research
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PROFILE_RESEARCH_MAX_SOURCES: 30
+
+      - name: Upload research artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: profile-research-${{ github.run_id }}
+          path: artifacts/profile-research/
+          retention-days: 14

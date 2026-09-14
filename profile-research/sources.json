@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "discovery": {
+    "github": [
+      {
+        "enabled": true,
+        "query": "portfolio in:name language:TypeScript stars:1..200",
+        "limit": 12
+      },
+      {
+        "enabled": true,
+        "query": "portfolio in:name language:JavaScript stars:1..200",
+        "limit": 8
+      }
+    ],
+    "qiita": [
+      {
+        "enabled": true,
+        "query": "tag:React",
+        "limit": 10
+      },
+      {
+        "enabled": true,
+        "query": "tag:TypeScript",
+        "limit": 10
+      }
+    ]
+  },
+  "manual": [
+    {
+      "type": "zenn",
+      "user": "example-user",
+      "enabled": false
+    },
+    {
+      "type": "portfolio",
+      "url": "https://example.com/",
+      "termsConfirmed": false,
+      "enabled": false
+    }
+  ]
+}
