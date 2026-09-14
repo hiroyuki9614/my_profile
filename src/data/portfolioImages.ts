@@ -1,5 +1,6 @@
 import blogImage from '@/images/portfolio/blog.png';
 import oddtrackImage from '@/images/portfolio/oddtrack.png';
+import boxingRingImage from '@/images/portfolio/boxing-ring-in.svg';
 import type { ImageMetadata } from 'astro';
 import blogSlideImage1 from '@/images/slides/blog/blog1.png';
 import blogSlideImage2 from '@/images/slides/blog/blog2.png';
@@ -21,6 +22,18 @@ type PortfolioImage = {
 };
 
 const portfolioImages: Record<string, PortfolioImage> = {
+	boxingRingIn: {
+		url: 'https://boxing-ring.in/',
+		displayImage: boxingRingImage,
+		displayImageAlt: 'BOXING RING.INのプロジェクトイメージ',
+		title: 'BOXING RING.IN（ボクシング情報基盤）',
+		description:
+			'複数ソースからボクシング情報を収集し、構造化・正規化・重複排除・出典管理を経て静的公開する個人開発プロジェクトです。AIエージェントを前提に要件分解、実装、テスト、CI/CD、データ収集、SEO・AI Discoveryの改善まで継続運用しています。',
+		tech: 'Astro, TypeScript, SQLite, Cloudflare Pages, GitHub Actions, Playwright',
+		tags: [],
+		githubLink: 'https://github.com/hiroyuki9614/boxing_ring_in',
+		slideImages: [boxingRingImage],
+	},
 	my_profile: {
 		url: 'https://hiroyuki9614.com/',
 		displayImage: blogImage,
