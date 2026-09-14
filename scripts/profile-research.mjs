@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { collectSource, discoverSources } from './profile-research/adapters.mjs';
 import {
   compareWithPeers,
@@ -9,7 +10,7 @@ import {
   renderReport
 } from './profile-research/lib.mjs';
 
-const root = resolve(new URL('..', import.meta.url).pathname);
+const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const configPath = resolve(root, process.env.PROFILE_RESEARCH_CONFIG ?? 'profile-research/sources.json');
 const targetPath = resolve(root, process.env.PROFILE_RESEARCH_TARGET ?? 'src/pages/index.astro');
 const outputDir = resolve(root, process.env.PROFILE_RESEARCH_OUTPUT ?? 'artifacts/profile-research');
@@ -35,6 +36,11 @@ function dedupeSources(sources) {
   });
 }
 
+function privacySafePeer(peer) {
+  const { headline: _headline, ...safe } = peer;
+  return safe;
+}
+
 async function main() {
   const [config, targetMarkup] = await Promise.all([loadJson(configPath), readFile(targetPath, 'utf8')]);
   const target = extractFeatures(markupToDocument(targetMarkup), { sourceType: 'my_profile' });
@@ -43,21 +49,22 @@ async function main() {
   const manual = (config.manual ?? []).filter((source) => source.enabled !== false);
   const candidates = dedupeSources([...manual, ...discovered]).slice(0, maxSources);
 
-  const peers = [];
+  const collectedPeers = [];
   const errors = [];
   for (const source of candidates) {
     try {
-      peers.push(await collectSource(source));
+      collectedPeers.push(await collectSource(source));
     } catch (error) {
       const type = source.type ?? 'unknown';
       errors.push(`${type}: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
-  if (!peers.length) {
+  if (!collectedPeers.length) {
     throw new Error('比較対象を1件も収集できませんでした。設定またはネットワークを確認してください。');
   }
 
+  const peers = collectedPeers.map(privacySafePeer);
   const comparison = compareWithPeers(target, peers);
   const recommendations = recommendationsFromComparison(target, comparison);
   const generatedAt = new Date().toISOString();
