@@ -1,7 +1,7 @@
 import { Buffer } from 'node:buffer';
 import { extractFeatures, markupToDocument, sourceKey } from './lib.mjs';
 
-const USER_AGENT = 'my-profile-research/0.1 (+https://github.com/hiroyuki9614/my_profile)';
+const USER_AGENT = 'my-profile-research/0.2 (+https://github.com/hiroyuki9614/my_profile)';
 
 function baseHeaders(extra = {}) {
   return { 'User-Agent': USER_AGENT, ...extra };
@@ -73,12 +73,12 @@ export async function collectGithubUser(source) {
   return sanitizePeer('github', `https://github.com/${login}`, plainDocument(text, links, headings), 'github.com');
 }
 
-export async function discoverGithub(config) {
+export async function discoverGithub(config, page = 1) {
   if (!config.enabled) return [];
-  const limit = Math.max(1, Math.min(config.limit ?? 12, 50));
+  const limit = Math.max(1, Math.min(config.limit ?? 50, 100));
   const query = encodeURIComponent(config.query ?? 'portfolio in:name language:TypeScript stars:1..200');
   const result = await requestJson(
-    `https://api.github.com/search/repositories?q=${query}&sort=updated&order=desc&per_page=${limit}`,
+    `https://api.github.com/search/repositories?q=${query}&sort=updated&order=desc&per_page=${limit}&page=${page}`,
     { Accept: 'application/vnd.github+json' },
     { github: true }
   );
@@ -88,7 +88,13 @@ export async function discoverGithub(config) {
     const login = repo.owner?.login;
     if (!login || seen.has(login) || repo.owner?.type !== 'User') continue;
     seen.add(login);
-    sources.push({ type: 'github', user: login, repository: repo.name, discovered: true });
+    sources.push({
+      type: 'github',
+      user: login,
+      repository: repo.name,
+      discovered: true,
+      sourceKeyHint: sourceKey('github', `https://github.com/${login}`)
+    });
   }
   return sources;
 }
@@ -105,18 +111,23 @@ export async function collectQiitaUser(source) {
   return sanitizePeer('qiita', `https://qiita.com/${id}`, plainDocument(text, links, titles.slice(0, 8)), 'qiita.com');
 }
 
-export async function discoverQiita(config) {
+export async function discoverQiita(config, page = 1) {
   if (!config.enabled) return [];
-  const limit = Math.max(1, Math.min(config.limit ?? 10, 50));
+  const limit = Math.max(1, Math.min(config.limit ?? 50, 100));
   const query = encodeURIComponent(config.query ?? 'tag:React');
-  const items = await requestJson(`https://qiita.com/api/v2/items?page=1&per_page=${limit}&query=${query}`);
+  const items = await requestJson(`https://qiita.com/api/v2/items?page=${page}&per_page=${limit}&query=${query}`);
   const seen = new Set();
   const sources = [];
   for (const item of items) {
     const id = item.user?.id;
     if (!id || seen.has(id)) continue;
     seen.add(id);
-    sources.push({ type: 'qiita', user: id, discovered: true });
+    sources.push({
+      type: 'qiita',
+      user: id,
+      discovered: true,
+      sourceKeyHint: sourceKey('qiita', `https://qiita.com/${id}`)
+    });
   }
   return sources;
 }
@@ -182,10 +193,45 @@ export async function collectSource(source) {
   throw new Error(`unsupported source type: ${source.type}`);
 }
 
-export async function discoverSources(discovery = {}) {
-  const groups = await Promise.all([
-    ...(discovery.github ?? []).map(discoverGithub),
-    ...(discovery.qiita ?? []).map(discoverQiita)
-  ]);
-  return groups.flat();
+function nextPage(current, maxPage) {
+  return current >= maxPage ? 1 : current + 1;
+}
+
+export async function discoverSources(discovery = {}, cursors = {}) {
+  const groups = [];
+  const nextCursors = { ...cursors };
+  const definitions = [
+    ...(discovery.github ?? []).map((config, index) => ({ type: 'github', config, index })),
+    ...(discovery.qiita ?? []).map((config, index) => ({ type: 'qiita', config, index }))
+  ];
+
+  for (const definition of definitions) {
+    const { type, config, index } = definition;
+    if (!config.enabled) continue;
+    const key = config.id ?? `${type}-${index}`;
+    const page = Math.max(1, Number.parseInt(cursors[key] ?? '1', 10));
+    const maxPage = Math.max(1, Number.parseInt(config.maxPage ?? (type === 'github' ? 10 : 20), 10));
+    const pagesPerRun = Math.max(1, Number.parseInt(config.pagesPerRun ?? '1', 10));
+    const sources = [];
+    let currentPage = page;
+    for (let i = 0; i < pagesPerRun; i += 1) {
+      const discovered = type === 'github'
+        ? await discoverGithub(config, currentPage)
+        : await discoverQiita(config, currentPage);
+      sources.push(...discovered);
+      currentPage = nextPage(currentPage, maxPage);
+    }
+    nextCursors[key] = currentPage;
+    groups.push(sources);
+  }
+
+  const interleaved = [];
+  let offset = 0;
+  while (groups.some((group) => offset < group.length)) {
+    for (const group of groups) {
+      if (offset < group.length) interleaved.push(group[offset]);
+    }
+    offset += 1;
+  }
+  return { sources: interleaved, cursors: nextCursors };
 }
