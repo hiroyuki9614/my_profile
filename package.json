@@ -10,6 +10,8 @@
     "build": "astro build",
     "verify:build": "npm run build && node scripts/verify-build.mjs",
     "verify:agent-assets": "node scripts/verify-shared-agent-assets.mjs",
+    "profile:research": "node scripts/profile-research.mjs",
+    "test:profile-research": "node --test tests/profile-research.test.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -29,7 +31,7 @@
     "react-modal": "^3.16.3",
     "rehype-mermaid": "^3.0.0",
     "remark-gfm": "^4.0.1",
-    "remark-github-blockquote-alert": "^2.1.0",
+    "remark-github-blockquote-alert": "^4.0.1",
     "tailwindcss": "^4.2.2",
     "unist-util-visit": "^5.1.0"
   },
