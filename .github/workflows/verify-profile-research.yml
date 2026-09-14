@@ -1,0 +1,38 @@
+name: Verify Profile Research
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/profile-research.mjs'
+      - 'scripts/profile-research/**'
+      - 'profile-research/**'
+      - 'tests/profile-research.test.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/profile-research.yml'
+      - '.github/workflows/verify-profile-research.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test profile research
+        run: npm run test:profile-research
+
+      - name: Verify site build
+        run: npm run verify:build
