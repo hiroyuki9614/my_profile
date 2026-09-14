@@ -58,7 +58,7 @@ const portfolioImages: Record<string, PortfolioImage> = {
 		githubLink: 'https://github.com/hiroyuki9614/odo_track',
 	},
 	bookLibrary: {
-		url: '',
+		url: 'https://github.com/hiroyuki9614/book_library',
 		displayImage: undefined,
 		displayImageAlt: undefined,
 		slideImages: [],
