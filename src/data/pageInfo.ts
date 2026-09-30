@@ -39,9 +39,10 @@ export const pageInfo: PageInfo = {
 		type: 'website',
 	},
 	profile: {
-		metaTitle: 'プロフィール',
-		metaDescription: 'hiroyuki9614のプロフィールページです。 経歴やスキル、趣味などを紹介しています。',
+		metaTitle: 'Hiroyuki9614 | Web Engineer / Frontend',
+		metaDescription: 'React・TypeScriptを中心に、変更容易性・再利用性・業務改善を意識したWeb開発に取り組むHiroyuki9614のプロフィールです。',
 		headingTitle: 'profile',
+		headingDescription: 'Web Engineer / Frontend focused',
 		type: 'website',
 	},
 	notFound: {
