@@ -3,6 +3,7 @@ name: Verify Profile Research
 on:
   pull_request:
     paths:
+      - 'src/**'
       - 'scripts/profile-research.mjs'
       - 'scripts/profile-research/**'
       - 'profile-research/**'

@@ -1,34 +1,65 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import PageTitle from '@/components/PageTitle/index.astro';
 import ProjectCard from '@/components/ProjectCard/index.astro';
 import portfolioImages from '@/data/portfolioImages';
-import blogImage from '@/images/portfolio/blog.png';
-import oddtrackImage from '@/images/portfolio/oddtrack.png';
 import { pageInfo } from '@/data/pageInfo';
 ---
 
 <Layout title={pageInfo.portfolio.metaTitle} description={pageInfo.portfolio.metaDescription} type={pageInfo.portfolio.type}>
-	<section class='contents'>
-		<PageTitle title={pageInfo.portfolio?.headingTitle ?? 'Default Title'} description={pageInfo.portfolio?.headingDescription} />
-		<div class='container'>
-			{
-				Object.values(portfolioImages).map((project, index) => (
-					<ProjectCard
-						classList={'mb-12'}
-						url={project.url}
-						thumbnail={project.displayImage}
-						thumbnailAlt={project.displayImageAlt}
-						slideImages={project.slideImages}
-						title={project.title}
-						description={project.description}
-						tech={project.tech}
-						tags={project.tags}
-						githubLink={project.githubLink}
-					/>
-				))
-			}
-		</div>
+	<section class="portfolio-hero">
+		<p class="eyebrow">PORTFOLIO</p>
+		<h1>公開できるコードと、<br />継続しているプロジェクト。</h1>
+		<p>
+			個人開発では、作って終わりではなく、運用・テスト・改善まで続けています。
+			実務案件は守秘義務のため掲載していません。
+		</p>
+	</section>
+
+	<section class="portfolio-list">
+		{Object.values(portfolioImages).map((project) => (
+			<ProjectCard
+				url={project.url}
+				thumbnail={project.displayImage}
+				thumbnailAlt={project.displayImageAlt}
+				slideImages={project.slideImages}
+				title={project.title}
+				description={project.description}
+				tech={project.tech}
+				tags={project.tags}
+				githubLink={project.githubLink}
+			/>
+		))}
 	</section>
 </Layout>
-<style></style>
+
+<style>
+	.portfolio-hero {
+		max-width: 850px;
+		padding: clamp(3rem, 7vw, 6rem) 0 3rem;
+	}
+	.eyebrow {
+		margin-bottom: .75rem;
+		color: #4f46e5;
+		font-size: .75rem;
+		font-weight: 800;
+		letter-spacing: .18em;
+	}
+	h1 {
+		font-size: clamp(2.6rem, 6vw, 5rem);
+		line-height: 1;
+		letter-spacing: -.055em;
+		font-weight: 800;
+	}
+	.portfolio-hero > p:last-child {
+		max-width: 720px;
+		margin-top: 1.4rem;
+		color: #667085;
+		font-size: 1rem;
+		line-height: 1.9;
+	}
+	.portfolio-list {
+		display: grid;
+		gap: 1.4rem;
+		padding-bottom: 6rem;
+	}
+</style>
