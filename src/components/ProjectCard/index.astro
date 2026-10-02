@@ -19,119 +19,108 @@ type Project = {
 };
 
 const { classList, url, thumbnail, thumbnailAlt, slideImages, title, description, tech, tags, githubLink } = Astro.props as Project;
-const image = thumbnail ?? commingSoonImage;
-const imageAlt = thumbnailAlt ?? 'Coming Soon';
-const techItems = tech?.split(',').map((item) => item.trim()).filter(Boolean) ?? [];
+const image = thumbnail ? thumbnail : commingSoonImage;
+const imageAlt = thumbnailAlt ? thumbnailAlt : 'Coming Soon';
 ---
 
-<article class={`project-card ${classList ?? ''}`}>
-	<div class="project-card__media">
-		<ImageSlideAstro image={image} imageAlt={imageAlt} title={title} slideImages={slideImages} />
-	</div>
-	<div class="project-card__content">
-		<p class="project-card__eyebrow">PUBLIC PROJECT</p>
-		<h2>{title}</h2>
-		{description && <p class="project-card__description">{description}</p>}
-
-		{techItems.length > 0 && (
-			<div class="project-card__tech" aria-label="使用技術">
-				{techItems.map((item) => <span>{item}</span>)}
-			</div>
-		)}
-
-		<div class="project-card__links">
-			{url && (
-				<a class="project-card__primary-link" href={url} target="_blank" rel="noopener noreferrer">
-					公開ページを見る →
-				</a>
-			)}
-			{githubLink && (
-				<a class="project-card__github-link" href={githubLink} target="_blank" rel="noopener noreferrer">
-					<Image src={githubIcon} alt="" width={20} height={20} />
-					<span>GitHub</span>
-				</a>
-			)}
+<div class=`item max-xl:flex-col ${classList ?? ''}`>
+	<ImageSlideAstro image={image} imageAlt={imageAlt} title={title} slideImages={slideImages} />
+	<div class='item__content w-[400px] mt-5 xl:w-[30%] xl:ml-0'>
+		<div class='item__wrapper'>
+			<p class='item__title flex justify-between'>タイトル<span class='leading-snug'>:</span></p>
+			<p class='item__title--text'>{title}</p>
 		</div>
-
-		{tags && tags.length > 0 && (
-			<div class="project-card__tags">
-				{tags.map((tag) => <a href={`/posts/tags/${tag}/`}>#{tag}</a>)}
-			</div>
-		)}
+		<div class='item__wrapper'>
+			<p class='item__title flex justify-between'>URL<span class='leading-snug'>:</span></p>
+			{
+				url ? (
+					<a class='item__url' href={url} target='_blank' rel='noopener noreferrer'>
+						{url}
+					</a>
+				) : (
+					<p class='item__title--text'>現在公開していません</p>
+				)
+			}
+		</div>
+		{
+			tech ? (
+				<div class='item__wrapper'>
+					<p class='item__title flex justify-between'>
+						使用技術<span class='leading-snug'>:</span>
+					</p>
+					<p class='item__title--text'>{tech}</p>
+				</div>
+			) : null
+		}
+		{
+			description ? (
+				<div class='item__wrapper'>
+					<p class='item__title flex justify-between'>
+						説明<span class='leading-snug'>:</span>
+					</p>
+					<p class='item__title--text'>{description}</p>
+				</div>
+			) : null
+		}
+		<div class='item__wrapper mt-3'>
+			{
+				githubLink ? (
+					<a href={githubLink} class='hover:opacity-70 mr-2.5' target='_blank' rel='noopener noreferrer'>
+						<Image src={githubIcon} alt='GitHub' width={24} height={24} />
+					</a>
+				) : null
+			}
+			{
+				tags && tags.length > 0 ? (
+					tags.map((tag) => (
+						<a href={`/posts/tags/${tag}/`} class='item__tag mr-2.5 hover:underline'>
+							#{tag}
+						</a>
+					))
+				) : null
+			}
+		</div>
 	</div>
-</article>
+</div>
 
 <style>
-	.project-card {
-		display: grid;
-		grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
-		gap: clamp(1.5rem, 4vw, 3.5rem);
-		align-items: center;
-		padding: clamp(1.2rem, 3vw, 2rem);
-		border: 1px solid #e3e6ef;
-		border-radius: 28px;
-		background: rgba(255,255,255,.9);
-		box-shadow: 0 16px 50px rgba(31,41,55,.06);
-	}
-	.project-card__media { min-width: 0; overflow: hidden; border-radius: 20px; }
-	.project-card__content { min-width: 0; }
-	.project-card__eyebrow {
-		margin-bottom: .6rem;
-		color: #4f46e5;
-		font-size: .72rem;
-		font-weight: 800;
-		letter-spacing: .14em;
-	}
-	h2 {
-		font-size: clamp(1.6rem, 3vw, 2.4rem);
-		line-height: 1.1;
-		letter-spacing: -.035em;
-		font-weight: 800;
-	}
-	.project-card__description {
-		margin-top: 1rem;
-		color: #667085;
-		line-height: 1.85;
-	}
-	.project-card__tech {
+	.item {
 		display: flex;
-		flex-wrap: wrap;
-		gap: .45rem;
-		margin-top: 1.3rem;
-	}
-	.project-card__tech span {
-		padding: .35rem .65rem;
-		border: 1px solid #e1e4ec;
-		border-radius: 999px;
-		color: #596176;
-		background: #f8f9fc;
-		font-size: .76rem;
-	}
-	.project-card__links {
-		display: flex;
-		flex-wrap: wrap;
+		justify-content: center;
 		align-items: center;
-		gap: .75rem 1rem;
-		margin-top: 1.5rem;
 	}
-	.project-card__primary-link {
-		padding: .7rem 1rem;
-		border-radius: 999px;
-		color: white;
-		background: #111827;
-		font-weight: 700;
+	.item__content {
+		max-width: 100%;
+		min-width: 0;
 	}
-	.project-card__github-link {
-		display: inline-flex;
-		align-items: center;
-		gap: .4rem;
-		color: #3e4658;
-		font-weight: 700;
-	}
-	.project-card__tags { margin-top: 1rem; font-size: .8rem; }
-	.project-card__tags a { margin-right: .6rem; color: #6366f1; }
 
-	@media (max-width: 860px) {
-		.project-card { grid-template-columns: 1fr; }
+	.item__url, .item__title--text {
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.item > :global(astro-island) {
+		max-width: 100%;
+	}
+
+	.item > :global(astro-island > .link__image) {
+		max-width: 100%;
+	}
+
+	@media (max-width: 1279px) {
+		.item > :global(astro-island > .link__image) {
+			margin-right: 0;
+		}
+	}
+
+	.item__wrapper {
+		display: flex;
+		margin-bottom: 0.5rem;
+	}
+
+	.item__title {
+		min-width: 5.5em;
+		font-weight: bold;
+		margin-right: 1em;
 	}
 </style>

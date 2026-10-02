@@ -42,7 +42,6 @@ export const pageInfo: PageInfo = {
 		metaTitle: 'Hiroyuki9614 | Web Engineer / Frontend',
 		metaDescription: 'React・TypeScriptを中心に、変更容易性・再利用性・業務改善を意識したWeb開発に取り組むHiroyuki9614のプロフィールです。',
 		headingTitle: 'profile',
-		headingDescription: 'Web Engineer / Frontend focused',
 		type: 'website',
 	},
 	notFound: {
