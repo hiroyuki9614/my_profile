@@ -59,7 +59,6 @@ export const pageInfo: PageInfo = {
 		type: 'website',
 	},
 	navigation: [
-		{ label: 'blog', path: `${rootPath}/posts` },
 		{ label: 'portfolio', path: `${rootPath}/portfolio/` },
 		{ label: 'profile', path: `${rootPath}/` },
 	],
